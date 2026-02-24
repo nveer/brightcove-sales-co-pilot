@@ -1,0 +1,9 @@
+{
+  "name": "se-command-center",
+  "version": "1.0.0",
+  "description": "AI-powered Sales Engineer assistant for Brightcove. Automates call prep, post-call follow-ups, inbox triage, and account intelligence.",
+  "author": {
+    "name": "Brightcove SE Team"
+  },
+  "keywords": ["sales-engineering", "brightcove", "gong", "salesforce", "call-prep"]
+}
