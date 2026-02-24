@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SE Command Center — Plugin Setup Guide</title>
+  <style>
+    :root {
+      --bg: #0d0f14;
+      --surface: #161a22;
+      --surface2: #1e2330;
+      --border: #2a2f3e;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #3ecf8e;
+      --yellow: #f5a623;
+      --red: #f76f6f;
+      --text: #e2e8f0;
+      --muted: #7a8499;
+      --gong: #f26522;
+      --salesforce: #00a1e0;
+      --gmail: #ea4335;
+      --gcal: #4285f4;
+      --notion: #e9e9e9;
+      --granola: #8b5cf6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0d0f14 0%, #1a1f35 50%, #0d1220 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 32px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79,142,247,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(79,142,247,0.12);
+      border: 1px solid rgba(79,142,247,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #e2e8f0 30%, #7c8db5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-header { margin-bottom: 32px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+    }
+    .section-title { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .section-desc { color: var(--muted); font-size: 15px; }
+
+    /* ─── CAPABILITY CARDS ───────────────────────────────────── */
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .cap-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; transition: border-color 0.2s;
+    }
+    .cap-card:hover { border-color: rgba(79,142,247,0.4); }
+    .cap-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+    .cap-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .cap-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .cap-tag {
+      display: inline-block; background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2); color: var(--accent);
+      font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+      margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* ─── PLATFORM CARDS ─────────────────────────────────────── */
+    .platform-list { display: flex; flex-direction: column; gap: 20px; }
+    .platform-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .platform-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; cursor: pointer; user-select: none;
+    }
+    .platform-header:hover { background: rgba(255,255,255,0.02); }
+    .platform-dot {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .platform-info { flex: 1; }
+    .platform-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .platform-meta { font-size: 12px; color: var(--muted); }
+    .platform-pill {
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .pill-required { background: rgba(247,111,111,0.15); color: var(--red); border: 1px solid rgba(247,111,111,0.3); }
+    .pill-mcp { background: rgba(79,142,247,0.12); color: var(--accent); border: 1px solid rgba(79,142,247,0.25); }
+    .pill-api { background: rgba(245,166,35,0.12); color: var(--yellow); border: 1px solid rgba(245,166,35,0.3); }
+    .platform-body { padding: 0 24px 24px; border-top: 1px solid var(--border); }
+    .platform-body p { font-size: 14px; color: var(--muted); margin-bottom: 16px; padding-top: 16px; }
+
+    /* ─── STEPS ──────────────────────────────────────────────── */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step { display: flex; gap: 14px; align-items: flex-start; }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(79,142,247,0.15); border: 1px solid rgba(79,142,247,0.3);
+      color: var(--accent); font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .step-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+    .step-text strong { color: #fff; }
+    .step-text a { color: var(--accent); text-decoration: none; }
+    .step-text a:hover { text-decoration: underline; }
+
+    /* ─── CODE BLOCKS ────────────────────────────────────────── */
+    .code-block {
+      background: #0a0c10; border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 16px; margin: 12px 0;
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px;
+      color: #a8b4cc; overflow-x: auto; white-space: pre; line-height: 1.6;
+    }
+    .code-block .comment { color: #4a5568; }
+    .code-block .key { color: #81b4f7; }
+    .code-block .val { color: #7ec8a4; }
+    .code-block .placeholder { color: var(--yellow); }
+
+    /* ─── ALERT BOXES ────────────────────────────────────────── */
+    .alert {
+      display: flex; gap: 12px; padding: 14px 16px; border-radius: 8px;
+      font-size: 13.5px; line-height: 1.5; margin: 12px 0;
+    }
+    .alert-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+    .alert-warn { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25); color: #c8a862; }
+    .alert-info { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.2); color: #7aa6d8; }
+    .alert-success { background: rgba(62,207,142,0.08); border: 1px solid rgba(62,207,142,0.25); color: #5bc49a; }
+
+    /* ─── TOKEN RISK SECTION ─────────────────────────────────── */
+    .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 600px) { .risk-grid { grid-template-columns: 1fr; } }
+    .risk-card { border-radius: 10px; padding: 16px; border: 1px solid; }
+    .risk-bad { background: rgba(247,111,111,0.07); border-color: rgba(247,111,111,0.25); }
+    .risk-good { background: rgba(62,207,142,0.07); border-color: rgba(62,207,142,0.25); }
+    .risk-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .risk-bad .risk-title { color: var(--red); }
+    .risk-good .risk-title { color: var(--green); }
+    .risk-body { font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+    /* ─── COMMAND REFERENCE ─────────────────────────────────── */
+    .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .cmd-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .cmd-name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+    .cmd-desc { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* ─── CHECKLIST ───────────────────────────────────────────── */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 12px 14px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px; font-size: 14px;
+    }
+    .check-box { width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px; }
+    .check-text { line-height: 1.4; }
+    .check-text strong { color: #fff; display: block; margin-bottom: 2px; }
+    .check-text span { color: var(--muted); font-size: 12px; }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; background: rgba(13,15,20,0.92);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      z-index: 100; padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto; display: flex; align-items: center;
+      gap: 4px; height: 48px; overflow-x: auto; scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      flex-shrink: 0; font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; padding: 6px 12px; border-radius: 6px;
+      transition: color 0.15s, background 0.15s; white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+    .footer strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-link" href="#what-it-does">What It Does</a>
+    <a class="nav-link" href="#platforms">Platforms</a>
+    <a class="nav-link" href="#setup">Setup</a>
+    <a class="nav-link" href="#github-hosting">GitHub Hosting</a>
+    <a class="nav-link" href="#token-risks">Token Risks</a>
+    <a class="nav-link" href="#commands">Commands</a>
+    <a class="nav-link" href="#checklist">Checklist</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-badge">🎬 Brightcove SE Command Center</div>
+  <h1>Your AI-Powered SE Assistant</h1>
+  <p>Automates pre-call prep, post-call follow-ups, inbox triage, and account intelligence — so you can focus on customers, not context switching.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">7</span>
+      <span class="hero-stat-label">Commands</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6</span>
+      <span class="hero-stat-label">Integrations</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">∞</span>
+      <span class="hero-stat-label">Hours Saved</span>
+    </div>
+  </div>
+  <div style="margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+    <a href="https://github.com/nveer/brightcove-se-command-center/releases/latest/download/se-command-center.plugin"
+       download="se-command-center.plugin"
+       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#4f8ef7,#7c5cfc);color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;letter-spacing:-0.01em;">
+      ⬇ Download Plugin
+    </a>
+    <a href="#setup"
+       style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#e2e8f0;font-weight:600;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;">
+      Setup Guide ↓
+    </a>
+  </div>
+  <p style="margin-top:12px;font-size:12px;color:#4a5568;">Downloads se-command-center.plugin — double-click to install in Claude Desktop</p>
+</div>
+
+<!-- ── WHAT IT DOES ───────────────────────────────────────────── -->
+<div class="container">
+
+  <section class="section" id="what-it-does">
+    <div class="section-header">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">What This Plugin Does</h2>
+      <p class="section-desc">SE Command Center plugs into Claude Desktop and gives you a set of commands that automate the most time-consuming parts of the SE workflow.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <span class="cap-icon">📅</span>
+        <div class="cap-name">Daily Call Prep</div>
+        <div class="cap-desc">Pulls your Google Calendar, enriches every customer call with Gong history and Gmail context, and outputs a dark-theme HTML timeline with per-meeting cards and action items.</div>
+        <span class="cap-tag">Morning Ritual</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">🎧</span>
+        <div class="cap-name">Live Call Companion</div>
+        <div class="cap-desc">During a call it monitors your meeting notes (Granola), researches Brightcove docs in real time, and stores everything. After the call, writes one consolidated Notion follow-up page.</div>
+        <span class="cap-tag">Real-Time</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">📬</span>
+        <div class="cap-name">Email Triage</div>
+        <div class="cap-desc">Scans Gmail, categorizes by action needed, drafts responses to answerable questions using Brightcove docs, archives noise intelligently. Never auto-sends — always asks for review first.</div>
+        <span class="cap-tag">Inbox Zero</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">🔍</span>
+        <div class="cap-name">Call Prep (On-Demand)</div>
+        <div class="cap-desc">For any customer: pull 30 days of Gong call history, Salesforce account data, recent emails, and generate a structured briefing with discovery questions and agenda suggestions.</div>
+        <span class="cap-tag">Pre-Call</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">📝</span>
+        <div class="cap-name">Call Debrief</div>
+        <div class="cap-desc">Capture post-call outcomes, action items, sentiment, and customer intent. Updates account context files and creates a Notion follow-up page automatically.</div>
+        <span class="cap-tag">Post-Call</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">🏢</span>
+        <div class="cap-name">Account Summaries</div>
+        <div class="cap-desc">Full 360° account overview: 6-month Gong history, complete Salesforce pull, email threads, and a health score with recommendations.</div>
+        <span class="cap-tag">Account Intel</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">⚔️</span>
+        <div class="cap-name">Competitor Analysis</div>
+        <div class="cap-desc">Research any competing video platform: web research, Gong mentions across your call history, and a head-to-head comparison against Brightcove's capabilities.</div>
+        <span class="cap-tag">Competitive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLATFORMS ──────────────────────────────────────────── -->
+  <section class="section" id="platforms">
+    <div class="section-header">
+      <div class="section-label">Integrations</div>
+      <h2 class="section-title">Platforms It Connects To</h2>
+      <p class="section-desc">Each platform requires its own setup. Click any row to see connection instructions.</p>
+    </div>
+    <div class="platform-list">
+
+      <!-- GONG -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(242,101,34,0.15);">🎤</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#f26522;">Gong</div>
+            <div class="platform-meta">Call recordings · Transcripts · SE team call history</div>
+          </div>
+          <span class="platform-pill pill-api">API Key Needed</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used for pulling call transcripts, searching SE call history, and surfacing best practices. You'll need a Gong API Access Key + Secret from your org's Gong admin.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>Gong → Settings → API</strong> (or ask your Gong admin to create API credentials for you)</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Create a new API Key. Copy the <strong>Access Key</strong> and <strong>Access Secret</strong>.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Find your org's <strong>Base URL</strong> — it looks like <code style="color:var(--yellow)">https://us-XXXXX.api.gong.io/v2</code>. It's shown in the Gong API settings page.</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">scripts/.env</code> in your plugin folder and fill in:</div></div>
+          </div>
+          <div class="code-block"><span class="comment"># Gong API credentials</span>
+<span class="key">GONG_ACCESS_KEY</span>=<span class="placeholder">your_access_key_here</span>
+<span class="key">GONG_ACCESS_KEY_SECRET</span>=<span class="placeholder">your_access_secret_here</span>
+<span class="key">GONG_BASE_URL</span>=<span class="placeholder">https://us-XXXXX.api.gong.io/v2</span></div>
+          <div class="steps">
+            <div class="step"><div class="step-num">5</div><div class="step-text">Open <code style="color:var(--accent)">skills/gong/gong_api.sh</code> and update the <strong>SE_USER_IDS</strong> array at the top with your team's Gong user IDs. Ask your Gong admin or pull them from the Gong API.</div></div>
+          </div>
+          <div class="alert alert-info">
+            <span class="alert-icon">🎟️</span>
+            <span><strong>Need API access?</strong> Gong API keys require admin setup. Submit a ticket to IT/Support and ask them to create Gong API credentials for you. Include your name and team in the request.</span>
+          </div>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <span>Gong API keys are org-level — they give access to your org's Gong data. <strong>Do not share your credentials with someone outside your org.</strong> Each team member should create their own API key.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SALESFORCE -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(0,161,224,0.15);">☁️</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#00a1e0;">Salesforce</div>
+            <div class="platform-meta">Account data · Opportunities · Product info · Contract details</div>
+          </div>
+          <span class="platform-pill pill-api">API Key Needed</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used to pull account details, active opportunities, and contract data for call prep and account summaries. Uses Salesforce's OAuth 2.0 Password Flow — you'll need a Connected App from your Salesforce admin.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Ask your <strong>Salesforce admin</strong> to create a <strong>Connected App</strong> for you in Setup → App Manager. Enable OAuth and request scopes: <code style="color:var(--yellow)">api, refresh_token</code>.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">After the app is created, copy the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong>.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Get your Salesforce <strong>Security Token</strong>: in Salesforce go to <strong>My Settings → Personal → Reset My Security Token</strong>. It'll be emailed to you.</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">scripts/.env</code> and fill in your Salesforce section:</div></div>
+          </div>
+          <div class="code-block"><span class="comment"># Salesforce credentials (OAuth 2.0 Password Flow)</span>
+<span class="key">SF_CONSUMER_KEY</span>=<span class="placeholder">your_consumer_key</span>
+<span class="key">SF_CONSUMER_SECRET</span>=<span class="placeholder">your_consumer_secret</span>
+<span class="key">SF_USERNAME</span>=<span class="placeholder">your.email@company.com</span>
+<span class="key">SF_PASSWORD</span>=<span class="placeholder">your_salesforce_password</span>
+<span class="key">SF_SECURITY_TOKEN</span>=<span class="placeholder">your_security_token</span>
+<span class="key">SF_TOKEN_URL</span>=<span class="placeholder">https://login.salesforce.com/services/oauth2/token</span></div>
+          <div class="alert alert-info">
+            <span class="alert-icon">🎟️</span>
+            <span><strong>Need a Connected App?</strong> Salesforce Connected Apps require admin setup. Submit a ticket to IT/Support asking them to create a Salesforce Connected App with OAuth password flow enabled. Include your Salesforce username in the request.</span>
+          </div>
+          <div class="alert alert-warn">
+            <span class="alert-icon">🔒</span>
+            <span><strong>Critical:</strong> These are your personal Salesforce login credentials. Every query runs as you and appears in Salesforce audit logs under your name. Never share your credentials — each user must configure their own.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GMAIL -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(234,67,53,0.15);">📧</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#ea4335;">Gmail</div>
+            <div class="platform-meta">Email read/search/draft · Inbox triage · Thread context</div>
+          </div>
+          <span class="platform-pill pill-mcp">MCP Connector</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used for reading email threads, drafting responses, and archiving noise during email triage. Connects via two Claude Desktop MCP connectors (read + write).</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Gmail"</strong>. You'll connect <strong>your own Gmail account</strong> — each person must connect their own.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Connect both the read connector and the write connector to your Google account.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Authorize Google's OAuth consent screen — grant the requested Gmail permissions. You're authorizing access to your personal/work Gmail inbox.</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Once connected, restart Claude Desktop and run <code style="color:var(--accent)">/prime</code> to verify Gmail is accessible.</div></div>
+          </div>
+          <div class="alert alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <span>The email triage command <strong>never auto-sends emails</strong>. It always shows you draft content and asks for confirmation before sending anything.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE CALENDAR -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(66,133,244,0.15);">📆</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#4285f4;">Google Calendar</div>
+            <div class="platform-meta">Schedule · Meeting classification · Daily timeline</div>
+          </div>
+          <span class="platform-pill pill-mcp">MCP Connector</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used in daily call prep to pull your schedule, classify meetings as customer vs internal, and generate the day's timeline. Read-only — this plugin cannot create or modify calendar events.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Calendar"</strong>. Connect <strong>your own</strong> Google Calendar account via OAuth.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Grant <strong>read-only</strong> access to your calendar. This is personal — it only accesses the calendar of whoever connects it.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Once connected, restart Claude Desktop to complete the setup.</div></div>
+          </div>
+          <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <span>Read-only access only. This plugin cannot create, modify, or delete any calendar events.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE DRIVE -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(52,168,83,0.15);">🗂️</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#34a853;">Google Drive</div>
+            <div class="platform-meta">File access · Document context · Reference materials</div>
+          </div>
+          <span class="platform-pill pill-mcp">MCP Connector</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used for accessing reference documents, customer files, and any Google Drive content you want Claude to have context from.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop → Settings → Integrations, search for <strong>"Google Drive"</strong></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Connect <strong>your own</strong> Google Drive account via Google OAuth</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Authorize the requested permissions — Claude can only read files you explicitly share with it</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Once connected, you can reference Google Drive documents in commands like /call_prep or /email_triage</div></div>
+          </div>
+          <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <span>Read-only access. Claude can search and read files you've shared, but cannot create, modify, or delete Google Drive files.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTION -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(233,233,233,0.08);">📓</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#e9e9e9;">Notion</div>
+            <div class="platform-meta">Call follow-up pages · Account tracking · Knowledge base</div>
+          </div>
+          <span class="platform-pill pill-mcp">MCP Connector</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>After each call, SE Command Center writes a structured follow-up page to Notion with action items, resources, and a copy-paste follow-up email. You'll need to set up your own Notion databases and update the IDs in your config.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Integrations</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">In your Notion workspace, create two databases:<br>• <strong>Customer Call Prep</strong> (properties: Name, Customer, Date, Status, Attendees)<br>• <strong>Call Follow-Ups</strong> (same properties)</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Copy each database's ID from the URL (the UUID after the last <code>/</code>)</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">CLAUDE.md</code> and update the <strong>Notion Databases</strong> section with your database IDs and parent page ID</div></div>
+          </div>
+          <div class="code-block"><span class="comment">## Notion Databases — update with YOUR IDs</span>
+<span class="key">Customer Call Prep DB:</span> collection://<span class="placeholder">your-collection-id</span>
+<span class="key">Call Follow-Ups DB:</span> collection://<span class="placeholder">your-collection-id</span>
+<span class="key">Your parent page:</span> <span class="placeholder">your-page-id</span></div>
+        </div>
+      </div>
+
+      <!-- GRANOLA -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(139,92,246,0.15);">🎙️</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#8b5cf6;">Granola</div>
+            <div class="platform-meta">Meeting transcripts · Live call notes · AI summaries</div>
+          </div>
+          <span class="platform-pill pill-mcp">MCP Connector</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used by the live Call Companion to monitor meeting notes in real time and pull transcripts post-call. Requires the Granola desktop app and its MCP connector.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">Install <a href="https://granola.ai" target="_blank">Granola</a> on your Mac (it records and transcribes meetings in the background)</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">In Granola settings, enable the <strong>MCP / Claude integration</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Connect Granola in <strong>Claude Desktop → Settings → Integrations</strong></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text">Granola will automatically make your meeting transcripts accessible to Claude</div></div>
+          </div>
+          <div class="alert alert-success">
+            <span class="alert-icon">🙌</span>
+            <span><strong>No IT ticket needed!</strong> Granola is fully self-serve. Once installed, it automatically records and transcribes all your meetings. You can search across ALL your recorded conversations directly from the Granola app — no admin involvement required. This makes it the fastest integration to get up and running.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SETUP ─────────────────────────────────────────────── -->
+  <section class="section" id="setup">
+    <div class="section-header">
+      <div class="section-label">Installation</div>
+      <h2 class="section-title">First-Time Setup</h2>
+      <p class="section-desc">Get from zero to running in about 30 minutes. Most of the time is waiting for Salesforce admin to set up your Connected App.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Install the plugin</strong> in Claude Desktop. Double-click the <code style="color:var(--accent)">.plugin</code> file or drag it into Claude Desktop's plugin panel.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Select a workspace folder</strong> in Claude Desktop (Cowork mode). This is where all your outputs, call prep pages, and context files will live.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Create your <code style="color:var(--accent)">scripts/.env</code> file</strong> by copying <code style="color:var(--muted)">scripts/.env.example</code> and filling in your credentials (Gong + Salesforce).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Connect MCP integrations</strong> in Claude Desktop: Gmail (read + write), Google Calendar, Google Drive, Notion, and optionally Granola. See the Platforms section above for instructions on each.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Update <code style="color:var(--accent)">CLAUDE.md</code></strong> with your details: your name, role focus, Notion database IDs, and any account-specific context you want Claude to know.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Update Gong SE user IDs</strong> in <code style="color:var(--accent)">skills/gong/gong_api.sh</code> — replace the default IDs with your team's actual Gong user IDs. Your Gong admin can supply these.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Run <code style="color:var(--accent)">/prime</code></strong> in Claude Desktop to verify everything is connected and Claude can read your workspace context.</div></div>
+    </div>
+  </section>
+
+  <!-- ── GITHUB HOSTING ──────────────────────────────────────── -->
+  <section class="section" id="github-hosting">
+    <div class="section-header">
+      <div class="section-label">Distribution</div>
+      <h2 class="section-title">Hosting on GitHub (For Plugin Maintainers)</h2>
+      <p class="section-desc">Host the onboarding page on GitHub Pages and the plugin file on GitHub Releases — then share a single URL with your whole team.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Create a private GitHub repo</strong> named <code style="color:var(--accent)">brightcove-se-command-center</code>. Push all plugin files to it.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Enable GitHub Pages:</strong> Go to repo Settings → Pages → Source: Deploy from branch → select <code style="color:var(--accent)">main</code> → folder <code style="color:var(--accent)">/docs</code>. Move <code style="color:var(--accent)">se-plugin-onboarding.html</code> to a <code style="color:var(--accent)">docs/</code> folder and rename it <code style="color:var(--accent)">index.html</code>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Create a GitHub Release:</strong> Go to Releases → Draft a new release → tag it <code style="color:var(--accent)">v1.0.0</code> → upload <code style="color:var(--accent)">se-command-center.plugin</code> as a release asset → publish.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Update the Download button URL</strong> in <code style="color:var(--accent)">docs/index.html</code>: replace <code style="color:var(--yellow)">~~your-github-username~~</code> with your actual GitHub username. The final URL will be:<br><br>
+      <code style="color:var(--green);font-size:12px;">https://github.com/YOUR-USERNAME/brightcove-se-command-center/releases/latest/download/se-command-center.plugin</code></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Share this single URL</strong> with your SE team:<br><br>
+      <code style="color:var(--green);font-size:12px;">https://YOUR-USERNAME.github.io/brightcove-se-command-center/</code><br><br>
+      They click Download Plugin → double-click the file → Claude Desktop installs it automatically.</div></div>
+    </div>
+    <div class="alert alert-info" style="margin-top:20px;">
+      <span class="alert-icon">🔒</span>
+      <span>Make the repo <strong>private</strong> — it contains Brightcove-specific workflow files. GitHub Pages works on private repos with a GitHub Teams or Enterprise plan. Alternatively, use a public repo but ensure no sensitive info is in any committed file (all credentials stay in the local <code>.env</code> which is gitignored).</span>
+    </div>
+  </section>
+
+  <!-- ── TOKEN RISKS ─────────────────────────────────────────── -->
+  <section class="section" id="token-risks">
+    <div class="section-header">
+      <div class="section-label">Security</div>
+      <h2 class="section-title">Why You Need Your Own API Tokens</h2>
+      <p class="section-desc">Sharing API credentials is not just a security risk — it breaks the plugin for everyone involved. Here's why.</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-card risk-bad">
+        <div class="risk-title">❌ If You Use Someone Else's Token</div>
+        <div class="risk-body">All API calls appear as the token owner in audit logs. In Salesforce, you'll query their data under their access permissions — and they can see everything you searched. In Gong, their SE team filters apply, not yours.</div>
+      </div>
+      <div class="risk-card risk-good">
+        <div class="risk-title">✅ With Your Own Token</div>
+        <div class="risk-body">Queries run as you — your data, your access permissions, your audit trail. Gong SE filters point to your team's calls. Salesforce shows your accounts. Everything is scoped correctly.</div>
+      </div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Salesforce is especially sensitive.</strong> The plugin uses an OAuth password flow that includes your actual username and password. Sharing this gives someone full access to your Salesforce instance with your permissions. Always use your own credentials.</div>
+    </div>
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ️</span>
+      <div><strong>Gong Base URL is org-specific.</strong> The URL (<code style="color:var(--yellow)">https://us-XXXXX.api.gong.io</code>) identifies your Brightcove Gong instance. Everyone at Brightcove uses the same base URL, but needs their own API key to authenticate against it.</div>
+    </div>
+  </section>
+
+  <!-- ── COMMANDS ───────────────────────────────────────────── -->
+  <section class="section" id="commands">
+    <div class="section-header">
+      <div class="section-label">Reference</div>
+      <h2 class="section-title">Available Commands</h2>
+      <p class="section-desc">Type any of these in Claude Desktop after installing the plugin.</p>
+    </div>
+    <div class="cmd-grid">
+      <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gong + Gmail context.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then writes a Notion follow-up page after the call.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Gong history, Salesforce data, and recent emails.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_debrief [customer]</div><div class="cmd-desc">Post-call capture. Records outcomes, action items, and customer sentiment. Updates context files.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Salesforce pull, email threads, and health score.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/competitor_analysis [name]</div><div class="cmd-desc">Research any competitor: web research, Gong mentions from your calls, head-to-head vs Brightcove.</div></div>
+    </div>
+  </section>
+
+  <!-- ── CHECKLIST ──────────────────────────────────────────── -->
+  <section class="section" id="checklist">
+    <div class="section-header">
+      <div class="section-label">Getting Started</div>
+      <h2 class="section-title">Setup Checklist</h2>
+      <p class="section-desc">Print this or check it off as you go.</p>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin installed in Claude Desktop</strong><span>Double-click .plugin file or drag into Claude Desktop</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Workspace folder selected in Cowork mode</strong><span>This is where outputs and context files live</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>scripts/.env created from scripts/.env.example</strong><span>Add your Gong and Salesforce credentials</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gong API key obtained from Gong admin</strong><span>Access Key + Secret + Base URL</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Salesforce Connected App created by SF admin</strong><span>Consumer Key + Secret + your username/password/security token</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected in Claude Desktop (read + write)</strong><span>Connect YOUR Google account. Each person uses their own Gmail.</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected in Claude Desktop</strong><span>Connect your personal Google Drive via MCP connector</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Connect YOUR Google Calendar. Read-only access to your own schedule.</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected + databases created</strong><span>Customer Call Prep DB + Call Follow-Ups DB — update IDs in CLAUDE.md</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gong SE user IDs updated in gong_api.sh</strong><span>Replace default IDs with your team's actual Gong user IDs</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>CLAUDE.md updated with your info</strong><span>Name, role, Notion IDs, account context</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Ran /prime — Claude confirmed ready</strong><span>Granola is optional but recommended for live call companion</span></div></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<div class="footer">
+  <strong>SE Command Center</strong> · Built for Brightcove Sales Engineering<br>
+  Source of truth for all Brightcove product questions: <a href="https://support.brightcove.com" target="_blank" style="color:var(--accent)">support.brightcove.com</a>
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+  }
+</script>
+
+</body>
+</html>
