@@ -652,9 +652,62 @@
       <p class="section-desc">Takes about 10 minutes total. No terminal commands, no IT tickets, no technical knowledge needed.</p>
     </div>
 
-    <div class="alert alert-warn" style="margin-bottom:24px;">
-      <span class="alert-icon">⚠️</span>
-      <span><strong>Before you start:</strong> You need <a href="https://claude.ai/download" target="_blank" style="color:var(--accent)">Claude Desktop</a> installed on your Mac. If you don't have it yet, download and install it first, then come back here.</span>
+    <!-- Before You Start -->
+    <div style="background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:28px 32px; margin-bottom:32px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
+        <span style="font-size:20px;">🧾</span>
+        <h3 style="font-size:16px; font-weight:700; color:var(--text); margin:0;">Before You Start — Checklist</h3>
+      </div>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:20px;">Have these ready before you begin. The install takes ~10 minutes but will stall if something is missing.</p>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+
+        <!-- Claude Desktop -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+          <span style="font-size:18px; flex-shrink:0;">🖥️</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Claude Desktop <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Must be installed on your Mac. <a href="https://claude.ai/download" target="_blank" style="color:var(--accent);">Download Claude Desktop →</a></div>
+          </div>
+        </div>
+
+        <!-- Google Account -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+          <span style="font-size:18px; flex-shrink:0;">📧</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Google Account (Gmail + Calendar) <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Have your Brightcove Google login ready — you'll connect Gmail and Google Calendar during install. No admin setup needed.</div>
+          </div>
+        </div>
+
+        <!-- Notion Account -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+          <span style="font-size:18px; flex-shrink:0;">📓</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Notion Account <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">You need a Notion account (free plan is fine). <strong style="color:var(--green);">You don't need to set anything up</strong> — the plugin creates your databases automatically. Just make sure you can log in to Notion.</div>
+          </div>
+        </div>
+
+        <!-- Brightcove Credentials -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+          <span style="font-size:18px; flex-shrink:0;">🔑</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Brightcove Gateway Access <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Gives Claude access to account data, usage, and contract information. <strong style="color:var(--green);">No separate credentials needed</strong> — just use your Brightcove Google login (same account you already connected above). No IT ticket or admin approval required.</div>
+          </div>
+        </div>
+
+        <!-- Granola (optional) -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px; opacity:0.85;">
+          <span style="font-size:18px; flex-shrink:0;">🎙️</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Granola <span style="background:rgba(79,142,247,0.12); color:var(--accent); border:1px solid rgba(79,142,247,0.25); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Optional</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Only needed if you want Live Call Companion — real-time transcript monitoring during customer calls. <a href="https://granola.ai" target="_blank" style="color:var(--accent);">Download Granola →</a> and make sure it's running before your calls.</div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="steps">
@@ -674,9 +727,9 @@
         <div class="step-text">
           <strong>Open the plugin in Claude Desktop</strong><br>
           Double-click the <code style="color:var(--accent)">.plugin</code> file in your Downloads folder. Claude Desktop will open automatically and show you a <strong>Save Plugin</strong> dialog with a preview of the plugin.
-          <div class="alert alert-success" style="margin-top:10px;">
-            <span class="alert-icon">✅</span>
-            <span>This plugin is marked as a <strong>Safe Plugin</strong> — it installs without any terminal commands, admin access, or security prompts beyond the normal Claude Desktop dialog.</span>
+          <div class="alert alert-warn" style="margin-top:10px;">
+            <span class="alert-icon">💡</span>
+            <span><strong>Double-click didn't open anything?</strong> No problem — open Claude Desktop manually, go to <strong>Cowork</strong>, start a new session, then <strong>drag and drop</strong> the <code style="color:var(--accent)">.plugin</code> file directly into the Cowork window. The Save Plugin dialog will appear the same way.</span>
           </div>
         </div>
       </div>
