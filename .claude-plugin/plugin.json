@@ -1,9 +1,9 @@
 {
-  "name": "se-command-center",
-  "version": "1.0.0",
-  "description": "AI-powered Sales Engineer assistant for Brightcove. Automates call prep, post-call follow-ups, inbox triage, and account intelligence.",
+  "name": "brightcove-sales-co-pilot",
+  "version": "3.0.0",
+  "description": "AI-powered Sales Co-Pilot for Brightcove reps. Automates call prep, inbox triage, account intelligence, and post-call follow-ups — all from Claude Desktop.",
   "author": {
     "name": "Brightcove SE Team"
   },
-  "keywords": ["sales-engineering", "brightcove", "gong", "salesforce", "call-prep"]
+  "keywords": ["sales", "brightcove", "call-prep", "gong", "notion", "email-triage"]
 }

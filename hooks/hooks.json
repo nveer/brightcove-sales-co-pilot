@@ -1,0 +1,14 @@
+{
+  "SessionStart": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "At the start of this session, read the file at ${CLAUDE_PLUGIN_ROOT}/context/about_me.md. If it contains '[Your Name]' (placeholder not yet filled in), this is a first-time install — immediately greet the user and begin the onboarding workflow from ${CLAUDE_PLUGIN_ROOT}/commands/onboarding.md without waiting for them to say anything. If about_me.md is filled in, this is a returning user — read all context files in ${CLAUDE_PLUGIN_ROOT}/context/ and confirm you are ready to help.",
+          "timeout": 15
+        }
+      ]
+    }
+  ]
+}

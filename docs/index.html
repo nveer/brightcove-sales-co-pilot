@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SE Command Center — Plugin Setup Guide</title>
+  <title>Brightcove Sales Co-Pilot — Plugin Setup Guide</title>
   <style>
     :root {
       --bg: #0d0f14;
@@ -26,6 +26,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
@@ -34,7 +35,21 @@
       line-height: 1.6;
     }
 
-    /* ─── HERO ─────────────────────────────────────────────── */
+    /* ─── ANNOUNCEMENT BANNER ─────────────────────────────────── */
+    .announcement-banner {
+      background: linear-gradient(135deg, #4f8ef7 0%, #3d6cbe 100%);
+      padding: 16px 24px;
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(79,142,247,0.3);
+    }
+    .announcement-banner strong {
+      font-weight: 700;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
     .hero {
       background: linear-gradient(135deg, #0d0f14 0%, #1a1f35 50%, #0d1220 100%);
       border-bottom: 1px solid var(--border);
@@ -99,6 +114,57 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #4f8ef7, #7c5cfc);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 24px rgba(79,142,247,0.35);
+    }
+    .btn-download:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #161a22;
+      border-bottom: 1px solid #2a2f3e;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #7a8499;
+    }
+    .topbar-btn {
+      background: linear-gradient(135deg, #4f8ef7, #7c5cfc);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .topbar-btn:hover {
+      opacity: 0.85;
     }
 
     /* ─── LAYOUT ────────────────────────────────────────────── */
@@ -240,6 +306,32 @@
     }
     .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
 
+    /* ─── HERO VIDEO ─────────────────────────────────────────── */
+    .hero-video {
+      margin: 36px auto 0;
+      max-width: 800px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .hero-video video-js {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16/9;
+    }
+
+    /* ─── SAMPLE PROMPTS ─────────────────────────────────────── */
+    .prompts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+    .prompt-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .prompt-input {
+      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; font-weight: 600;
+      color: var(--accent); background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.2);
+      border-radius: 6px; padding: 8px 12px; margin-bottom: 10px;
+    }
+    .prompt-output { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .prompt-output strong { color: var(--green); }
+
     /* ─── FOOTER ─────────────────────────────────────────────── */
     .footer { padding: 32px 24px; text-align: center; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
     .footer strong { color: var(--text); }
@@ -247,24 +339,35 @@
 </head>
 <body>
 
+<!-- ── STICKY TOP BAR ───────────────────────────────────────── -->
+<div class="topbar">
+  <span>🎬 Brightcove Sales Co-Pilot — v3.0</span>
+  <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
+     class="topbar-btn" download>⬇ Download Plugin</a>
+</div>
+
+<!-- ── ANNOUNCEMENT BANNER ──────────────────────────────────── -->
+<div class="announcement-banner">
+  💡 <strong>New here?</strong> Download the plugin above, open it in Claude Desktop, and Claude will walk you through setup automatically — no technical knowledge needed.
+</div>
+
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-link" href="#what-it-does">What It Does</a>
     <a class="nav-link" href="#platforms">Platforms</a>
     <a class="nav-link" href="#setup">Setup</a>
-    <a class="nav-link" href="#github-hosting">GitHub Hosting</a>
-    <a class="nav-link" href="#token-risks">Token Risks</a>
     <a class="nav-link" href="#commands">Commands</a>
+    <a class="nav-link" href="#sample-prompts">Sample Prompts</a>
     <a class="nav-link" href="#checklist">Checklist</a>
   </div>
 </nav>
 
 <!-- ── HERO ──────────────────────────────────────────────────── -->
 <div class="hero">
-  <div class="hero-badge">🎬 Brightcove SE Command Center</div>
-  <h1>Your AI-Powered SE Assistant</h1>
-  <p>Automates pre-call prep, post-call follow-ups, inbox triage, and account intelligence — so you can focus on customers, not context switching.</p>
+  <div class="hero-badge">🎬 BRIGHTCOVE SALES CO-PILOT</div>
+  <h1>Your AI-Powered Sales Assistant</h1>
+  <p>Automates call prep, inbox triage, and post-call follow-ups — so you can focus on selling.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <span class="hero-stat-num">7</span>
@@ -279,18 +382,30 @@
       <span class="hero-stat-label">Hours Saved</span>
     </div>
   </div>
-  <div style="margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-    <a href="https://github.com/nveer/brightcove-se-command-center/releases/latest/download/se-command-center.plugin"
-       download="se-command-center.plugin"
-       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#4f8ef7,#7c5cfc);color:#fff;font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;letter-spacing:-0.01em;">
-      ⬇ Download Plugin
+  <div class="hero-cta">
+    <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
+       class="btn-download"
+       download>
+      ⬇ Download &amp; Install Plugin
     </a>
-    <a href="#setup"
-       style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#e2e8f0;font-weight:600;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;">
-      Setup Guide ↓
-    </a>
+    <p style="color:var(--muted); font-size:13px; margin-top:10px;">
+      v3.0 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
+    </p>
   </div>
-  <p style="margin-top:12px;font-size:12px;color:#4a5568;">Downloads se-command-center.plugin — double-click to install in Claude Desktop</p>
+  <div class="hero-video">
+    <video-js
+      data-account="3018666582001"
+      data-player="default"
+      data-embed="default"
+      controls=""
+      data-video-id="6389905139112"
+      data-interactivity-project-id="699f5132a328afc4eea261e1"
+      data-application-id=""
+      width="960"
+      height="540">
+    </video-js>
+    <script src="https://players.brightcove.net/3018666582001/default_default/index.min.js"></script>
+  </div>
 </div>
 
 <!-- ── WHAT IT DOES ───────────────────────────────────────────── -->
@@ -300,50 +415,50 @@
     <div class="section-header">
       <div class="section-label">Overview</div>
       <h2 class="section-title">What This Plugin Does</h2>
-      <p class="section-desc">SE Command Center plugs into Claude Desktop and gives you a set of commands that automate the most time-consuming parts of the SE workflow.</p>
+      <p class="section-desc">Brightcove Sales Co-Pilot plugs into Claude Desktop and gives you a set of commands that automate the most time-consuming parts of your sales workflow.</p>
     </div>
     <div class="cap-grid">
       <div class="cap-card">
-        <span class="cap-icon">📅</span>
+        <span class="cap-icon">🌅</span>
         <div class="cap-name">Daily Call Prep</div>
-        <div class="cap-desc">Pulls your Google Calendar, enriches every customer call with Gong history and Gmail context, and outputs a dark-theme HTML timeline with per-meeting cards and action items.</div>
+        <div class="cap-desc">Say "prep me for my calls today" and Claude pulls your full day together — Google Calendar, Gong call history, Granola meeting notes, and Gmail — then outputs a visual HTML briefing page. Any open customer question is auto-researched on support.brightcove.com and embedded with a ✅ before your first call.</div>
         <span class="cap-tag">Morning Ritual</span>
       </div>
       <div class="cap-card">
-        <span class="cap-icon">🎧</span>
+        <span class="cap-icon">📞</span>
         <div class="cap-name">Live Call Companion</div>
-        <div class="cap-desc">During a call it monitors your meeting notes (Granola), researches Brightcove docs in real time, and stores everything. After the call, writes one consolidated Notion follow-up page.</div>
+        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it checks Gong Sales team call history first to see if a colleague has solved this before, cross-references Google Docs, then deploys parallel agents to research answers — all while you keep talking. After the call: one Notion page + one copy-paste follow-up email, already written.</div>
         <span class="cap-tag">Real-Time</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">📬</span>
         <div class="cap-name">Email Triage</div>
-        <div class="cap-desc">Scans Gmail, categorizes by action needed, drafts responses to answerable questions using Brightcove docs, archives noise intelligently. Never auto-sends — always asks for review first.</div>
+        <div class="cap-desc">Reads full email threads before drafting — never contradicts what you already sent. Auto-researches answers on support.brightcove.com and embeds them in the draft. Won't archive support emails if you're named, the customer is frustrated, or the thread is stalled. Nothing sends without your approval.</div>
         <span class="cap-tag">Inbox Zero</span>
       </div>
       <div class="cap-card">
-        <span class="cap-icon">🔍</span>
-        <div class="cap-name">Call Prep (On-Demand)</div>
-        <div class="cap-desc">For any customer: pull 30 days of Gong call history, Salesforce account data, recent emails, and generate a structured briefing with discovery questions and agenda suggestions.</div>
-        <span class="cap-tag">Pre-Call</span>
-      </div>
-      <div class="cap-card">
-        <span class="cap-icon">📝</span>
-        <div class="cap-name">Call Debrief</div>
-        <div class="cap-desc">Capture post-call outcomes, action items, sentiment, and customer intent. Updates account context files and creates a Notion follow-up page automatically.</div>
-        <span class="cap-tag">Post-Call</span>
-      </div>
-      <div class="cap-card">
-        <span class="cap-icon">🏢</span>
-        <div class="cap-name">Account Summaries</div>
-        <div class="cap-desc">Full 360° account overview: 6-month Gong history, complete Salesforce pull, email threads, and a health score with recommendations.</div>
+        <span class="cap-icon">📊</span>
+        <div class="cap-name">Account Summary</div>
+        <div class="cap-desc">Full 360° account view on demand — pulls Gong history, Gmail threads, Brightcove Gateway data, and Notion notes simultaneously. Surfaces cadence gaps, competitor risk, renewal timing, and upsell signals. One brief ready to share with your Account Executive or bring into an exec conversation.</div>
         <span class="cap-tag">Account Intel</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">⚔️</span>
         <div class="cap-name">Competitor Analysis</div>
-        <div class="cap-desc">Research any competing video platform: web research, Gong mentions across your call history, and a head-to-head comparison against Brightcove's capabilities.</div>
+        <div class="cap-desc">Mines your Gong call history for how Brightcove has won (or lost) against a competitor before, then cross-references Brightcove support docs for feature differentiators. Output: a structured battlecard with their strengths, your advantages, and objection responses — built from your own calls.</div>
         <span class="cap-tag">Competitive</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">🗂️</span>
+        <div class="cap-name">Notion Integration</div>
+        <div class="cap-desc">After every call, automatically writes a structured Notion follow-up page: action items, resources, key intel, and one copy-paste follow-up email at the bottom covering all topics. Consistent format — [Customer] — [Date] — enriched with Gong and Brightcove Gateway data. No manual note-taking required.</div>
+        <span class="cap-tag">Auto Follow-Up</span>
+      </div>
+      <div class="cap-card">
+        <span class="cap-icon">🧠</span>
+        <div class="cap-name">Always-On Research Engine</div>
+        <div class="cap-desc">Built into every command. Any unanswered technical question in a draft, prep card, triage summary, or follow-up page triggers an automatic lookup at support.brightcove.com. Answers appear inline with a ✅ Researched Answer marker. You never walk into a call with an open question still unanswered.</div>
+        <span class="cap-tag">Auto-Research</span>
       </div>
     </div>
   </section>
@@ -353,9 +468,37 @@
     <div class="section-header">
       <div class="section-label">Integrations</div>
       <h2 class="section-title">Platforms It Connects To</h2>
-      <p class="section-desc">Each platform requires its own setup. Click any row to see connection instructions.</p>
+      <p class="section-desc">Most integrations are self-serve with no IT tickets required. Click any row for connection instructions.</p>
     </div>
     <div class="platform-list">
+
+      <!-- BRIGHTCOVE GATEWAY -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(0,161,224,0.15);">🔵</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#00a1e0;">Brightcove Gateway</div>
+            <div class="platform-meta">Account data · Opportunities · Usage metrics · Contract details · Salesforce exports</div>
+          </div>
+          <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Used to pull account details, active opportunities, usage data, and contract information via Brightcove's internal BigQuery data warehouse. No OAuth or Salesforce Connected App required — connects via MCP connector and uses your Brightcove credentials.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Brightcove Gateway"</strong> and install the MCP connector.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Authenticate with your <strong>Brightcove corporate credentials</strong> when prompted — this connects to the <code style="color:var(--yellow)">brightcove-lumenx-42</code> BigQuery project.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Once connected, restart Claude Desktop. The plugin will automatically use the Gateway for all account and usage queries.</div></div>
+          </div>
+          <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <span><strong>No IT ticket needed!</strong> The Brightcove Gateway MCP connector is self-serve. Authenticate with your existing Brightcove credentials — no Connected Apps, no OAuth setup, no admin involvement required.</span>
+          </div>
+          <div class="alert alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <span>The Gateway connects to BigQuery project <code style="color:var(--yellow)">brightcove-lumenx-42</code>, dataset <code style="color:var(--yellow)">external_shared_views</code>. This includes enriched Salesforce exports, contract data, entitlement usage, and Video Cloud event metrics — all the data you'd otherwise need Salesforce access to pull manually.</span>
+          </div>
+        </div>
+      </div>
 
       <!-- GONG -->
       <div class="platform-card">
@@ -363,68 +506,15 @@
           <div class="platform-dot" style="background:rgba(242,101,34,0.15);">🎤</div>
           <div class="platform-info">
             <div class="platform-name" style="color:#f26522;">Gong</div>
-            <div class="platform-meta">Call recordings · Transcripts · SE team call history</div>
+            <div class="platform-meta">Call recordings · Transcripts · Sales team call history</div>
           </div>
-          <span class="platform-pill pill-api">API Key Needed</span>
+          <span class="platform-pill pill-api">Coming Soon</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used for pulling call transcripts, searching SE call history, and surfacing best practices. You'll need a Gong API Access Key + Secret from your org's Gong admin.</p>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">Go to <strong>Gong → Settings → API</strong> (or ask your Gong admin to create API credentials for you)</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">Create a new API Key. Copy the <strong>Access Key</strong> and <strong>Access Secret</strong>.</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Find your org's <strong>Base URL</strong> — it looks like <code style="color:var(--yellow)">https://us-XXXXX.api.gong.io/v2</code>. It's shown in the Gong API settings page.</div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">scripts/.env</code> in your plugin folder and fill in:</div></div>
-          </div>
-          <div class="code-block"><span class="comment"># Gong API credentials</span>
-<span class="key">GONG_ACCESS_KEY</span>=<span class="placeholder">your_access_key_here</span>
-<span class="key">GONG_ACCESS_KEY_SECRET</span>=<span class="placeholder">your_access_secret_here</span>
-<span class="key">GONG_BASE_URL</span>=<span class="placeholder">https://us-XXXXX.api.gong.io/v2</span></div>
-          <div class="steps">
-            <div class="step"><div class="step-num">5</div><div class="step-text">Open <code style="color:var(--accent)">skills/gong/gong_api.sh</code> and update the <strong>SE_USER_IDS</strong> array at the top with your team's Gong user IDs. Ask your Gong admin or pull them from the Gong API.</div></div>
-          </div>
+          <p>Gong integration is coming soon via Brightcove Gateway. You'll be able to search call transcripts, pull Sales team call history, and surface best practices — all without manual API key setup.</p>
           <div class="alert alert-info">
             <span class="alert-icon">🎟️</span>
-            <span><strong>Need API access?</strong> Gong API keys require admin setup. Submit a ticket to IT/Support and ask them to create Gong API credentials for you. Include your name and team in the request.</span>
-          </div>
-          <div class="alert alert-warn">
-            <span class="alert-icon">⚠️</span>
-            <span>Gong API keys are org-level — they give access to your org's Gong data. <strong>Do not share your credentials with someone outside your org.</strong> Each team member should create their own API key.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- SALESFORCE -->
-      <div class="platform-card">
-        <div class="platform-header" onclick="toggle(this)">
-          <div class="platform-dot" style="background:rgba(0,161,224,0.15);">☁️</div>
-          <div class="platform-info">
-            <div class="platform-name" style="color:#00a1e0;">Salesforce</div>
-            <div class="platform-meta">Account data · Opportunities · Product info · Contract details</div>
-          </div>
-          <span class="platform-pill pill-api">API Key Needed</span>
-        </div>
-        <div class="platform-body" style="display:none;">
-          <p>Used to pull account details, active opportunities, and contract data for call prep and account summaries. Uses Salesforce's OAuth 2.0 Password Flow — you'll need a Connected App from your Salesforce admin.</p>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">Ask your <strong>Salesforce admin</strong> to create a <strong>Connected App</strong> for you in Setup → App Manager. Enable OAuth and request scopes: <code style="color:var(--yellow)">api, refresh_token</code>.</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">After the app is created, copy the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong>.</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Get your Salesforce <strong>Security Token</strong>: in Salesforce go to <strong>My Settings → Personal → Reset My Security Token</strong>. It'll be emailed to you.</div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">scripts/.env</code> and fill in your Salesforce section:</div></div>
-          </div>
-          <div class="code-block"><span class="comment"># Salesforce credentials (OAuth 2.0 Password Flow)</span>
-<span class="key">SF_CONSUMER_KEY</span>=<span class="placeholder">your_consumer_key</span>
-<span class="key">SF_CONSUMER_SECRET</span>=<span class="placeholder">your_consumer_secret</span>
-<span class="key">SF_USERNAME</span>=<span class="placeholder">your.email@company.com</span>
-<span class="key">SF_PASSWORD</span>=<span class="placeholder">your_salesforce_password</span>
-<span class="key">SF_SECURITY_TOKEN</span>=<span class="placeholder">your_security_token</span>
-<span class="key">SF_TOKEN_URL</span>=<span class="placeholder">https://login.salesforce.com/services/oauth2/token</span></div>
-          <div class="alert alert-info">
-            <span class="alert-icon">🎟️</span>
-            <span><strong>Need a Connected App?</strong> Salesforce Connected Apps require admin setup. Submit a ticket to IT/Support asking them to create a Salesforce Connected App with OAuth password flow enabled. Include your Salesforce username in the request.</span>
-          </div>
-          <div class="alert alert-warn">
-            <span class="alert-icon">🔒</span>
-            <span><strong>Critical:</strong> These are your personal Salesforce login credentials. Every query runs as you and appears in Salesforce audit logs under your name. Never share your credentials — each user must configure their own.</span>
+            <span><strong>Coming soon:</strong> Gong will be fully integrated via Brightcove Gateway. No API keys or IT tickets required.</span>
           </div>
         </div>
       </div>
@@ -514,7 +604,7 @@
           <span class="platform-pill pill-mcp">MCP Connector</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>After each call, SE Command Center writes a structured follow-up page to Notion with action items, resources, and a copy-paste follow-up email. You'll need to set up your own Notion databases and update the IDs in your config.</p>
+          <p>After each call, the plugin writes a structured follow-up page to Notion with action items, resources, and a copy-paste follow-up email. You'll need to set up your own Notion databases and update the IDs in your config.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Integrations</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">In your Notion workspace, create two databases:<br>• <strong>Customer Call Prep</strong> (properties: Name, Customer, Date, Status, Attendees)<br>• <strong>Call Follow-Ups</strong> (same properties)</div></div>
@@ -561,66 +651,13 @@
     <div class="section-header">
       <div class="section-label">Installation</div>
       <h2 class="section-title">First-Time Setup</h2>
-      <p class="section-desc">Get from zero to running in about 30 minutes. Most of the time is waiting for Salesforce admin to set up your Connected App.</p>
+      <p class="section-desc">Get from zero to running in about 10 minutes. Most integrations are self-serve — no IT tickets required.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Install the plugin</strong> in Claude Desktop. Double-click the <code style="color:var(--accent)">.plugin</code> file or drag it into Claude Desktop's plugin panel.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Select a workspace folder</strong> in Claude Desktop (Cowork mode). This is where all your outputs, call prep pages, and context files will live.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Create your <code style="color:var(--accent)">scripts/.env</code> file</strong> by copying <code style="color:var(--muted)">scripts/.env.example</code> and filling in your credentials (Gong + Salesforce).</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Connect MCP integrations</strong> in Claude Desktop: Gmail (read + write), Google Calendar, Google Drive, Notion, and optionally Granola. See the Platforms section above for instructions on each.</div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Update <code style="color:var(--accent)">CLAUDE.md</code></strong> with your details: your name, role focus, Notion database IDs, and any account-specific context you want Claude to know.</div></div>
-      <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Update Gong SE user IDs</strong> in <code style="color:var(--accent)">skills/gong/gong_api.sh</code> — replace the default IDs with your team's actual Gong user IDs. Your Gong admin can supply these.</div></div>
-      <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Run <code style="color:var(--accent)">/prime</code></strong> in Claude Desktop to verify everything is connected and Claude can read your workspace context.</div></div>
-    </div>
-  </section>
-
-  <!-- ── GITHUB HOSTING ──────────────────────────────────────── -->
-  <section class="section" id="github-hosting">
-    <div class="section-header">
-      <div class="section-label">Distribution</div>
-      <h2 class="section-title">Hosting on GitHub (For Plugin Maintainers)</h2>
-      <p class="section-desc">Host the onboarding page on GitHub Pages and the plugin file on GitHub Releases — then share a single URL with your whole team.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Create a private GitHub repo</strong> named <code style="color:var(--accent)">brightcove-se-command-center</code>. Push all plugin files to it.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Enable GitHub Pages:</strong> Go to repo Settings → Pages → Source: Deploy from branch → select <code style="color:var(--accent)">main</code> → folder <code style="color:var(--accent)">/docs</code>. Move <code style="color:var(--accent)">se-plugin-onboarding.html</code> to a <code style="color:var(--accent)">docs/</code> folder and rename it <code style="color:var(--accent)">index.html</code>.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Create a GitHub Release:</strong> Go to Releases → Draft a new release → tag it <code style="color:var(--accent)">v1.0.0</code> → upload <code style="color:var(--accent)">se-command-center.plugin</code> as a release asset → publish.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Update the Download button URL</strong> in <code style="color:var(--accent)">docs/index.html</code>: replace <code style="color:var(--yellow)">~~your-github-username~~</code> with your actual GitHub username. The final URL will be:<br><br>
-      <code style="color:var(--green);font-size:12px;">https://github.com/YOUR-USERNAME/brightcove-se-command-center/releases/latest/download/se-command-center.plugin</code></div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Share this single URL</strong> with your SE team:<br><br>
-      <code style="color:var(--green);font-size:12px;">https://YOUR-USERNAME.github.io/brightcove-se-command-center/</code><br><br>
-      They click Download Plugin → double-click the file → Claude Desktop installs it automatically.</div></div>
-    </div>
-    <div class="alert alert-info" style="margin-top:20px;">
-      <span class="alert-icon">🔒</span>
-      <span>Make the repo <strong>private</strong> — it contains Brightcove-specific workflow files. GitHub Pages works on private repos with a GitHub Teams or Enterprise plan. Alternatively, use a public repo but ensure no sensitive info is in any committed file (all credentials stay in the local <code>.env</code> which is gitignored).</span>
-    </div>
-  </section>
-
-  <!-- ── TOKEN RISKS ─────────────────────────────────────────── -->
-  <section class="section" id="token-risks">
-    <div class="section-header">
-      <div class="section-label">Security</div>
-      <h2 class="section-title">Why You Need Your Own API Tokens</h2>
-      <p class="section-desc">Sharing API credentials is not just a security risk — it breaks the plugin for everyone involved. Here's why.</p>
-    </div>
-    <div class="risk-grid">
-      <div class="risk-card risk-bad">
-        <div class="risk-title">❌ If You Use Someone Else's Token</div>
-        <div class="risk-body">All API calls appear as the token owner in audit logs. In Salesforce, you'll query their data under their access permissions — and they can see everything you searched. In Gong, their SE team filters apply, not yours.</div>
-      </div>
-      <div class="risk-card risk-good">
-        <div class="risk-title">✅ With Your Own Token</div>
-        <div class="risk-body">Queries run as you — your data, your access permissions, your audit trail. Gong SE filters point to your team's calls. Salesforce shows your accounts. Everything is scoped correctly.</div>
-      </div>
-    </div>
-    <div class="alert alert-warn">
-      <span class="alert-icon">⚠️</span>
-      <div><strong>Salesforce is especially sensitive.</strong> The plugin uses an OAuth password flow that includes your actual username and password. Sharing this gives someone full access to your Salesforce instance with your permissions. Always use your own credentials.</div>
-    </div>
-    <div class="alert alert-info">
-      <span class="alert-icon">ℹ️</span>
-      <div><strong>Gong Base URL is org-specific.</strong> The URL (<code style="color:var(--yellow)">https://us-XXXXX.api.gong.io</code>) identifies your Brightcove Gong instance. Everyone at Brightcove uses the same base URL, but needs their own API key to authenticate against it.</div>
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Download the plugin</strong> from the button at the top of this page or in the hero section.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Install in Claude Desktop</strong> by double-clicking the <code style="color:var(--accent)">.plugin</code> file or dragging it into Claude Desktop's plugin panel.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Open the plugin in Claude</strong> and it will load with the workspace context.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Run <code style="color:var(--accent)">/prime</code></strong> — Claude will greet you and walk you through the rest of the setup automatically.</div></div>
     </div>
   </section>
 
@@ -633,13 +670,55 @@
     </div>
     <div class="cmd-grid">
       <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/morning_schedule</div><div class="cmd-desc">Daily 7am briefing. Loads Google Calendar, classifies customer vs internal meetings, prints today's schedule.</div></div>
       <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gong + Gmail context.</div></div>
       <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then writes a Notion follow-up page after the call.</div></div>
       <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Gong history, Salesforce data, and recent emails.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_debrief [customer]</div><div class="cmd-desc">Post-call capture. Records outcomes, action items, and customer sentiment. Updates context files.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Salesforce pull, email threads, and health score.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/competitor_analysis [name]</div><div class="cmd-desc">Research any competitor: web research, Gong mentions from your calls, head-to-head vs Brightcove.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Gong history, Brightcove Gateway data, and recent emails.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Brightcove Gateway pull, email threads, and health score.</div></div>
+    </div>
+  </section>
+
+  <!-- ── SAMPLE PROMPTS ────────────────────────────────────── -->
+  <section class="section" id="sample-prompts">
+    <div class="section-header">
+      <div class="section-label">In Action</div>
+      <h2 class="section-title">Sample Prompts</h2>
+      <p class="section-desc">Real prompts that trigger Sales Co-Pilot workflows — type these directly in Claude Desktop after installing the plugin.</p>
+    </div>
+    <div class="prompts-grid">
+      <div class="prompt-item">
+        <div class="prompt-input">📅 "Prep me for my calls today"</div>
+        <div class="prompt-output"><strong>→</strong> Pulls your full day from Google Calendar, enriches every customer meeting with Gmail and Gong intel, and delivers a briefing with talking points and action items for each call.</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"What's on my plate today?"</div>
+        <div class="prompt-output"><strong>→</strong> Morning briefing with customer vs internal calls classified, attendees listed, recommended prep actions</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"/call_prep Acme Corp"</div>
+        <div class="prompt-output"><strong>→</strong> Pre-call intelligence: account context, recent Gong calls, contract data from Brightcove Gateway, roadmap alignment, attendee research</div></div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"/account_summary MLS"</div>
+        <div class="prompt-output"><strong>→</strong> Full account overview: history, ACV, products, renewal date, competitor context, health assessment, recommendations</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"How does Brightcove handle HDR10?"</div>
+        <div class="prompt-output"><strong>→</strong> Product knowledge: searches support docs, checks 2026 roadmap, provides direct link and copy-paste FAQ</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"Search Gong for calls where customers asked about SSAI"</div>
+        <div class="prompt-output"><strong>→</strong> Team intelligence: filters Sales calls mentioning SSAI, extracts common questions, recommended responses, win themes</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"What did I promise Jukin Media on our last call?"</div>
+        <div class="prompt-output"><strong>→</strong> Accountability check: pulls last Gong call, extracts action items, compares against Notion follow-up, flags overdue items</div>
+      </div>
+      <div class="prompt-item">
+        <div class="prompt-input">"Prep me for my meeting with Harvest"</div>
+        <div class="prompt-output"><strong>→</strong> Call prep variant: runs /call_prep Harvest, plus live calendar lookup, attendee validation, document readiness check</div>
+      </div>
     </div>
   </section>
 
@@ -652,17 +731,13 @@
     </div>
     <div class="checklist">
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin installed in Claude Desktop</strong><span>Double-click .plugin file or drag into Claude Desktop</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Workspace folder selected in Cowork mode</strong><span>This is where outputs and context files live</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>scripts/.env created from scripts/.env.example</strong><span>Add your Gong and Salesforce credentials</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gong API key obtained from Gong admin</strong><span>Access Key + Secret + Base URL</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Salesforce Connected App created by SF admin</strong><span>Consumer Key + Secret + your username/password/security token</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected in Claude Desktop (read + write)</strong><span>Connect YOUR Google account. Each person uses their own Gmail.</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected in Claude Desktop</strong><span>Connect your personal Google Drive via MCP connector</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Connect YOUR Google Calendar. Read-only access to your own schedule.</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected + databases created</strong><span>Customer Call Prep DB + Call Follow-Ups DB — update IDs in CLAUDE.md</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gong SE user IDs updated in gong_api.sh</strong><span>Replace default IDs with your team's actual Gong user IDs</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>CLAUDE.md updated with your info</strong><span>Name, role, Notion IDs, account context</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Ran /prime — Claude confirmed ready</strong><span>Granola is optional but recommended for live call companion</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Connect YOUR Google account in Claude Desktop Settings</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Connect YOUR Google Calendar for schedule access</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Connect your personal Google Drive for document context</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected + databases created</strong><span>Create Customer Call Prep DB + Call Follow-Ups DB — update IDs in CLAUDE.md</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Install MCP connector in Claude Desktop Settings, authenticate with Brightcove credentials</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Ran /prime</strong><span>Claude confirmed ready and all integrations connected</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion feature</span></div></div>
     </div>
   </section>
 
@@ -670,7 +745,7 @@
 
 <!-- ── FOOTER ──────────────────────────────────────────────────── -->
 <div class="footer">
-  <strong>SE Command Center</strong> · Built for Brightcove Sales Engineering<br>
+  <strong>Brightcove Sales Co-Pilot</strong> · v3.0<br>
   Source of truth for all Brightcove product questions: <a href="https://support.brightcove.com" target="_blank" style="color:var(--accent)">support.brightcove.com</a>
 </div>
 

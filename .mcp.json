@@ -1,0 +1,16 @@
+{
+  "_readme": "Brightcove Gateway is pre-configured and auto-connects on plugin install. Gmail, Google Calendar, Google Drive, Notion, and Granola are OAuth connectors — each rep connects these once via Claude Desktop → Settings → Integrations by signing into their Google/Notion account.",
+  "mcpServers": {
+    "brightcove-gateway": {
+      "type": "sse",
+      "url": "https://brightcove-data-mcps.public.bendingspoons.com/sse"
+    }
+  },
+  "_oauth_connectors_required": {
+    "gmail": "Connect via Claude Desktop → Settings → Integrations → Gmail (sign in with Google)",
+    "google-calendar": "Connect via Claude Desktop → Settings → Integrations → Google Calendar (sign in with Google)",
+    "google-drive": "Connect via Claude Desktop → Settings → Integrations → Google Drive (sign in with Google) — used for reading files only, not for output",
+    "notion": "Connect via Claude Desktop → Settings → Integrations → Notion (sign in with Brightcove Notion)",
+    "granola": "OPTIONAL — Connect via Claude Desktop → Settings → Integrations → Granola (enables real-time call companion)"
+  }
+}
