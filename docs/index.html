@@ -693,7 +693,7 @@
         <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
           <span style="font-size:18px; flex-shrink:0;">🔑</span>
           <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Brightcove Gateway Access <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Brightcove Gateway Access <span style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Pre-Configured</span></div>
             <div style="color:var(--muted); font-size:13px; margin-top:3px;">Gives Claude access to account data, usage, and contract information. <strong style="color:var(--green);">No separate credentials needed</strong> — just use your Brightcove Google login (same account you already connected above). No IT ticket or admin approval required.</div>
           </div>
         </div>
@@ -726,11 +726,17 @@
         <div class="step-num">2</div>
         <div class="step-text">
           <strong>Open the plugin in Claude Desktop</strong><br>
-          Double-click the <code style="color:var(--accent)">.plugin</code> file in your Downloads folder. Claude Desktop will open automatically and show you a <strong>Save Plugin</strong> dialog with a preview of the plugin.
+          Double-click the <code style="color:var(--accent)">.plugin</code> file in your Downloads folder. Claude Desktop will open automatically and show you a <strong>Save Plugin</strong> dialog.
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">💡</span>
-            <span><strong>Double-click didn't open anything?</strong> No problem — open Claude Desktop manually, go to <strong>Cowork</strong>, start a new session, then <strong>drag and drop</strong> the <code style="color:var(--accent)">.plugin</code> file directly into the Cowork window. The Save Plugin dialog will appear the same way.</span>
+            <span><strong>Double-click didn't open anything?</strong> Use the manual method instead:</span>
           </div>
+          <ol style="margin-top:10px; padding-left:22px; line-height:2.4; color:var(--text); font-size:14px;">
+            <li>Open <strong>Claude Desktop</strong> manually</li>
+            <li>Go to <strong>Cowork</strong> and click <strong>Start a new task</strong></li>
+            <li><strong>Drag and drop</strong> the <code style="color:var(--accent)">.plugin</code> file from your Downloads folder into the Cowork window</li>
+            <li>Type <strong>"install this plugin"</strong> and follow the prompts</li>
+          </ol>
         </div>
       </div>
 
@@ -758,10 +764,6 @@
             <li>Name the folder <strong>Sales Co-Pilot</strong> and press <strong>Return</strong></li>
             <li>Make sure <strong>Sales Co-Pilot</strong> is highlighted/selected, then click <strong>Open</strong></li>
           </ol>
-          <div class="alert alert-info" style="margin-top:10px;">
-            <span class="alert-icon">💡</span>
-            <span>Every call prep file, follow-up page, and briefing Claude generates will be saved here. You can open this folder in Finder any time to see your files.</span>
-          </div>
         </div>
       </div>
 
