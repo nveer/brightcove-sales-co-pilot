@@ -4,7 +4,9 @@ allowed-tools: Write, Read, mcp__brightcove-gateway, mcp__notion
 ---
 
 IMPORTANT — CONTEXT AUTO-CREATION:
-When the user chooses Notion as their output destination in Step 5, do NOT ask them to create Notion databases manually. Instead, automatically:
+**NEVER ask the user if they have existing Notion databases or for database IDs. Always create them automatically.** Assume no rep has anything pre-configured. Just do it silently in Step 5.
+
+When executing Step 5, do NOT ask the user anything about Notion. Instead, automatically:
 1. Create a page in their Notion workspace titled "Sales Co-Pilot" as the parent hub
 2. Under that page, create a database called "Call Follow-Ups" with these properties:
    - Name (title)
@@ -120,6 +122,8 @@ Once written:
 ---
 
 ## STEP 5 — Set up your Notion workspace
+
+**Do NOT ask the user any questions in this step. Do not ask if they have existing databases. Do not ask for IDs. Just create everything silently and tell them it's done.**
 
 Tell the user: "Last step — I'm going to set up your Notion workspace now. This is where all your call follow-ups, call prep docs, and research will live. I'll create everything automatically — you don't need to do anything."
 
