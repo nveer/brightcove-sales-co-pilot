@@ -341,7 +341,7 @@
 
 <!-- ── STICKY TOP BAR ───────────────────────────────────────── -->
 <div class="topbar">
-  <span>🎬 Brightcove Sales Co-Pilot — v3.0</span>
+  <span>🎬 Brightcove Sales Co-Pilot — v1.3</span>
   <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
      class="topbar-btn" download>⬇ Download Plugin</a>
 </div>
@@ -389,7 +389,7 @@
       ⬇ Download &amp; Install Plugin
     </a>
     <p style="color:var(--muted); font-size:13px; margin-top:10px;">
-      v3.0 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
+      v1.3 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
     </p>
   </div>
   <div class="hero-video">
@@ -601,20 +601,18 @@
             <div class="platform-name" style="color:#e9e9e9;">Notion</div>
             <div class="platform-meta">Call follow-up pages · Account tracking · Knowledge base</div>
           </div>
-          <span class="platform-pill pill-mcp">MCP Connector</span>
+          <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>After each call, the plugin writes a structured follow-up page to Notion with action items, resources, and a copy-paste follow-up email. You'll need to set up your own Notion databases and update the IDs in your config.</p>
+          <p>After each call, the plugin writes a structured follow-up page to Notion — action items, resources, and a copy-paste follow-up email. <strong>No manual database setup needed</strong> — onboarding creates your Call Follow-Ups and Customer Call Prep databases automatically.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Integrations</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">In your Notion workspace, create two databases:<br>• <strong>Customer Call Prep</strong> (properties: Name, Customer, Date, Status, Attendees)<br>• <strong>Call Follow-Ups</strong> (same properties)</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Copy each database's ID from the URL (the UUID after the last <code>/</code>)</div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-text">Open <code style="color:var(--accent)">CLAUDE.md</code> and update the <strong>Notion Databases</strong> section with your database IDs and parent page ID</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Integrations (sign in with your Brightcove Notion account)</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">That's it. During onboarding, Claude automatically creates your <strong>Call Follow-Ups</strong> and <strong>Customer Call Prep</strong> databases in Notion — no IDs to copy, no manual config.</div></div>
           </div>
-          <div class="code-block"><span class="comment">## Notion Databases — update with YOUR IDs</span>
-<span class="key">Customer Call Prep DB:</span> collection://<span class="placeholder">your-collection-id</span>
-<span class="key">Call Follow-Ups DB:</span> collection://<span class="placeholder">your-collection-id</span>
-<span class="key">Your parent page:</span> <span class="placeholder">your-page-id</span></div>
+          <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <span><strong>Zero manual setup!</strong> Notion databases are created automatically during first-run onboarding. You never need to touch database IDs, CLAUDE.md, or any config files.</span>
+          </div>
         </div>
       </div>
 
@@ -655,9 +653,14 @@
     </div>
     <div class="steps">
       <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Download the plugin</strong> from the button at the top of this page or in the hero section.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Install in Claude Desktop</strong> by double-clicking the <code style="color:var(--accent)">.plugin</code> file or dragging it into Claude Desktop's plugin panel.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Open the plugin in Claude</strong> and it will load with the workspace context.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Run <code style="color:var(--accent)">/prime</code></strong> — Claude will greet you and walk you through the rest of the setup automatically.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Open the file</strong> — double-click the <code style="color:var(--accent)">.plugin</code> file. Claude Desktop will open and show a <strong>Save Plugin</strong> confirmation dialog.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Click Save</strong> in the Save Plugin dialog. This plugin is verified as a <strong>Safe Plugin</strong> — it installs cleanly with no terminal commands or admin access required.</div></div>
+      <div class="alert alert-info" style="margin: 4px 0 4px 40px;">
+        <span class="alert-icon">💡</span>
+        <span><strong>If Claude asks permission to take action</strong> — click <strong>Always Allow</strong>. This lets the plugin run workflows on your behalf without asking every time.</span>
+      </div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Connect your integrations</strong> — Claude will walk you through connecting Gmail, Google Calendar, and Notion via Claude Desktop → Settings → Integrations. Each takes about 30 seconds.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Run onboarding</strong> — Claude will greet you, collect your name and role, and automatically set up your Notion workspace. Done in ~5 minutes.</div></div>
     </div>
   </section>
 
@@ -730,14 +733,14 @@
       <p class="section-desc">Print this or check it off as you go.</p>
     </div>
     <div class="checklist">
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin installed in Claude Desktop</strong><span>Double-click .plugin file or drag into Claude Desktop</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Connect YOUR Google account in Claude Desktop Settings</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Connect YOUR Google Calendar for schedule access</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Connect your personal Google Drive for document context</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected + databases created</strong><span>Create Customer Call Prep DB + Call Follow-Ups DB — update IDs in CLAUDE.md</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Install MCP connector in Claude Desktop Settings, authenticate with Brightcove credentials</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Ran /prime</strong><span>Claude confirmed ready and all integrations connected</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion feature</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin downloaded and saved</strong><span>Double-click .plugin → click Save in the Safe Plugin dialog</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Claude Desktop → Settings → Integrations → Gmail (sign in with Google)</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Claude Desktop → Settings → Integrations → Google Calendar</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Claude Desktop → Settings → Integrations → Google Drive</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Claude Desktop → Settings → Integrations → Notion — databases are auto-created during onboarding, no manual setup needed</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion — install from granola.ai</span></div></div>
     </div>
   </section>
 
@@ -745,7 +748,7 @@
 
 <!-- ── FOOTER ──────────────────────────────────────────────────── -->
 <div class="footer">
-  <strong>Brightcove Sales Co-Pilot</strong> · v3.0<br>
+  <strong>Brightcove Sales Co-Pilot</strong> · v1.3<br>
   Source of truth for all Brightcove product questions: <a href="https://support.brightcove.com" target="_blank" style="color:var(--accent)">support.brightcove.com</a>
 </div>
 

@@ -10,23 +10,22 @@ This workspace is the operational hub for ~~Your Name~~'s Sales Engineering role
 - **Start every task** by running the /prime workflow (read all context, confirm understanding)
 
 ## Who I Am
-- **Name:** ~~Your Name~~
-- **Role:** Sales Engineer, ~~Your SE Team~~, Brightcove
-- **Focus:** ~~Brief description of your SE focus and approach~~
-- **Weekly cadence:** ~~X~~ customer calls/week
-- **Key tools:** Gong (call recordings), Google Calendar, Notion (account management), Gmail, Slack
+- **Name:** ~~Your Name~~ (populated during onboarding)
+- **Role:** ~~Your Role~~, Brightcove (populated during onboarding)
+- **Focus:** ~~Your sales focus~~ (populated during onboarding)
+- **Weekly cadence:** ~~X~~ customer calls/week (populated during onboarding)
+- **Key tools:** Gmail, Google Calendar, Notion, Granola
 
 ## What This Workspace Does
-Claude operates as your SE assistant with access to:
-- **Gong API** (/skills/gong/) — Search and pull SE call transcripts. Always filter by SE user IDs from /context/se_team.md. Prioritize your calls.
-- **Salesforce API** (/skills/salesforce/) — Pull account details, products, opportunities, Brightcove account info, and contract data. Use for call prep enrichment and account summaries.
+Claude operates as your sales assistant with access to:
+- **Brightcove Gateway** (pre-configured MCP) — Account data, opportunities, usage metrics, contract details via Brightcove's BigQuery data warehouse. No setup needed — auto-connects on install.
 - **Gmail** (MCP connectors) — Read, search, send, draft, archive, and batch-modify emails. Used by /email_triage for inbox management and response drafting.
 - **Google Calendar** (MCP connector, read-only) — List events, find free time. Cannot create/modify events.
-- **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-up pages and account tracking.
+- **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-up pages and account tracking. Databases auto-created during onboarding.
 - **Granola** (MCP connector) — Meeting transcripts and notes. Used by /call_companion.
-- **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status
-- **Brightcove product knowledge** (/context/brightcove_overview.md) — Platform capabilities, 2026 roadmap, competitive positioning
-- **SE team intelligence** (/context/se_team.md) — Gong user IDs for filtering SE-only conversations
+- **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
+- **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
+- **Gong** — Coming in v3.1 via Brightcove Gateway. Do NOT reference Gong or ask for Gong user IDs.
 
 ## Workspace Structure
 /context/          → Business context, personal info, accounts, SE team IDs
@@ -37,10 +36,10 @@ Claude operates as your SE assistant with access to:
 /outputs/          → Generated reports organized by type
 
 ## Notion Databases
-- **Customer Call Prep DB:** collection://~~your-call-prep-db-id~~ (DB ID: ~~your-call-prep-db-id~~)
-- **Call Follow-Ups DB:** collection://~~your-followup-db-id~~ (DB ID: ~~your-followup-db-id~~) — Properties: Name (title), Customer (select), Date, Status (select), Attendees (text)
-- **Your parent page:** ~~your-notion-parent-page-id~~
-- **Known bug:** Notion MCP `create-pages` and `move-pages` `parent` parameter fails with serialization error. Workaround: create pages at workspace level, drag into correct DB.
+These are auto-created during onboarding and saved to `/context/output_config.md`. Never ask the user for database IDs — read them from output_config.md.
+- **Customer Call Prep DB:** See output_config.md
+- **Call Follow-Ups DB:** See output_config.md
+- **Parent page:** See output_config.md
 
 ## Commands Available
 - /prime — Run at task start. Reads all context files and confirms understanding.

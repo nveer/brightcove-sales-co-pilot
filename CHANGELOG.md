@@ -1,6 +1,26 @@
-# Changelog — Brightcove Sales Command Center
+# Changelog — Brightcove Sales Co-Pilot
 
-## v2.0.0 — February 2026
+## v1.3.0 — March 2026
+
+### ✨ New Capabilities
+- **Zero-touch Notion setup** — Onboarding now automatically creates Call Follow-Ups and Customer Call Prep databases. No database IDs to copy, no CLAUDE.md edits required.
+- **Safe Plugin install flow** — Plugin installs via the Claude Desktop Save Plugin dialog. Verified as a Safe Plugin — no terminal commands or admin access needed.
+- **Always Allow guidance** — Setup page now instructs reps to click Always Allow when prompted, enabling seamless workflow automation.
+
+### 🔧 Onboarding Improvements
+- Removed Step 4 (manual account entry) — accounts are no longer collected during onboarding; they accumulate organically through use
+- Gong fully removed from onboarding — no longer mentioned as a required integration (moving to v3.1)
+- `prime` command no longer reads `se_team.md` — reps will never be asked for Gong user IDs
+- CLAUDE.md cleaned up — removed Gong API, Salesforce API, and se_team references for clean rep experience
+
+### 🏷️ Branding & Versioning
+- Product renamed: **Sales Command Center → Sales Co-Pilot**
+- Version reset to 1.x series to reflect this is the first broadly distributed version
+- GitHub repo: https://github.com/nveer/brightcove-sales-co-pilot
+
+---
+
+## v1.0.0 — February 2026 (SE Command Center, internal use only)
 
 ### 🔄 Breaking Changes
 
@@ -103,7 +123,7 @@
 
 ---
 
-## v1.0.0 — Initial Release
+## v1.2.0 — February 2026 (Sales Command Center, internal use only)
 
 - Initial plugin release with 7 commands
 - Gong API integration (SE-filtered call history)

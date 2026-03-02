@@ -41,9 +41,8 @@ Create and display a TodoWrite checklist:
 1. ✅ Connect Google (Gmail, Calendar, Drive)
 2. ✅ Connect Notion
 3. ✅ Tell me about yourself
-4. ✅ Add your top accounts
-5. ✅ Set up Notion workspace (automatic)
-6. ✅ Finish setup
+4. ✅ Set up Notion workspace (automatic)
+5. ✅ Finish setup
 
 ---
 
@@ -96,32 +95,7 @@ Once all fields are collected:
 
 ---
 
-## STEP 4 — Top Accounts
-
-Ask the user:
-"What are your top 3–5 accounts right now? Just tell me the company names and a quick note on each (e.g. 'Acme Corp — renewal coming up', 'TechCo — new logo opportunity')."
-
-Wait for their response.
-
-Parse the account list and silently write to `/context/current_accounts.md` in this format:
-
-```markdown
-# Current Accounts
-
-| Account | Status | Focus | Next Steps |
-|---------|--------|-------|-----------|
-| [Company Name] | [Status from user input] | [Focus/Notes] | [TBD] |
-| [Company Name] | [Status from user input] | [Focus/Notes] | [TBD] |
-...
-```
-
-Once written:
-- Mark step 4 as complete in the TodoWrite checklist
-- Display: "Accounts saved! I'll use these for call prep and research."
-
----
-
-## STEP 5 — Set up your Notion workspace
+## STEP 4 — Set up your Notion workspace
 
 **Do NOT ask the user any questions in this step. Do not ask if they have existing databases. Do not ask for IDs. Just create everything silently and tell them it's done.**
 
@@ -134,11 +108,11 @@ Then silently execute:
 4. Write the page ID and database collection:// URLs to context/output_config.md
 
 Tell the user: "Your Notion workspace is ready. All follow-ups and call prep will go there automatically."
-Mark step 5 complete.
+Mark step 4 complete.
 
 ---
 
-## STEP 6 — Complete Setup
+## STEP 5 — Complete Setup
 
 Silently write a completion marker to `/context/.setup_complete` with the current date (from the system).
 
@@ -150,7 +124,7 @@ Display the completion message:
 - Say **'call prep for [customer name]'** before any customer call
 - After a call, say **'run call companion'** and I'll write up a follow-up for you"
 
-Mark step 6 as complete in the TodoWrite checklist.
+Mark step 5 as complete in the TodoWrite checklist.
 
 Display final message:
 "You're ready to go! Need help? Just ask, and I'll support your calls, research, and follow-ups from here on out."
@@ -159,10 +133,12 @@ Display final message:
 
 ## Notes for Claude Implementation
 
-- Use TodoWrite to track progress through all 6 steps
+- **Gong is NOT available** — Do not mention Gong as a required integration or check for it during onboarding. It is a future capability (v3.1). The only integrations to connect are: Gmail, Google Calendar, Notion, and optionally Granola.
+
+- Use TodoWrite to track progress through all 5 steps
 - All file writes happen silently (no confirmation messages to the user for writes)
 - Validation: After writing each config file, do not re-read it back to confirm — trust the Write operation
+- **NEVER ask for accounts, Gong user IDs, Brightcove overview content, or API credentials** — these are pre-bundled in the plugin or handled automatically
 - If user skips a step: Politely prompt them to complete it before moving forward
-- If user provides insufficient info (e.g., no account names): Ask clarifying questions until you have what you need
 - Keep the user experience warm and conversational — avoid technical jargon
 - At the end, provide a quick reference of what they can ask for next

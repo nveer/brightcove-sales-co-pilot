@@ -11,18 +11,14 @@ Perform the following steps to get fully contextualized for this session:
 3. **Read CLAUDE.md** — Understand the workspace purpose, rules, and available commands
 
 4. **Read all context files** — Read everything in `./context/`:
-   - `about_me.md` — Who you are and how you work
-   - `brightcove_overview.md` — Product knowledge
-   - `se_team.md` — Gong user IDs and priority rules
-   - `current_accounts.md` — Active accounts and status
+   - `about_me.md` — Who the rep is and how they work
+   - `brightcove_overview.md` — Pre-bundled product knowledge
+   - `current_accounts.md` — Active accounts (may be empty for new users — that's fine)
+   - `output_config.md` — Notion database IDs (auto-populated during onboarding)
 
-5. **Check Gong skill** — Confirm `./skills/gong/SKILL.md` is present and readable
-
-6. **Summarize back** — Provide a brief confirmation:
-   - Your name and role (from about_me.md)
-   - Active account count and any flagged situations
+5. **Summarize back** — Provide a brief confirmation:
+   - The rep's name and role (from about_me.md)
    - Available commands
-   - Gong skill status (connected or not)
    - "Ready to assist" confirmation
 
 ## Important
