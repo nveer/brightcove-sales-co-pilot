@@ -341,7 +341,7 @@
 
 <!-- ── STICKY TOP BAR ───────────────────────────────────────── -->
 <div class="topbar">
-  <span>🎬 Brightcove Sales Co-Pilot — v1.3</span>
+  <span>🎬 Brightcove Sales Co-Pilot — v1.3.0</span>
   <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
      class="topbar-btn" download>⬇ Download Plugin</a>
 </div>
@@ -389,7 +389,7 @@
       ⬇ Download &amp; Install Plugin
     </a>
     <p style="color:var(--muted); font-size:13px; margin-top:10px;">
-      v1.3 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
+      v1.3.0 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
     </p>
   </div>
   <div class="hero-video">
@@ -421,13 +421,13 @@
       <div class="cap-card">
         <span class="cap-icon">🌅</span>
         <div class="cap-name">Daily Call Prep</div>
-        <div class="cap-desc">Say "prep me for my calls today" and Claude pulls your full day together — Google Calendar, Gong call history, Granola meeting notes, and Gmail — then outputs a visual HTML briefing page. Any open customer question is auto-researched on support.brightcove.com and embedded with a ✅ before your first call.</div>
+        <div class="cap-desc">Say "prep me for my calls today" and Claude pulls your full day together — Google Calendar, Granola meeting notes, and Gmail — then outputs a visual HTML briefing page. Any open customer question is auto-researched on support.brightcove.com and embedded with a ✅ before your first call.</div>
         <span class="cap-tag">Morning Ritual</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">📞</span>
         <div class="cap-name">Live Call Companion</div>
-        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it checks Gong Sales team call history first to see if a colleague has solved this before, cross-references Google Docs, then deploys parallel agents to research answers — all while you keep talking. After the call: one Notion page + one copy-paste follow-up email, already written.</div>
+        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: one Notion page + one copy-paste follow-up email, already written.</div>
         <span class="cap-tag">Real-Time</span>
       </div>
       <div class="cap-card">
@@ -439,19 +439,19 @@
       <div class="cap-card">
         <span class="cap-icon">📊</span>
         <div class="cap-name">Account Summary</div>
-        <div class="cap-desc">Full 360° account view on demand — pulls Gong history, Gmail threads, Brightcove Gateway data, and Notion notes simultaneously. Surfaces cadence gaps, competitor risk, renewal timing, and upsell signals. One brief ready to share with your Account Executive or bring into an exec conversation.</div>
+        <div class="cap-desc">Full 360° account view on demand — pulls Gmail threads, Brightcove Gateway data, Granola meeting notes, and Notion simultaneously. Surfaces cadence gaps, competitor risk, renewal timing, and upsell signals. One brief ready to share with your Account Executive or bring into an exec conversation.</div>
         <span class="cap-tag">Account Intel</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">⚔️</span>
         <div class="cap-name">Competitor Analysis</div>
-        <div class="cap-desc">Mines your Gong call history for how Brightcove has won (or lost) against a competitor before, then cross-references Brightcove support docs for feature differentiators. Output: a structured battlecard with their strengths, your advantages, and objection responses — built from your own calls.</div>
+        <div class="cap-desc">Cross-references Brightcove support docs, your email history, and Granola call notes for how Brightcove has won (or lost) against a competitor before. Output: a structured battlecard with their strengths, your advantages, and objection responses — built from real context.</div>
         <span class="cap-tag">Competitive</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">🗂️</span>
         <div class="cap-name">Notion Integration</div>
-        <div class="cap-desc">After every call, automatically writes a structured Notion follow-up page: action items, resources, key intel, and one copy-paste follow-up email at the bottom covering all topics. Consistent format — [Customer] — [Date] — enriched with Gong and Brightcove Gateway data. No manual note-taking required.</div>
+        <div class="cap-desc">After every call, automatically writes a structured Notion follow-up page: action items, resources, key intel, and one copy-paste follow-up email at the bottom covering all topics. Consistent format — [Customer] — [Date] — enriched with Granola and Brightcove Gateway data. No manual note-taking required.</div>
         <span class="cap-tag">Auto Follow-Up</span>
       </div>
       <div class="cap-card">
@@ -648,20 +648,117 @@
   <section class="section" id="setup">
     <div class="section-header">
       <div class="section-label">Installation</div>
-      <h2 class="section-title">First-Time Setup</h2>
-      <p class="section-desc">Get from zero to running in about 10 minutes. Most integrations are self-serve — no IT tickets required.</p>
+      <h2 class="section-title">How to Install — Step by Step</h2>
+      <p class="section-desc">Takes about 10 minutes total. No terminal commands, no IT tickets, no technical knowledge needed.</p>
     </div>
+
+    <div class="alert alert-warn" style="margin-bottom:24px;">
+      <span class="alert-icon">⚠️</span>
+      <span><strong>Before you start:</strong> You need <a href="https://claude.ai/download" target="_blank" style="color:var(--accent)">Claude Desktop</a> installed on your Mac. If you don't have it yet, download and install it first, then come back here.</span>
+    </div>
+
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Download the plugin</strong> from the button at the top of this page or in the hero section.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Open the file</strong> — double-click the <code style="color:var(--accent)">.plugin</code> file. Claude Desktop will open and show a <strong>Save Plugin</strong> confirmation dialog.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Click Save</strong> in the Save Plugin dialog. This plugin is verified as a <strong>Safe Plugin</strong> — it installs cleanly with no terminal commands or admin access required.</div></div>
-      <div class="alert alert-info" style="margin: 4px 0 4px 40px;">
-        <span class="alert-icon">💡</span>
-        <span><strong>If Claude asks permission to take action</strong> — click <strong>Always Allow</strong>. This lets the plugin run workflows on your behalf without asking every time.</span>
+
+      <!-- STEP 1 -->
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Download the plugin file</strong><br>
+          Click the <strong>⬇ Download &amp; Install Plugin</strong> button at the top of this page. Your browser will save a file called <code style="color:var(--accent)">brightcove-sales-co-pilot.plugin</code> to your Downloads folder.
+        </div>
       </div>
-      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Connect your integrations</strong> — Claude will walk you through connecting Gmail, Google Calendar, and Notion via Claude Desktop → Settings → Integrations. Each takes about 30 seconds.</div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Run onboarding</strong> — Claude will greet you, collect your name and role, and automatically set up your Notion workspace. Done in ~5 minutes.</div></div>
+
+      <!-- STEP 2 -->
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Open the plugin in Claude Desktop</strong><br>
+          Double-click the <code style="color:var(--accent)">.plugin</code> file in your Downloads folder. Claude Desktop will open automatically and show you a <strong>Save Plugin</strong> dialog with a preview of the plugin.
+          <div class="alert alert-success" style="margin-top:10px;">
+            <span class="alert-icon">✅</span>
+            <span>This plugin is marked as a <strong>Safe Plugin</strong> — it installs without any terminal commands, admin access, or security prompts beyond the normal Claude Desktop dialog.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Click Save in the dialog</strong><br>
+          In the Save Plugin dialog, review the plugin name and description, then click <strong>Save</strong>. Claude Desktop will install the plugin files.
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Choose your workspace folder</strong><br>
+          A dialog will appear saying <em>"Claude would like to Cowork in a folder."</em> This is where the plugin will store your call prep files, follow-ups, and outputs — think of it as your Sales Co-Pilot filing cabinet.
+          <br><br>
+          Follow these steps exactly:
+          <ol style="margin-top:10px; padding-left:22px; line-height:2.2; color:var(--text);">
+            <li>Click <strong>Choose Folder</strong> in the dialog</li>
+            <li>In the Finder window that opens, click <strong>Documents</strong> in the left sidebar</li>
+            <li>Click the <strong>New Folder</strong> button (bottom-left of the Finder window)</li>
+            <li>Name the folder <strong>Sales Co-Pilot</strong> and press <strong>Return</strong></li>
+            <li>Make sure <strong>Sales Co-Pilot</strong> is highlighted/selected, then click <strong>Open</strong></li>
+          </ol>
+          <div class="alert alert-info" style="margin-top:10px;">
+            <span class="alert-icon">💡</span>
+            <span>Every call prep file, follow-up page, and briefing Claude generates will be saved here. You can open this folder in Finder any time to see your files.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Connect your integrations in Claude Desktop</strong><br>
+          <em>Do this before starting a session.</em> Go to <strong>Claude Desktop → Settings → Integrations</strong> and connect each of the following. Each one takes about 30 seconds and just requires signing in with Google or Notion:
+          <ul style="margin-top:12px; padding-left:22px; line-height:2.2; color:var(--text);">
+            <li>📧 <strong>Gmail</strong> — connect both the read connector and the write connector</li>
+            <li>📆 <strong>Google Calendar</strong> — read-only access to your calendar</li>
+            <li>📓 <strong>Notion</strong> — sign in with your Brightcove Notion account</li>
+            <li>🎙️ <strong>Granola</strong> (optional but recommended) — for live call transcription. See the Platforms section below for setup steps.</li>
+          </ul>
+          <div class="alert alert-warn" style="margin-top:10px;">
+            <span class="alert-icon">⚠️</span>
+            <span>If you skip connecting integrations now, Claude will still run — but some features like email triage and daily prep won't work until you connect them.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-text">
+          <strong>Start a new Cowork session — onboarding starts automatically</strong><br>
+          Open Claude Desktop, go to <strong>Cowork</strong>, and start a new task. Claude will immediately detect that it's your first time and begin the setup wizard — no commands to type.
+          <br><br>
+          Claude will ask for:
+          <ul style="margin-top:10px; padding-left:22px; line-height:2.2; color:var(--text);">
+            <li>Your name and role at Brightcove</li>
+            <li>How many customer calls you do per week</li>
+            <li>Your Brightcove email address</li>
+          </ul>
+          Then it automatically creates your Notion workspace (Call Follow-Ups and Customer Call Prep databases) and saves everything. <strong>Total time: ~5 minutes.</strong>
+          <div class="alert alert-info" style="margin-top:10px;">
+            <span class="alert-icon">💡</span>
+            <span><strong>When Claude asks to take an action</strong> — click <strong>Always Allow</strong>. This lets workflows run without requiring your approval for every individual step.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <div class="alert alert-success" style="margin-top:24px;">
+      <span class="alert-icon">🎉</span>
+      <span><strong>Once onboarding is complete</strong>, just type natural language in Claude Desktop: <em>"Prep me for my calls today"</em>, <em>"Triage my inbox"</em>, or <em>"Run call companion"</em> — and Claude handles the rest.</span>
+    </div>
+
   </section>
 
   <!-- ── COMMANDS ───────────────────────────────────────────── -->
@@ -674,10 +771,10 @@
     <div class="cmd-grid">
       <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
       <div class="cmd-card"><div class="cmd-name">/morning_schedule</div><div class="cmd-desc">Daily 7am briefing. Loads Google Calendar, classifies customer vs internal meetings, prints today's schedule.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gong + Gmail context.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gmail and Granola context.</div></div>
       <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then writes a Notion follow-up page after the call.</div></div>
       <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Gong history, Brightcove Gateway data, and recent emails.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Brightcove Gateway data, recent emails, Granola notes, and Notion history.</div></div>
       <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Brightcove Gateway pull, email threads, and health score.</div></div>
     </div>
   </section>
@@ -692,7 +789,7 @@
     <div class="prompts-grid">
       <div class="prompt-item">
         <div class="prompt-input">📅 "Prep me for my calls today"</div>
-        <div class="prompt-output"><strong>→</strong> Pulls your full day from Google Calendar, enriches every customer meeting with Gmail and Gong intel, and delivers a briefing with talking points and action items for each call.</div>
+        <div class="prompt-output"><strong>→</strong> Pulls your full day from Google Calendar, enriches every customer meeting with Gmail and Granola intel, and delivers a briefing with talking points and action items for each call.</div>
       </div>
       <div class="prompt-item">
         <div class="prompt-input">"What's on my plate today?"</div>
@@ -700,7 +797,7 @@
       </div>
       <div class="prompt-item">
         <div class="prompt-input">"/call_prep Acme Corp"</div>
-        <div class="prompt-output"><strong>→</strong> Pre-call intelligence: account context, recent Gong calls, contract data from Brightcove Gateway, roadmap alignment, attendee research</div></div>
+        <div class="prompt-output"><strong>→</strong> Pre-call intelligence: account context, recent meeting notes, contract data from Brightcove Gateway, roadmap alignment, attendee research</div></div>
       </div>
       <div class="prompt-item">
         <div class="prompt-input">"/account_summary MLS"</div>
@@ -711,12 +808,12 @@
         <div class="prompt-output"><strong>→</strong> Product knowledge: searches support docs, checks 2026 roadmap, provides direct link and copy-paste FAQ</div>
       </div>
       <div class="prompt-item">
-        <div class="prompt-input">"Search Gong for calls where customers asked about SSAI"</div>
-        <div class="prompt-output"><strong>→</strong> Team intelligence: filters Sales calls mentioning SSAI, extracts common questions, recommended responses, win themes</div>
+        <div class="prompt-input">"What are my open action items from last week?"</div>
+        <div class="prompt-output"><strong>→</strong> Accountability check: scans Notion follow-up pages and Granola notes for promises made, compares against email threads, surfaces anything overdue</div>
       </div>
       <div class="prompt-item">
         <div class="prompt-input">"What did I promise Jukin Media on our last call?"</div>
-        <div class="prompt-output"><strong>→</strong> Accountability check: pulls last Gong call, extracts action items, compares against Notion follow-up, flags overdue items</div>
+        <div class="prompt-output"><strong>→</strong> Pulls last Granola transcript and Notion follow-up page for Jukin Media, extracts action items, flags anything not yet completed</div>
       </div>
       <div class="prompt-item">
         <div class="prompt-input">"Prep me for my meeting with Harvest"</div>
@@ -734,6 +831,7 @@
     </div>
     <div class="checklist">
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin downloaded and saved</strong><span>Double-click .plugin → click Save in the Safe Plugin dialog</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Workspace folder selected</strong><span>When prompted "Claude would like to Cowork in a folder" — go to Documents, create a new folder called Sales Co-Pilot, and select it</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Claude Desktop → Settings → Integrations → Gmail (sign in with Google)</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Claude Desktop → Settings → Integrations → Google Calendar</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Claude Desktop → Settings → Integrations → Google Drive</span></div></div>
@@ -748,7 +846,7 @@
 
 <!-- ── FOOTER ──────────────────────────────────────────────────── -->
 <div class="footer">
-  <strong>Brightcove Sales Co-Pilot</strong> · v1.3<br>
+  <strong>Brightcove Sales Co-Pilot</strong> · v1.3.0<br>
   Source of truth for all Brightcove product questions: <a href="https://support.brightcove.com" target="_blank" style="color:var(--accent)">support.brightcove.com</a>
 </div>
 
