@@ -54,7 +54,7 @@ Create and display a TodoWrite checklist:
 ## STEP 1 — Google Connections
 
 Tell the user:
-"Before installing, the setup guide asked you to connect Gmail, Google Calendar, and Google Drive. Can you confirm all three are showing as connected? If any are missing, here's how: go to **Settings → Customize → Connectors → Connect my tools**. A pop-up will appear — search for **Google** and connect Gmail (twice — once for reading, once for sending), Google Calendar, and Google Drive. Each takes about 30 seconds."
+"Before installing, the setup guide asked you to connect Gmail, Google Calendar, and Google Drive. Can you confirm all three are showing as connected? If any are missing, here's how: click **Customize** in the left sidebar, then click **Connectors**, then click **Connect your tools**. Search for **Google** and connect Gmail (twice — once for reading, once for sending), Google Calendar, and Google Drive. Each takes about 30 seconds."
 
 Wait for the user to confirm all three are connected.
 
@@ -67,7 +67,7 @@ Once confirmed:
 ## STEP 2 — Notion Connection
 
 Tell the user:
-"Same check for Notion — can you confirm it shows as connected? If not: go to **Settings → Customize → Connectors → Connect my tools**, search for **Notion** in the pop-up, and sign in with your Brightcove Notion account."
+"Same check for Notion — can you confirm it shows as connected? If not: click **Customize** → **Connectors** → **Connect your tools**, search for **Notion**, and sign in with your Brightcove Notion account."
 
 Wait for the user to confirm Notion is connected.
 

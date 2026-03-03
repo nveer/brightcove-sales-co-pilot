@@ -1,5 +1,31 @@
 # Changelog — Brightcove Sales Co-Pilot
 
+## v1.4.2 — March 2026
+
+### 🐛 Bug Fixes
+- **Install flow simplified to 5 steps (was 6):** Old Steps 1–3 (download, unzip, find .plugin, upload) collapsed into 2 steps (download .zip, upload .zip directly). No unzipping needed.
+- **Claude Desktop only accepts .zip uploads:** The "Upload local plugin" dialog rejects `.plugin` files — only `.zip` is accepted. Distribution now stays as `.zip` end-to-end. Reps never see a `.plugin` file.
+- **Correct UI path verified from live app:** Customize → Personal plugins → **+** button (not "Browse plugins" which is the marketplace). Updated all instructions to match the actual Claude Desktop UI.
+- **Removed drag-and-drop into Cowork chat** as install method — this only lets Claude read the file, it does not register the plugin.
+- **Removed double-click as install method** — not supported for `.zip` files and `.plugin` file associations are unreliable across Mac updates.
+- **Connector paths fixed across all docs:** "Settings → Customize → Connectors → Connect my tools" → "Customize → Connectors → Connect your tools" (matches actual Claude Desktop UI on Mac). Updated in all platform cards, Before You Start section, setup checklist, and onboarding.
+
+### ✨ Enhancements
+- **Call Companion: Phase 0 removed** — No more pre-call BigQuery/Gong loading delay. Call Companion is now a clean 2-phase workflow: (1) During call — real-time research via Granola or manual flagging. (2) After call — Notion follow-up page. Starts immediately with no startup lag.
+- **Daily Prep now pulls Gong + Salesforce data:** `/daily_prep` and `/call_prep` now query Gong transcripts (`v_raw_salesforce_transcript`) and Salesforce account data (`v_salesforce_account`, `v_salesforce_opportunity`, `v_done_deal_contracts`, `v_entitlement_usage_monthly`) via Brightcove Gateway (BigQuery) in addition to Calendar, Gmail, and Granola.
+
+### 📋 Updated Files
+- `docs/index.html` — Install steps rewritten; connector paths fixed (×8); daily prep card updated with BigQuery sources; Granola description updated to reflect 2-phase flow; checklist connector paths fixed
+- `commands/call_companion.md` — Phase 0 removed; 3-phase → 2-phase workflow; Path 1B updated for manual mode
+- `commands/call_prep.md` — Steps 2–3 updated from deprecated skill paths to BigQuery tables
+- `commands/onboarding.md` — Connector paths updated to match actual UI
+- `INSTALL.md` — 8-step install flow added; "What NOT to do" section updated
+- `CLAUDE.md` — /daily_prep description and parallel agents strategy updated with BigQuery sources
+- `.claude-plugin/plugin.json` — version bumped to 1.4.2
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.4.1 — March 2026
 
 ### 🐛 Bug Fixes

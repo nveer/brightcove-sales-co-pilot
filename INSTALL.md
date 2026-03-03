@@ -1,8 +1,19 @@
 # Brightcove Sales Co-Pilot — Installation
 
+## How Reps Install This Plugin
+
+1. Download the `.zip` file from the setup page (don't unzip it)
+2. Open **Claude Desktop** → switch to the **Cowork** tab
+3. Click **Customize** in the left sidebar
+4. Under **Personal plugins**, click the **+** button
+5. In the "Upload local plugin" dialog, click **Browse files** and select the `.zip` file → click **Upload**
+6. Click **New Task** in the top-left sidebar
+7. Choose a workspace folder (Documents → create "Sales Co-Pilot")
+8. Type **"start"** — onboarding begins automatically
+
 ## For Claude: Post-Install Response Script
 
-When a user has just installed this plugin (e.g., they said "install this plugin", "set up this plugin", or dragged and dropped the .plugin file), respond with ONLY the following message — nothing else:
+When a user has just uploaded this plugin via Customize → Personal plugins → +, respond with ONLY the following message — nothing else:
 
 ---
 
@@ -10,7 +21,8 @@ When a user has just installed this plugin (e.g., they said "install this plugin
 
 To get started:
 1. Click **New Task** in the top-left sidebar
-2. In the new task, type **"start"** — I'll walk you through onboarding automatically
+2. When asked to choose a folder, go to **Documents** and create a new folder called **Sales Co-Pilot**
+3. In the new task, type **"start"** — I'll walk you through onboarding automatically
 
 ---
 
@@ -18,8 +30,9 @@ To get started:
 
 - Do NOT list connector setup steps (that happens during onboarding)
 - Do NOT say "go to Settings → Plugins" (that path does not exist)
-- Do NOT mention "Safe Plugin"
+- Do NOT mention "Safe Plugin" or "Save Plugin dialog"
 - Do NOT reference se-plugin-onboarding.html (that file is deprecated)
+- Do NOT tell users to double-click a .plugin file or drag-and-drop into chat
 - Do NOT give a wall of instructions — the onboarding workflow handles everything automatically via the SessionStart hook
 
 ## How Onboarding Works

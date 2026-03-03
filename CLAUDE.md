@@ -25,7 +25,7 @@ Claude operates as your sales assistant with access to:
 - **Granola** (MCP connector) — Meeting transcripts and notes. Used by /call_companion.
 - **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
 - **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
-- **Gong** — Coming in v3.1 via Brightcove Gateway. Do NOT reference Gong or ask for Gong user IDs.
+- **Gong transcripts** — Available via Brightcove Gateway (BigQuery). Past call transcripts load automatically in /call_companion for pre-call context. Post-call transcripts sync within ~1 hour after a call ends. Tables: `v_raw_salesforce_transcript` joined to `v_raw_salesforce_task`. Granola provides a real-time alternative — use it if available, fall back to Gong via BigQuery if not.
 
 ## Workspace Structure
 /context/          → Business context, personal info, accounts, Brightcove overview
@@ -41,7 +41,7 @@ These are auto-created during onboarding and saved to `/context/output_config.md
 ## Commands Available
 - /prime — Run at task start. Reads all context files and confirms understanding.
 - /call_companion — **Live call resource assistant.** Two-phase flow: (1) During call — monitors Granola, researches docs/resources in parallel, stores in memory. (2) After call — writes ONE consolidated Notion follow-up page. Calendar-aware, skips internal meetings.
-- /daily_prep — **Generate daily call prep HTML page.** Pull Google Calendar, classify events, enrich customer calls with Gmail and Granola context, and output a styled HTML timeline. Format: dark theme, timeline with color-coded dots (blue=customer, gray=internal, yellow=hold/conflict, red=escalation, purple=work block).
+- /daily_prep — **Generate daily call prep HTML page.** Pull Google Calendar, classify events, enrich customer calls with Gmail, Granola, Gong transcripts (BigQuery), and Salesforce account data (BigQuery). Output a styled HTML timeline. Format: dark theme, timeline with color-coded dots (blue=customer, gray=internal, yellow=hold/conflict, red=escalation, purple=work block). Per-meeting cards include: email intel, last Gong call summary, account snapshot (ACV, renewal date, open opps), and action items.
 - /email_triage — **Inbox triage & response drafting.** Scans Gmail, categorizes by action needed, archives noise, drafts responses using Brightcove docs. Interactive review loop — never auto-sends.
 - /call_prep [customer] — Generate pre-call briefing with account context, recent email/meeting intel, and agenda prep
 - /call_debrief [customer] — Capture post-call outcomes, action items, update account context
@@ -51,7 +51,7 @@ These are auto-created during onboarding and saved to `/context/output_config.md
 ## Execution Strategy: Parallel Agents
 **Always deploy multiple agents (Task tool) in parallel when work can be done concurrently.**
 - **Email drafting:** Launch one agent per email thread
-- **Call prep:** Launch parallel agents for Gmail search, Granola, Notion, and Calendar simultaneously
+- **Call prep / daily prep:** Launch parallel agents for Gmail search, Granola, Notion, Calendar, Gong transcripts (BigQuery), and Salesforce account data (BigQuery) simultaneously
 - **Account research:** Launch parallel agents for web research, email history, Notion, and Brightcove Gateway data
 
 Rules:
@@ -66,7 +66,7 @@ Rules:
 2. **Brightcove source of truth** — For product questions, reference https://support.brightcove.com/
 3. **Keep outputs organized** — All generated files go in /outputs/[type]/
 4. **Save everything to files** — Chat history doesn't persist between tasks. Anything worth keeping goes in a file.
-5. **Gong — Coming in v3.1.** Do NOT reference Gong, ask for Gong user IDs, or mention Gong credentials.
+5. **Gong transcripts via BigQuery** — Use `v_raw_salesforce_transcript` joined to `v_raw_salesforce_task` for call history. Filter by account name via join to `v_raw_salesforce_account`. Transcripts sync ~1 hour after call ends. Do NOT ask for Gong user IDs or API credentials — access is entirely through Brightcove Gateway.
 6. **Follow-up pages are concise** — One context sentence per section + doc links. NO per-section email snippets. ONE consolidated copy-paste follow-up email at the bottom.
 7. **Complex topics → ask first** — If a follow-up item needs detailed technical content (code samples, XML templates, architecture), ask the user: "Email body or attachable PDF?"
 8. **Page titles: [Customer] — [Date]** — No "Call Follow-Up:" prefix.

@@ -13,15 +13,20 @@ Generate a comprehensive pre-call briefing. This is the highest-ROI command in t
 - Read `./context/current_accounts.md` for this customer's entry
 - Identify: tier, cadence, competitors, status, latest update
 
-### Step 2: Gong Intelligence
-- Use the Gong skill (`./skills/gong/SKILL.md`) to search for recent calls with this customer
-- **Filter by your user ID first** (from context/se_team.md)
-- Default: last 30 days. If no results, expand to 90 days.
+### Step 2: Gong Intelligence (via Brightcove Gateway / BigQuery)
+- Query `v_raw_salesforce_transcript` joined to `v_raw_salesforce_task` for recent calls with this customer
+- Join: `transcript.task_id_c = task.id`
+- Filter: `task.date >= date_sub(current_date(), interval 30 day)` AND account matches customer
+- If no results in 30 days, expand to 90 days
+- Always validate with `bigquery_validate_query` before running `bigquery_run_query`
 - Extract: key topics, open action items, pain points, customer sentiment, competitive mentions
 
-### Step 3: Salesforce Data
-- Use the Salesforce skill (`./skills/salesforce/SKILL.md`) to run a `full` pull for this customer
-- Extract: ACV, ARR, Customer Tier, Account Owner, renewal date, products on contract, open opps, platform usage
+### Step 3: Salesforce Data (via Brightcove Gateway / BigQuery)
+- Query `v_salesforce_account` for account snapshot (tier, owner, health)
+- Query `v_salesforce_opportunity` for open opportunities (stage, amount, close date)
+- Query `v_done_deal_contracts` for active contract details (ACV, ARR, renewal date, products)
+- Query `v_entitlement_usage_monthly` for recent usage (bandwidth, streams, managed content)
+- Always validate queries before running. Use `bigquery_describe_table` to confirm field names.
 
 ### Step 4: Brightcove Context
 - Cross-reference product topics from Gong with `./context/brightcove_overview.md`
