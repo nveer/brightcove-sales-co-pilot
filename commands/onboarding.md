@@ -49,26 +49,26 @@ Create and display a TodoWrite checklist:
 ## STEP 1 — Google Connections
 
 Tell the user:
-"When you installed Sales Co-Pilot, Claude Desktop should have already prompted you to connect Gmail, Google Calendar, and Google Drive. If you haven't done that yet — look for a notification in Claude Desktop or go to **Settings → Integrations**. Let me know when all three show as connected."
+"Before installing, the setup guide asked you to connect Gmail, Google Calendar, and Google Drive. Can you confirm all three are showing as connected? If any are missing, here's how: go to **Settings → Customize → Connectors → Connect my tools**. A pop-up will appear — search for **Google** and connect Gmail (twice — once for reading, once for sending), Google Calendar, and Google Drive. Each takes about 30 seconds."
 
-Wait for the user to confirm they have completed the integration step.
+Wait for the user to confirm all three are connected.
 
 Once confirmed:
 - Mark step 1 as complete in the TodoWrite checklist
-- Display: "Great! All three Google integrations are live."
+- Display: "Great! All three Google integrations are confirmed."
 
 ---
 
 ## STEP 2 — Notion Connection
 
 Tell the user:
-"Now connect Notion the same way — **Claude Desktop → Settings → Integrations → Notion**. Sign in with the Brightcove Notion workspace."
+"Same check for Notion — can you confirm it shows as connected? If not: go to **Settings → Customize → Connectors → Connect my tools**, search for **Notion** in the pop-up, and sign in with your Brightcove Notion account."
 
-Wait for the user to confirm they have completed the integration step.
+Wait for the user to confirm Notion is connected.
 
 Once confirmed:
 - Mark step 2 as complete in the TodoWrite checklist
-- Display: "Perfect! Notion is connected."
+- Display: "Perfect! Notion is confirmed."
 
 ---
 
@@ -85,7 +85,12 @@ Wait for their response. Parse the answer to extract:
 Silently write the extracted information to `/context/about_me.md`, replacing the placeholder values [Your Name], [Your Role], [Your Team] with their actual responses.
 
 Also update:
-- Focus: [Ask if not provided: "What's your main focus in your sales role?" e.g., "Enterprise video platform adoption" or "Streaming platform migrations"]
+- Focus: Present exactly these three options and ask the user to pick one:
+  "What's your main sales focus?
+  1. Media
+  2. BDR
+  3. Something else"
+  If they pick 1, save focus as "Media". If they pick 2, save as "BDR". If they pick 3, ask: "What's your focus?" and save their answer.
 - Weekly call cadence: [Ask: "How many customer calls do you typically do per week?"]
 - Email: [Ask: "What's your Brightcove email address?"]
 
@@ -133,7 +138,7 @@ Display final message:
 
 ## Notes for Claude Implementation
 
-- **Gong is NOT available** — Do not mention Gong as a required integration or check for it during onboarding. It is a future capability (v3.1). The only integrations to connect are: Gmail, Google Calendar, Notion, and optionally Granola.
+- **Gong transcripts are available via Brightcove Gateway** — Do NOT ask for Gong credentials, API keys, or user IDs during onboarding. Access is entirely through the pre-configured Brightcove Gateway (BigQuery). The only integrations to connect are: Gmail (×2), Google Calendar, Google Drive, Notion, and optionally Granola.
 
 - Use TodoWrite to track progress through all 5 steps
 - All file writes happen silently (no confirmation messages to the user for writes)
