@@ -10,7 +10,7 @@ When a user has just installed this plugin (e.g., they said "install this plugin
 
 To get started:
 1. Click **New Task** in the top-left sidebar
-2. Onboarding will begin automatically — I'll walk you through the setup in a few minutes
+2. In the new task, type **"start"** — I'll walk you through onboarding automatically
 
 ---
 
