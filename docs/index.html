@@ -371,8 +371,8 @@
 
 <!-- ── STICKY TOP BAR ───────────────────────────────────────── -->
 <div class="topbar">
-  <span>🎬 Brightcove Sales Co-Pilot — v1.3.0</span>
-  <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
+  <span>🎬 Brightcove Sales Co-Pilot — v1.4.0</span>
+  <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot-v1.4.plugin"
      class="topbar-btn" download>⬇ Download Plugin</a>
 </div>
 
@@ -413,13 +413,13 @@
     </div>
   </div>
   <div class="hero-cta">
-    <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot.plugin"
+    <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases/latest/download/brightcove-sales-co-pilot-v1.4.plugin"
        class="btn-download"
        download>
       ⬇ Download &amp; Install Plugin
     </a>
     <p style="color:var(--muted); font-size:13px; margin-top:10px;">
-      v1.3.0 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
+      v1.4.0 · Requires Claude Desktop · <a href="https://github.com/nveer/brightcove-sales-co-pilot/releases" style="color:var(--accent);">View all releases</a>
     </p>
   </div>
   <div class="hero-video">
@@ -723,12 +723,28 @@
           </div>
         </div>
 
-        <!-- Granola (optional) -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px; opacity:0.85;">
+        <!-- Granola (recommended) -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
           <span style="font-size:18px; flex-shrink:0;">🎙️</span>
           <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Granola <span style="background:rgba(79,142,247,0.12); color:var(--accent); border:1px solid rgba(79,142,247,0.25); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Optional</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Only needed if you want Live Call Companion — real-time transcript monitoring during customer calls. <a href="https://granola.ai" target="_blank" style="color:var(--accent);">Download Granola →</a> and make sure it's running before your calls.</div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Granola <span style="background:rgba(245,166,35,0.15); color:var(--yellow); border:1px solid rgba(245,166,35,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Recommended</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Provides real-time live transcription during customer calls. Without Granola, Call Companion will use your Gong call history for pre-call context (transcripts sync hourly) — but real-time monitoring requires Granola. <a href="https://granola.ai" target="_blank" style="color:var(--accent);">Download Granola →</a></div>
+          </div>
+        </div>
+
+        <!-- Connect Connectors -->
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid rgba(79,142,247,0.25); border-radius:8px;">
+          <span style="font-size:18px; flex-shrink:0;">🔌</span>
+          <div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Connect your tools in Claude Desktop <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Do This First</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:6px;">Before downloading the plugin, connect your tools in Claude Desktop. Go to <strong style="color:var(--text);">Settings → Customize → Connectors</strong> and connect each of the following (~30 seconds each):</div>
+            <ul style="margin-top:10px; padding-left:20px; line-height:2.2; color:var(--text); font-size:13px;">
+              <li>📧 <strong>Gmail</strong> — connect it <em>twice</em>: once for reading, once for sending. Both use the same Brightcove Google account.</li>
+              <li>📆 <strong>Google Calendar</strong> — read-only access to your calendar</li>
+              <li>🗂️ <strong>Google Drive</strong> — read-only access for reference docs</li>
+              <li>📓 <strong>Notion</strong> — sign in with your Brightcove Notion account</li>
+              <li>🎙️ <strong>Granola</strong> (recommended) — if you use Granola for meeting notes</li>
+            </ul>
           </div>
         </div>
 
@@ -796,17 +812,11 @@
       <div class="install-step">
         <div class="install-step-num">5</div>
         <div class="install-step-text">
-          <strong>Connect your Connectors in Claude Desktop</strong>
-          <em>Do this before starting a session.</em> In Claude Desktop, go to <strong>Settings → Customize → Connectors</strong> and connect each of the following. Each one takes about 30 seconds — just sign in with your Brightcove Google or Notion account:
-          <ul style="margin-top:12px; padding-left:22px; line-height:2.2; color:var(--text);">
-            <li>📧 <strong>Gmail</strong> — connect it twice: once for reading, once for sending. Both use the same Google account.</li>
-            <li>📆 <strong>Google Calendar</strong> — read-only access to your calendar</li>
-            <li>📓 <strong>Notion</strong> — sign in with your Brightcove Notion account</li>
-            <li>🎙️ <strong>Granola</strong> (optional) — for live call transcription. See the Platforms section below for setup steps.</li>
-          </ul>
+          <strong>Verify your connectors are active</strong>
+          Go to <strong>Settings → Customize → Connectors</strong> and confirm Gmail (×2), Google Calendar, Google Drive, and Notion all show as connected. If any are missing, connect them now — it takes about 30 seconds each.
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">⚠️</span>
-            <span>If you skip Connectors now, Claude will still run — but features like email triage and daily call prep won't work until they're connected.</span>
+            <span>If you skip this, Claude will still run — but email triage and daily call prep won't work until connectors are live.</span>
           </div>
         </div>
       </div>
