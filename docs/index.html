@@ -527,15 +527,14 @@
             <div class="platform-name" style="color:#ea4335;">Gmail</div>
             <div class="platform-meta">Email read/search/draft · Inbox triage · Thread context</div>
           </div>
-          <span class="platform-pill pill-mcp">MCP Connector</span>
+          <span class="platform-pill" style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3);">Sign in with Google</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used for reading email threads, drafting responses, and archiving noise during email triage. Connects via two Claude Desktop MCP connectors (read + write).</p>
+          <p>Used for reading email threads, drafting responses, and inbox triage. You'll sign in with your Brightcove Google account — no separate credentials needed.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Gmail"</strong>. You'll connect <strong>your own Gmail account</strong> — each person must connect their own.</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">Connect both the read connector and the write connector to your Google account.</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Authorize Google's OAuth consent screen — grant the requested Gmail permissions. You're authorizing access to your personal/work Gmail inbox.</div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-text">Once connected, restart Claude Desktop and run <code style="color:var(--accent)">/prime</code> to verify Gmail is accessible.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Gmail"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Search for <strong>"Gmail"</strong> a second time and connect it again — one handles reading your inbox, one handles sending. Both use the same Google account.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Approve the Google permissions screen, then restart Claude Desktop.</div></div>
           </div>
           <div class="alert alert-info">
             <span class="alert-icon">ℹ️</span>
@@ -552,14 +551,13 @@
             <div class="platform-name" style="color:#4285f4;">Google Calendar</div>
             <div class="platform-meta">Schedule · Meeting classification · Daily timeline</div>
           </div>
-          <span class="platform-pill pill-mcp">MCP Connector</span>
+          <span class="platform-pill" style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3);">Sign in with Google</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used in daily call prep to pull your schedule, classify meetings as customer vs internal, and generate the day's timeline. Read-only — this plugin cannot create or modify calendar events.</p>
+          <p>Used in daily call prep to pull your schedule and classify meetings. Read-only — this plugin cannot create or modify calendar events.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Calendar"</strong>. Connect <strong>your own</strong> Google Calendar account via OAuth.</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">Grant <strong>read-only</strong> access to your calendar. This is personal — it only accesses the calendar of whoever connects it.</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Once connected, restart Claude Desktop to complete the setup.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Calendar"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Approve the permissions screen, then restart Claude Desktop.</div></div>
           </div>
           <div class="alert alert-success">
             <span class="alert-icon">✅</span>
@@ -576,15 +574,13 @@
             <div class="platform-name" style="color:#34a853;">Google Drive</div>
             <div class="platform-meta">File access · Document context · Reference materials</div>
           </div>
-          <span class="platform-pill pill-mcp">MCP Connector</span>
+          <span class="platform-pill" style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3);">Sign in with Google</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used for accessing reference documents, customer files, and any Google Drive content you want Claude to have context from.</p>
+          <p>Used for accessing reference documents and customer files. Sign in with your Brightcove Google account — same credentials as Gmail and Calendar.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop → Settings → Integrations, search for <strong>"Google Drive"</strong></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">Connect <strong>your own</strong> Google Drive account via Google OAuth</div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Authorize the requested permissions — Claude can only read files you explicitly share with it</div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-text">Once connected, you can reference Google Drive documents in commands like /call_prep or /email_triage</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Drive"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Approve the permissions screen, then restart Claude Desktop.</div></div>
           </div>
           <div class="alert alert-success">
             <span class="alert-icon">✅</span>
