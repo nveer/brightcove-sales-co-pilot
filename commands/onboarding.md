@@ -35,14 +35,19 @@ This workflow guides a new Sales Co-Pilot user through initial setup (5-7 minute
 ## Start Onboarding
 
 Display warm welcome message:
-"Welcome to Brightcove Sales Co-Pilot! I'm going to walk you through a quick setup — it takes about 5 minutes. I'll ask you a few questions, and when we're done you'll be ready to prep for calls, triage your inbox, and get post-call follow-ups automatically."
+"Welcome to Brightcove Sales Co-Pilot! I'm going to walk you through a quick setup — it takes about 5 minutes. I'll ask you a few questions, and when we're done you'll be ready to prep for calls, triage your inbox, and get post-call follow-ups automatically.
+
+**⚡ One quick thing before we start:** For the best experience, switch to **Claude Sonnet** — it's 3x faster than Opus for these workflows with no quality loss. Click the model name at the top of this window (or in Settings → Model) and select **Claude Sonnet 4.5**. Then come back and type **'start'** to continue."
+
+Wait for the user to confirm they've switched or say they're ready to continue.
 
 Create and display a TodoWrite checklist:
-1. ✅ Connect Google (Gmail, Calendar, Drive)
-2. ✅ Connect Notion
-3. ✅ Tell me about yourself
-4. ✅ Set up Notion workspace (automatic)
-5. ✅ Finish setup
+1. ✅ Switch to Claude Sonnet
+2. ✅ Connect Google (Gmail, Calendar, Drive)
+3. ✅ Connect Notion
+4. ✅ Tell me about yourself
+5. ✅ Set up Notion workspace (automatic)
+6. ✅ Finish setup
 
 ---
 

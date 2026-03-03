@@ -1,5 +1,49 @@
 # Changelog — Brightcove Sales Co-Pilot
 
+## v1.4.1 — March 2026
+
+### 🐛 Bug Fixes
+- **Onboarding trigger:** SessionStart hook requires a user message to activate in Cowork mode. Updated post-install instructions and Step 6 of the install guide to tell users to type **"start"** in the new task — onboarding then fires automatically.
+- **plugin.json version:** Corrected from `1.3.0` to `1.4.1` (was never bumped from v1.3.0 in the original v1.4.0 release)
+- **Landing page version strings:** All 3 display version strings (topbar, hero subtext, footer) updated to `v1.4.1`
+
+### 📋 Updated Files
+- `INSTALL.md` — post-install response updated with "type start" instruction
+- `docs/index.html` — Step 6 and all 3 version strings updated
+- `.claude-plugin/plugin.json` — version bumped to 1.4.1
+
+---
+
+## v1.4.0 — March 2026
+
+### ✨ New Capabilities
+
+**Gong Transcript Integration in Call Companion (no setup required)**
+- Call Companion now operates in two modes depending on whether Granola is available
+- **Without Granola (default):** Loads the last 3 Gong transcripts for the account at call start via Brightcove Gateway (BigQuery). Displays key topics, open action items, and recurring themes as pre-call context. After the call, polls BigQuery for the new transcript (~1 hour sync delay) and auto-generates the follow-up Notion page.
+- **With Granola (recommended):** Real-time monitoring and immediate post-call follow-up unchanged from v1.3.0
+- Transcript source table: `v_raw_salesforce_transcript` joined to `v_raw_salesforce_task`
+
+### 🔧 Installation Changes
+- Connectors (Gmail ×2, Google Calendar, Google Drive, Notion, Granola) now connected **before** plugin install, not during onboarding
+- "Before You Start" section on install page updated with step-by-step connector instructions
+- Onboarding Steps 1–2 now verify connectors rather than guide first-time connection
+- Granola updated from "Optional" to "Recommended" throughout install page and docs
+
+### 📋 Updated Files
+- `commands/call_companion.md` — 3-phase workflow with BigQuery/Gong integration
+- `CLAUDE.md` — Gong transcripts now documented as live capability (not v3.1)
+- `commands/onboarding.md` — Steps 1–2 updated to verification flow
+- `docs/index.html` — "Before You Start" section expanded; Granola badge updated
+
+### 🛠️ Release Checklist Note
+When bumping versions in future releases, `docs/index.html` has **3 places** that must all be updated:
+1. Topbar span — `🎬 Brightcove Sales Co-Pilot — vX.X.X`
+2. Hero button subtext — `vX.X.X · Requires Claude Desktop · View all releases`
+3. Footer — `Brightcove Sales Co-Pilot · vX.X.X`
+
+---
+
 ## v1.3.0 — March 2026
 
 ### ✨ New Capabilities
