@@ -222,9 +222,39 @@
     .platform-body { padding: 0 24px 24px; border-top: 1px solid var(--border); }
     .platform-body p { font-size: 14px; color: var(--muted); margin-bottom: 16px; padding-top: 16px; }
 
-    /* ─── STEPS ──────────────────────────────────────────────── */
+    /* ─── STEPS (platform card sub-steps) ───────────────────── */
     .steps { display: flex; flex-direction: column; gap: 12px; }
     .step { display: flex; gap: 14px; align-items: flex-start; }
+
+    /* ─── INSTALL STEP CARDS ─────────────────────────────────── */
+    .install-steps { display: flex; flex-direction: column; gap: 14px; }
+    .install-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 22px 24px; border-radius: 12px;
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+    }
+    .install-step:nth-child(odd) {
+      background: rgba(79,142,247,0.04);
+      border-left-color: rgba(79,142,247,0.45);
+    }
+    .install-step:nth-child(even) {
+      background: rgba(62,207,142,0.04);
+      border-left-color: rgba(62,207,142,0.45);
+    }
+    .install-step-num {
+      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800; margin-top: 1px;
+    }
+    .install-step:nth-child(odd) .install-step-num {
+      background: rgba(79,142,247,0.15); color: #4f8ef7;
+    }
+    .install-step:nth-child(even) .install-step-num {
+      background: rgba(62,207,142,0.15); color: #3ecf8e;
+    }
+    .install-step-text { font-size: 14px; color: var(--text); line-height: 1.6; flex: 1; }
+    .install-step-text > strong:first-child { font-size: 15px; display: block; margin-bottom: 5px; color: #fff; }
     .step-num {
       width: 26px; height: 26px; border-radius: 50%;
       background: rgba(79,142,247,0.15); border: 1px solid rgba(79,142,247,0.3);
@@ -706,22 +736,22 @@
       </div>
     </div>
 
-    <div class="steps">
+    <div class="install-steps">
 
       <!-- STEP 1 -->
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">
-          <strong>Download the plugin file</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">1</div>
+        <div class="install-step-text">
+          <strong>Download the plugin file</strong>
           Click the <strong>⬇ Download &amp; Install Plugin</strong> button at the top of this page. Your browser will save a file called <code style="color:var(--accent)">brightcove-sales-co-pilot.plugin</code> to your Downloads folder.
         </div>
       </div>
 
       <!-- STEP 2 -->
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">
-          <strong>Open the plugin in Claude Desktop</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">2</div>
+        <div class="install-step-text">
+          <strong>Open the plugin in Claude Desktop</strong>
           Double-click the <code style="color:var(--accent)">.plugin</code> file in your Downloads folder. Claude Desktop will open automatically and show you a <strong>Save Plugin</strong> dialog.
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">💡</span>
@@ -737,19 +767,19 @@
       </div>
 
       <!-- STEP 3 -->
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">
-          <strong>Click Save in the dialog</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">3</div>
+        <div class="install-step-text">
+          <strong>Click Save in the dialog</strong>
           In the Save Plugin dialog, review the plugin name and description, then click <strong>Save</strong>. Claude Desktop will install the plugin files.
         </div>
       </div>
 
       <!-- STEP 4 -->
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">
-          <strong>Choose your workspace folder</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">4</div>
+        <div class="install-step-text">
+          <strong>Choose your workspace folder</strong>
           A dialog will appear saying <em>"Claude would like to Cowork in a folder."</em> This is where the plugin will store your call prep files, follow-ups, and outputs — think of it as your Sales Co-Pilot filing cabinet.
           <br><br>
           Follow these steps exactly:
@@ -764,10 +794,10 @@
       </div>
 
       <!-- STEP 5 -->
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-text">
-          <strong>Connect your Connectors in Claude Desktop</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">5</div>
+        <div class="install-step-text">
+          <strong>Connect your Connectors in Claude Desktop</strong>
           <em>Do this before starting a session.</em> In Claude Desktop, go to <strong>Settings → Customize → Connectors</strong> and connect each of the following. Each one takes about 30 seconds — just sign in with your Brightcove Google or Notion account:
           <ul style="margin-top:12px; padding-left:22px; line-height:2.2; color:var(--text);">
             <li>📧 <strong>Gmail</strong> — connect it twice: once for reading, once for sending. Both use the same Google account.</li>
@@ -783,10 +813,10 @@
       </div>
 
       <!-- STEP 6 -->
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-text">
-          <strong>Start a new Cowork session — onboarding starts automatically</strong><br>
+      <div class="install-step">
+        <div class="install-step-num">6</div>
+        <div class="install-step-text">
+          <strong>Start a new Cowork session — onboarding starts automatically</strong>
           Open Claude Desktop, go to <strong>Cowork</strong>, and start a new task. Claude will immediately detect that it's your first time and begin the setup wizard — no commands to type.
           <br><br>
           Claude will ask for:
