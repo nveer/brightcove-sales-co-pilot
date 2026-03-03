@@ -9,9 +9,8 @@ When a user has just installed this plugin (e.g., they said "install this plugin
 ✅ **Sales Co-Pilot is installed!**
 
 To get started:
-1. Close this session
-2. Open a new Cowork task (click **New Task** in the sidebar)
-3. Onboarding will begin automatically — I'll walk you through the setup in a few minutes
+1. Click **New Task** in the top-left sidebar
+2. Onboarding will begin automatically — I'll walk you through the setup in a few minutes
 
 ---
 
