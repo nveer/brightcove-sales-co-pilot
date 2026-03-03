@@ -483,15 +483,15 @@
           <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used to pull account details, active opportunities, usage data, and contract information via Brightcove's internal BigQuery data warehouse. No OAuth or Salesforce Connected App required — connects via MCP connector and uses your Brightcove credentials.</p>
+          <p>Used to pull account details, active opportunities, usage data, and contract information via Brightcove's internal BigQuery data warehouse. No OAuth or Salesforce Connected App required — connects via connector and uses your Brightcove credentials.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Brightcove Gateway"</strong> and install the MCP connector.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Customize → Connectors</strong>, search for <strong>"Brightcove Gateway"</strong> and install the connector.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">Authenticate with your <strong>Brightcove corporate credentials</strong> when prompted — this connects to the <code style="color:var(--yellow)">brightcove-lumenx-42</code> BigQuery project.</div></div>
             <div class="step"><div class="step-num">3</div><div class="step-text">Once connected, restart Claude Desktop. The plugin will automatically use the Gateway for all account and usage queries.</div></div>
           </div>
           <div class="alert alert-success">
             <span class="alert-icon">✅</span>
-            <span><strong>No IT ticket needed!</strong> The Brightcove Gateway MCP connector is self-serve. Authenticate with your existing Brightcove credentials — no Connected Apps, no OAuth setup, no admin involvement required.</span>
+            <span><strong>No IT ticket needed!</strong> The Brightcove Gateway connector is self-serve. Authenticate with your existing Brightcove credentials — no Connected Apps, no OAuth setup, no admin involvement required.</span>
           </div>
           <div class="alert alert-info">
             <span class="alert-icon">ℹ️</span>
@@ -532,7 +532,7 @@
         <div class="platform-body" style="display:none;">
           <p>Used for reading email threads, drafting responses, and inbox triage. You'll sign in with your Brightcove Google account — no separate credentials needed.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Gmail"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Customize → Connectors</strong>, search for <strong>"Gmail"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">Search for <strong>"Gmail"</strong> a second time and connect it again — one handles reading your inbox, one handles sending. Both use the same Google account.</div></div>
             <div class="step"><div class="step-num">3</div><div class="step-text">Approve the Google permissions screen, then restart Claude Desktop.</div></div>
           </div>
@@ -556,7 +556,7 @@
         <div class="platform-body" style="display:none;">
           <p>Used in daily call prep to pull your schedule and classify meetings. Read-only — this plugin cannot create or modify calendar events.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Calendar"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Customize → Connectors</strong>, search for <strong>"Google Calendar"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">Approve the permissions screen, then restart Claude Desktop.</div></div>
           </div>
           <div class="alert alert-success">
@@ -579,7 +579,7 @@
         <div class="platform-body" style="display:none;">
           <p>Used for accessing reference documents and customer files. Sign in with your Brightcove Google account — same credentials as Gmail and Calendar.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Integrations</strong>, search for <strong>"Google Drive"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">In <strong>Claude Desktop → Settings → Customize → Connectors</strong>, search for <strong>"Google Drive"</strong> and click Connect. Sign in with your Brightcove Google account.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">Approve the permissions screen, then restart Claude Desktop.</div></div>
           </div>
           <div class="alert alert-success">
@@ -602,7 +602,7 @@
         <div class="platform-body" style="display:none;">
           <p>After each call, the plugin writes a structured follow-up page to Notion — action items, resources, and a copy-paste follow-up email. <strong>No manual database setup needed</strong> — onboarding creates your Call Follow-Ups and Customer Call Prep databases automatically.</p>
           <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Integrations (sign in with your Brightcove Notion account)</div></div>
+            <div class="step"><div class="step-num">1</div><div class="step-text">Connect <strong>Notion</strong> in Claude Desktop → Settings → Customize → Connectors (sign in with your Brightcove Notion account)</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">That's it. During onboarding, Claude automatically creates your <strong>Call Follow-Ups</strong> and <strong>Customer Call Prep</strong> databases in Notion — no IDs to copy, no manual config.</div></div>
           </div>
           <div class="alert alert-success">
@@ -623,11 +623,11 @@
           <span class="platform-pill pill-mcp">MCP Connector</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used by the live Call Companion to monitor meeting notes in real time and pull transcripts post-call. Requires the Granola desktop app and its MCP connector.</p>
+          <p>Used by the live Call Companion to monitor meeting notes in real time and pull transcripts post-call. Requires the Granola desktop app and its connector.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">Install <a href="https://granola.ai" target="_blank">Granola</a> on your Mac (it records and transcribes meetings in the background)</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">In Granola settings, enable the <strong>MCP / Claude integration</strong></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-text">Connect Granola in <strong>Claude Desktop → Settings → Integrations</strong></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Connect Granola in <strong>Claude Desktop → Settings → Customize → Connectors</strong></div></div>
             <div class="step"><div class="step-num">4</div><div class="step-text">Granola will automatically make your meeting transcripts accessible to Claude</div></div>
           </div>
           <div class="alert alert-success">
@@ -767,17 +767,17 @@
       <div class="step">
         <div class="step-num">5</div>
         <div class="step-text">
-          <strong>Connect your integrations in Claude Desktop</strong><br>
-          <em>Do this before starting a session.</em> Go to <strong>Claude Desktop → Settings → Integrations</strong> and connect each of the following. Each one takes about 30 seconds and just requires signing in with Google or Notion:
+          <strong>Connect your Connectors in Claude Desktop</strong><br>
+          <em>Do this before starting a session.</em> In Claude Desktop, go to <strong>Settings → Customize → Connectors</strong> and connect each of the following. Each one takes about 30 seconds — just sign in with your Brightcove Google or Notion account:
           <ul style="margin-top:12px; padding-left:22px; line-height:2.2; color:var(--text);">
-            <li>📧 <strong>Gmail</strong> — connect both the read connector and the write connector</li>
+            <li>📧 <strong>Gmail</strong> — connect it twice: once for reading, once for sending. Both use the same Google account.</li>
             <li>📆 <strong>Google Calendar</strong> — read-only access to your calendar</li>
             <li>📓 <strong>Notion</strong> — sign in with your Brightcove Notion account</li>
-            <li>🎙️ <strong>Granola</strong> (optional but recommended) — for live call transcription. See the Platforms section below for setup steps.</li>
+            <li>🎙️ <strong>Granola</strong> (optional) — for live call transcription. See the Platforms section below for setup steps.</li>
           </ul>
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">⚠️</span>
-            <span>If you skip connecting integrations now, Claude will still run — but some features like email triage and daily prep won't work until you connect them.</span>
+            <span>If you skip Connectors now, Claude will still run — but features like email triage and daily call prep won't work until they're connected.</span>
           </div>
         </div>
       </div>
@@ -881,12 +881,12 @@
       <p class="section-desc">Print this or check it off as you go.</p>
     </div>
     <div class="checklist">
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin downloaded and saved</strong><span>Double-click .plugin → click Save in the Safe Plugin dialog</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin downloaded and saved</strong><span>Double-click .plugin → click Save in the dialog (or drag-drop into a Cowork session and type "install this plugin")</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Workspace folder selected</strong><span>When prompted "Claude would like to Cowork in a folder" — go to Documents, create a new folder called Sales Co-Pilot, and select it</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Claude Desktop → Settings → Integrations → Gmail (sign in with Google)</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Claude Desktop → Settings → Integrations → Google Calendar</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Claude Desktop → Settings → Integrations → Google Drive</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Claude Desktop → Settings → Integrations → Notion — databases are auto-created during onboarding, no manual setup needed</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Settings → Customize → Connectors → search "Gmail" — connect it twice, sign in with your Brightcove Google account</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Settings → Customize → Connectors → search "Google Calendar" — sign in with your Brightcove Google account</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Settings → Customize → Connectors → search "Google Drive" — sign in with your Brightcove Google account</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Settings → Customize → Connectors → search "Notion" — databases are auto-created during onboarding, no manual setup needed</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion — install from granola.ai</span></div></div>
