@@ -1,7 +1,14 @@
-# Salesforce Skill — SE Command Center
+# ⚠️ DEPRECATED — Salesforce Skill
+
+> **This skill is no longer used.** All Salesforce data is now accessed via the Brightcove Gateway (BigQuery MCP).
+> Use `brightcove-lumenx-42.external_shared_views` tables: `v_salesforce_account`, `v_salesforce_opportunity`, `v_done_deal_contracts`, `v_raw_salesforce_*`, etc.
+> This file is retained only in case Salesforce write-back is ever needed in the future.
+
+# Salesforce Skill — SE Command Center [DEPRECATED]
 
 ## Overview
-Queries your Brightcove Salesforce instance for account intelligence. Used in call prep, account summaries, and account context enrichment.
+~~Queries your Brightcove Salesforce instance for account intelligence. Used in call prep, account summaries, and account context enrichment.~~
+**Replaced by Brightcove Gateway (BigQuery). Do not use.**
 
 ## Authentication
 - OAuth 2.0 Password Flow
