@@ -1,4 +1,27 @@
-# Changelog — Brightcove Sales Co-Pilot
+# Changelog — GOOSE
+
+## v1.4.3 — March 2026
+
+### 🪿 GOOSE Rebrand
+- **Plugin renamed:** Brightcove Sales Co-Pilot → **GOOSE — Your AI Sales Co-Pilot**
+- **Tagline:** "Talk to Me, Goose." / "Never Fly Solo"
+- **plugin.json:** `name` updated to `goose`, description updated with GOOSE branding
+- **Landing page:** Hero redesigned — GOOSE logo (transparent BG, 400px), gold italic tagline, "Never Fly Solo" whisper text, h1 updated to "Your AI Sales Co-Pilot"
+- **CLAUDE.md:** Title, purpose, and first-run welcome message updated to GOOSE branding
+- **GitHub repo:** Renamed to `goose`
+
+### ✨ Call Prep Improvements
+- **Internal call classification tightened:** Bending Spoons employees (`@bendingspoons.com`) now explicitly classified as internal alongside Brightcove employees. A meeting is customer-facing only if at least one external non-Brightcove/non-BendingSpoons attendee is present.
+- **Key Context banner scoped to call-related intel only:** Banner at top of daily prep page now contains ONLY items tied to that day's customer calls (scheduling conflicts, time changes, last-minute attendees, urgent account signals). General inbox items (support cases, renewals, internal FYIs) are excluded from the banner — they belong in the Inbox section.
+- **Source badges mandatory:** Every intel item in the context banner, meeting cards, and inbox sections must carry a source badge (`src gmail`, `src calendar`, `src granola`, `src docs`, `src workspace`, `src unverified`). Items without a verified source are excluded.
+
+### 📋 Updated Files
+- `.claude-plugin/plugin.json` — name + description updated; version bumped to 1.4.3
+- `CLAUDE.md` — GOOSE rebrand; internal classification rule; source badge rule; context banner rule
+- `docs/index.html` — hero redesign; all version strings bumped to v1.4.3
+- `CHANGELOG.md` — this entry; title updated to GOOSE
+
+---
 
 ## v1.4.2 — March 2026
 
