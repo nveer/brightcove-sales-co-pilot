@@ -1,6 +1,6 @@
-# SE Command Center
+# GOOSE — Your AI Sales Co-Pilot
 
-AI-powered Sales Engineer assistant for Brightcove. Automates the most time-consuming parts of the SE workflow.
+AI-powered sales assistant for Brightcove. Automates the most time-consuming parts of the sales workflow. Never fly solo.
 
 ## What It Does
 

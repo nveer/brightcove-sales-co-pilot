@@ -1,4 +1,4 @@
-# Brightcove Sales Co-Pilot — Installation
+# GOOSE — Installation
 
 ## How Reps Install This Plugin
 
@@ -8,7 +8,7 @@
 4. Under **Personal plugins**, click the **+** button
 5. In the "Upload local plugin" dialog, click **Browse files** and select the `.zip` file → click **Upload**
 6. Click **New Task** in the top-left sidebar
-7. Choose a workspace folder (Documents → create "Sales Co-Pilot")
+7. Choose a workspace folder (Documents → create "GOOSE")
 8. Type **"start"** — onboarding begins automatically
 
 ## For Claude: Post-Install Response Script
@@ -17,11 +17,11 @@ When a user has just uploaded this plugin via Customize → Personal plugins →
 
 ---
 
-✅ **Sales Co-Pilot is installed!**
+✅ **GOOSE is installed!**
 
 To get started:
 1. Click **New Task** in the top-left sidebar
-2. When asked to choose a folder, go to **Documents** and create a new folder called **Sales Co-Pilot**
+2. When asked to choose a folder, go to **Documents** and create a new folder called **GOOSE**
 3. In the new task, type **"start"** — I'll walk you through onboarding automatically
 
 ---

@@ -1,6 +1,6 @@
 # Output Configuration — Notion
 
-All Sales Co-Pilot outputs go to your Notion workspace.
+All GOOSE outputs go to your Notion workspace.
 Claude sets this up automatically during onboarding.
 
 ## Notion Workspace

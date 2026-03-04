@@ -4,7 +4,7 @@
 Perform the following steps to get fully contextualized for this session:
 
 1. **First-run check** — Check if `context/about_me.md` contains `[Your Name]` (the unfilled placeholder).
-   - If it DOES contain `[Your Name]`: this is a first-time install. Greet the user warmly and immediately begin the onboarding workflow from `commands/onboarding.md`. Do NOT mention Gong, Salesforce, credentials, or .env files. Do NOT reference se-plugin-onboarding.html. Just say: "Welcome to Brightcove Sales Co-Pilot! Let me get you set up — this takes about 5 minutes." Then follow onboarding.md step by step.
+   - If it DOES contain `[Your Name]`: this is a first-time install. Greet the user warmly and immediately begin the onboarding workflow from `commands/onboarding.md`. Do NOT mention Gong, Salesforce, credentials, or .env files. Do NOT reference se-plugin-onboarding.html. Just say: "Talk to Me, Goose. 🪿 Welcome to GOOSE — your AI Sales Co-Pilot! Let me get you set up — this takes about 5 minutes." Then follow onboarding.md step by step.
    - If `about_me.md` is filled in: continue to step 2 (returning user).
 
 2. **List workspace structure** — Run `find . -type f` to see all files and their locations
