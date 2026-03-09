@@ -1,5 +1,29 @@
 # Changelog — GOOSE
 
+## v1.5.0 — March 2026
+
+### ✨ Email Triage Improvements
+
+- **No default call offers** — Email drafts no longer offer a call by default. Default closing is "Let me know if you have any questions." A call is only offered if: (a) the customer is clearly frustrated/upset, or (b) they've asked the same question multiple times and the issue remains unresolved.
+- **Reply-to-all mandatory** — When responding to an existing email thread, always reply-to-all using `threadId` + `inReplyTo` (latest message ID) with all original TO/CC recipients. Creating a new email for an existing thread is no longer allowed — it breaks the conversation chain.
+- **Explicit send approval after edits** — After any draft edit is requested, the fully revised draft must be shown again before sending. Edit requests ("remove the call offer", "add docs") are not send approval — user must explicitly say "send it" / "yes" / "go ahead."
+- **Pre-send context summary** — Each draft presented for review now includes a 1–2 sentence summary of what the other party last said, so the user knows exactly what they're responding to without recalling the thread manually.
+- **Auto-archive after send** — After any email is sent during triage, the source thread is automatically archived (removes INBOX + UNREAD labels from all messages in the thread). Responded-to threads no longer linger in inbox.
+
+### 🗓️ Daily Prep Refinements
+
+- **Calls-only scope enforced** — Daily prep HTML pages now focus exclusively on today's customer calls. The "Inbox Highlights" section has been removed. Email intel and account monitoring belong in `/email_triage` only.
+- **Key Context banner tightened** — The banner at top of daily prep is now strictly 3–5 bullets of call-related intel (schedule changes, cancellations, last-minute attendee additions, urgent signals tied to a specific meeting). General inbox items are excluded.
+- **Duplicate Rule 14/16 fixed** — Rules 14 and 16 in CLAUDE.md were identical (a copy error from v1.4.3). Merged into single correct Rule 15 with updated bullet count (3–5, was 5–8).
+
+### 📋 Updated Files
+- `CLAUDE.md` — Rules 13 (reply-to-all), 13b (auto-archive), 14 (daily prep calls-only), 15 (banner tightened), 16 (internal classification); duplicate rule removed
+- `commands/email_triage.md` — Step 5.4 (no default call offers), Step 5.5 (reply-to-all), Step 5.6 (pre-send context + explicit approval), Step 5.7 (auto-archive after send); Step 7 updated
+- `.claude-plugin/plugin.json` — version bumped to 1.5.0
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.4.3 — March 2026
 
 ### 🪿 GOOSE Rebrand

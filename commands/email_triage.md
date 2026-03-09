@@ -67,9 +67,17 @@ For **Customer Question** emails:
    - Warm, concise, makes complex things simple
    - No scolding language ("as I mentioned", "I already covered this")
    - Use helpful callbacks ("For reference, those docs are in the earlier thread")
-   - Don't offer calls prematurely
+   - **Never offer a call by default** — Brightcove is a self-serve platform. Default closing is "Let me know if you have any questions." Only offer a call if: (a) the customer is clearly frustrated/upset, OR (b) they have asked the same question multiple times and the issue remains unresolved
    - Plain URL links (not markdown — email clients don't render it)
-5. **Show draft before sending** — ALWAYS. Never auto-send.
+5. **Reply-to-all on existing threads (MANDATORY):**
+   - ALWAYS use reply-to-all when responding to an existing thread — never create a new email
+   - Pass `threadId` AND `inReplyTo` (the message ID of the latest message in the thread) to `send_email` / `draft_email`
+   - Populate `to:` with the original sender + all original `to:` recipients (minus yourself)
+   - Populate `cc:` with all original `cc:` recipients (minus yourself)
+   - **Only create a new email** if there is NO existing thread (truly first-touch outreach with no prior conversation)
+6. **Show draft before sending** — ALWAYS. Never auto-send. Present each draft with a 1–2 sentence "what they said" context summary (the last thing the customer wrote) so the user knows exactly what they're responding to without having to recall the thread.
+   - **After ANY edit is requested** — show the fully updated draft again and wait for explicit send approval ("send it", "yes", "go ahead") before sending. Never auto-send after making edits. Edit request ≠ send approval.
+7. **Auto-archive after send** — Immediately after any draft is sent, archive the source thread by calling `batch_modify_emails` with `removeLabelIds: ["INBOX", "UNREAD"]` on all message IDs in that thread. This is default behavior — do not wait for the user to say "archive it."
 
 ### Step 6: Produce Summary File
 Save to `outputs/email-triage-[YYYY-MM-DD].md`:
@@ -97,8 +105,10 @@ Save to `outputs/email-triage-[YYYY-MM-DD].md`:
 ### Step 7: Interactive Review Loop
 1. User reviews drafts one by one
 2. For each: approve → send, edit → revise, skip
-3. Only send when user explicitly says "send it" / "go ahead"
-4. Update summary file after each action
+3. After any edit, re-show the full revised draft and wait for explicit send approval before sending
+4. Only send when user explicitly says "send it" / "perfect" / "go ahead"
+5. After sending, immediately auto-archive the thread (Step 5.7 above)
+6. Update summary file with SENT status after each send
 
 ## Constraints
 - **Never auto-send emails.** Always get explicit approval.
