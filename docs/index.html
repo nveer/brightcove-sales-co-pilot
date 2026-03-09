@@ -197,6 +197,22 @@
       font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
       margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;
     }
+    /* Mini feature cards — half-height, 4 across */
+    .cap-mini-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-top: 28px; margin-bottom: 12px;
+    }
+    .cap-grid-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 800px) { .cap-grid-mini { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .cap-grid-mini { grid-template-columns: 1fr; } }
+    .cap-card-mini {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; transition: border-color 0.2s;
+    }
+    .cap-card-mini:hover { border-color: rgba(79,142,247,0.4); }
+    .cap-card-mini .cap-icon { font-size: 20px; margin-bottom: 8px; }
+    .cap-card-mini .cap-name { font-size: 13px; margin-bottom: 4px; }
+    .cap-card-mini .cap-desc { font-size: 12px; line-height: 1.45; }
 
     /* ─── PLATFORM CARDS ─────────────────────────────────────── */
     .platform-list { display: flex; flex-direction: column; gap: 20px; }
@@ -487,29 +503,28 @@
         <div class="cap-desc">Reads full email threads before drafting — never contradicts what you already sent. Auto-researches answers on support.brightcove.com and embeds them in the draft. Won't archive support emails if you're named, the customer is frustrated, or the thread is stalled. Nothing sends without your approval.</div>
         <span class="cap-tag">Inbox Zero</span>
       </div>
-      <div class="cap-card">
+    </div>
+    <div class="cap-mini-label">Also Built In</div>
+    <div class="cap-grid-mini">
+      <div class="cap-card-mini">
         <span class="cap-icon">📊</span>
         <div class="cap-name">Account Summary</div>
-        <div class="cap-desc">Full 360° account view on demand — pulls Gmail threads, Brightcove Gateway data, Granola meeting notes, and Notion simultaneously. Surfaces cadence gaps, competitor risk, renewal timing, and upsell signals. One brief ready to share with your Account Executive or bring into an exec conversation.</div>
-        <span class="cap-tag">Account Intel</span>
+        <div class="cap-desc">Full 360° account view — Gmail, Brightcove Gateway, Granola, and Notion pulled in parallel. Surfaces cadence gaps, competitor risk, and renewal timing.</div>
       </div>
-      <div class="cap-card">
+      <div class="cap-card-mini">
         <span class="cap-icon">⚔️</span>
         <div class="cap-name">Competitor Analysis</div>
-        <div class="cap-desc">Cross-references Brightcove support docs, your email history, and Granola call notes for how Brightcove has won (or lost) against a competitor before. Output: a structured battlecard with their strengths, your advantages, and objection responses — built from real context.</div>
-        <span class="cap-tag">Competitive</span>
+        <div class="cap-desc">Structured battlecard from real context — Brightcove docs, email history, and past call notes cross-referenced for wins, losses, and objection responses.</div>
       </div>
-      <div class="cap-card">
+      <div class="cap-card-mini">
         <span class="cap-icon">🗂️</span>
         <div class="cap-name">Notion Integration</div>
-        <div class="cap-desc">After every call, automatically writes a structured Notion follow-up page: action items, resources, key intel, and one copy-paste follow-up email at the bottom covering all topics. Consistent format — [Customer] — [Date] — enriched with Granola and Brightcove Gateway data. No manual note-taking required.</div>
-        <span class="cap-tag">Auto Follow-Up</span>
+        <div class="cap-desc">Auto-writes a structured Notion follow-up page after every call — action items, resources, and one copy-paste email. No manual notes.</div>
       </div>
-      <div class="cap-card">
+      <div class="cap-card-mini">
         <span class="cap-icon">🧠</span>
-        <div class="cap-name">Always-On Research Engine</div>
-        <div class="cap-desc">Built into every command. Any unanswered technical question in a draft, prep card, triage summary, or follow-up page triggers an automatic lookup at support.brightcove.com. Answers appear inline with a ✅ Researched Answer marker. You never walk into a call with an open question still unanswered.</div>
-        <span class="cap-tag">Auto-Research</span>
+        <div class="cap-name">Always-On Research</div>
+        <div class="cap-desc">Any unanswered question in a draft, prep card, or follow-up page triggers an auto-lookup on support.brightcove.com with a ✅ inline answer.</div>
       </div>
     </div>
   </section>
