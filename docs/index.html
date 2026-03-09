@@ -726,21 +726,12 @@
           </div>
         </div>
 
-        <!-- Model Selection -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid rgba(245,166,35,0.3); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">⚡</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Switch to Claude Sonnet <span style="background:rgba(245,166,35,0.15); color:var(--yellow); border:1px solid rgba(245,166,35,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Recommended</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">In Claude Desktop, click the model name at the top of the window and select <strong style="color:var(--text);">Claude Sonnet 4.5</strong>. It's 3× faster than Opus for these workflows with no quality loss — onboarding, call prep, and email triage all run noticeably quicker.</div>
-          </div>
-        </div>
-
         <!-- Google Account -->
         <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
           <span style="font-size:18px; flex-shrink:0;">📧</span>
           <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Google Account (Gmail + Calendar) <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Have your Brightcove Google login ready — you'll connect Gmail and Google Calendar during install. No admin setup needed.</div>
+            <div style="font-weight:600; font-size:14px; color:var(--text);">Google Account (Gmail + Calendar + Drive) <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Have your Brightcove Google login ready — you'll connect Gmail, Google Calendar, and Google Drive during install. No admin setup needed.</div>
           </div>
         </div>
 
@@ -750,15 +741,6 @@
           <div>
             <div style="font-weight:600; font-size:14px; color:var(--text);">Notion Account <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
             <div style="color:var(--muted); font-size:13px; margin-top:3px;">You need a Notion account (free plan is fine). <strong style="color:var(--green);">You don't need to set anything up</strong> — the plugin creates your databases automatically. Just make sure you can log in to Notion.</div>
-          </div>
-        </div>
-
-        <!-- Brightcove Credentials -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">🔑</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Brightcove Gateway Access <span style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Pre-Configured</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Gives Claude access to account data, usage, and contract information. <strong style="color:var(--green);">No separate credentials needed</strong> — just use your Brightcove Google login (same account you already connected above). No IT ticket or admin approval required.</div>
           </div>
         </div>
 
@@ -951,14 +933,12 @@
       <p class="section-desc">Print this or check it off as you go.</p>
     </div>
     <div class="checklist">
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Model set to Claude Sonnet 4.5</strong><span>Click model name in Claude Desktop → select Claude Sonnet 4.5 — 3× faster than Opus for these workflows</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Plugin downloaded and installed</strong><span>Download .zip → open Claude Desktop → Cowork → Customize → click <strong>+</strong> next to Personal plugins → upload the .zip file directly (don't unzip it)</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Workspace folder selected</strong><span>When prompted "Claude would like to Cowork in a folder" — go to Documents, create a new folder called GOOSE, and select it</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Customize → Connectors → Connect your tools → search "Gmail" — connect it twice, sign in with your Brightcove Google account</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Customize → Connectors → Connect your tools → search "Google Calendar" — sign in with your Brightcove Google account</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Customize → Connectors → Connect your tools → search "Google Drive" — sign in with your Brightcove Google account</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Customize → Connectors → Connect your tools → search "Notion" — databases are auto-created during onboarding, no manual setup needed</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion — install from granola.ai</span></div></div>
     </div>
