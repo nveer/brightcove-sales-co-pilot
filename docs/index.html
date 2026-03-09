@@ -529,12 +529,12 @@
           <div class="platform-dot" style="background:rgba(0,161,224,0.15);">🔵</div>
           <div class="platform-info">
             <div class="platform-name" style="color:#00a1e0;">Brightcove Gateway</div>
-            <div class="platform-meta">Account data · Opportunities · Usage metrics · Contract details · Salesforce exports</div>
+            <div class="platform-meta">Account data · Opportunities · Usage metrics · Contracts · <span style="color:var(--salesforce);">Salesforce</span> exports · <span style="color:var(--gong);">Gong</span> transcripts</div>
           </div>
           <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used to pull account details, active opportunities, usage data, and contract information via Brightcove's internal BigQuery data warehouse. No OAuth or Salesforce Connected App required — connects via connector and uses your Brightcove credentials.</p>
+          <p>Used to pull account details, active opportunities, usage data, and contract information via Brightcove's internal BigQuery data warehouse. This includes <strong style="color:var(--salesforce);">Salesforce</strong> exports (accounts, opportunities, contacts, contracts) and <strong style="color:var(--gong);">Gong</strong> call transcripts — both synced automatically. No OAuth, Salesforce Connected App, or Gong API key required.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop, click <strong>Customize</strong> in the left sidebar, then click <strong>Connectors</strong>, then click <strong>Connect your tools</strong>. Search for <strong>"Brightcove Gateway"</strong> and install the connector.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">Authenticate with your <strong>Brightcove corporate credentials</strong> when prompted — this connects to the <code style="color:var(--yellow)">brightcove-lumenx-42</code> BigQuery project.</div></div>
@@ -547,25 +547,6 @@
           <div class="alert alert-info">
             <span class="alert-icon">ℹ️</span>
             <span>The Gateway connects to BigQuery project <code style="color:var(--yellow)">brightcove-lumenx-42</code>, dataset <code style="color:var(--yellow)">external_shared_views</code>. This includes enriched Salesforce exports, contract data, entitlement usage, and Video Cloud event metrics — all the data you'd otherwise need Salesforce access to pull manually.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- GONG -->
-      <div class="platform-card">
-        <div class="platform-header" onclick="toggle(this)">
-          <div class="platform-dot" style="background:rgba(242,101,34,0.15);">🎤</div>
-          <div class="platform-info">
-            <div class="platform-name" style="color:#f26522;">Gong</div>
-            <div class="platform-meta">Call recordings · Transcripts · Sales team call history</div>
-          </div>
-          <span class="platform-pill pill-mcp">Auto-configured ✅</span>
-        </div>
-        <div class="platform-body" style="display:none;">
-          <p>Gong call transcripts are automatically synced to Salesforce and accessible via the Brightcove Gateway — no separate API key required. Search transcripts, pull Sales team call history, and surface best practices directly from your Brightcove data warehouse.</p>
-          <div class="alert alert-info">
-            <span class="alert-icon">🎟️</span>
-            <span><strong>No setup needed:</strong> Gong transcripts are automatically available in your Brightcove Gateway instance. No API keys or IT tickets required.</span>
           </div>
         </div>
       </div>
