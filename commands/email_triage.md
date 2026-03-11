@@ -77,6 +77,7 @@ For **Customer Question** emails:
    - **Only create a new email** if there is NO existing thread (truly first-touch outreach with no prior conversation)
 6. **Show draft before sending** — ALWAYS. Never auto-send. Present each draft with a 1–2 sentence "what they said" context summary (the last thing the customer wrote) so the user knows exactly what they're responding to without having to recall the thread.
    - **After ANY edit is requested** — show the fully updated draft again and wait for explicit send approval ("send it", "yes", "go ahead") before sending. Never auto-send after making edits. Edit request ≠ send approval.
+   - **Multi-draft review doc (MANDATORY when 2+ drafts)** — When 2 or more drafts are ready in the same triage session, do NOT present them inline in chat. Create a `draft-review-YYYY-MM-DD.md` file in `/outputs/` with all drafts side by side. Each entry: 2–3 sentence context summary, subject line, recipient/CC list, draft ID, and full body. User approves by saying "send A", "send B", or "send both".
 7. **Auto-archive after send** — Immediately after any draft is sent, archive the source thread by calling `batch_modify_emails` with `removeLabelIds: ["INBOX", "UNREAD"]` on all message IDs in that thread. This is default behavior — do not wait for the user to say "archive it."
 
 ### Step 6: Produce Summary File

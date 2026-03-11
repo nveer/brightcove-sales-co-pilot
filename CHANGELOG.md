@@ -1,5 +1,29 @@
 # Changelog — GOOSE
 
+## v1.5.1 — March 2026
+
+### 📧 Email Triage Safety Rails
+
+- **Verify links before send approval** — All links in email drafts are now tested before presenting for approval. Broken or 404'd links are fixed or flagged before the user can approve.
+- **Check entitlements before offering features** — Before drafting emails that reference Brightcove product features, checks BigQuery `v_done_deal_contract_lines` to confirm the customer actually has the feature under contract.
+- **Check account owner before committing SE time** — Before drafting emails that commit to deliverables, confirms the AM/AE via BigQuery and routes AM work appropriately.
+- **Stick to established names in threads** — Drafts now match the exact company/product names used in the existing email thread, preventing name substitution errors.
+- **Multi-draft review doc** — When 2+ drafts are ready in the same triage session, creates a `draft-review-YYYY-MM-DD.md` file for side-by-side review instead of inline chat presentation.
+
+### 🧹 File Retention Policy
+
+- **Auto-cleanup at /prime** — Automatically deletes call-prep HTMLs, email triage files, and draft review files older than 3 days. Removes duplicate format files and .DS_Store files. Prevents VM disk exhaustion that previously deadlocked Cowork sessions.
+- **Output size guidelines** — No raw transcript dumps, 500KB cap per file, one-time deliverables moved to `/outputs/deliverables/` after delivery.
+
+### 📋 Updated Files
+- `CLAUDE.md` — Rules 13c (verify links), 13d (check entitlements), 13e (check account owner), 13f (name consistency), Rule 22 (multi-draft review doc), File Retention Policy section
+- `commands/email_triage.md` — Multi-draft review doc workflow added to Step 6
+- `.claude-plugin/plugin.json` — version bumped to 1.5.1
+- `docs/index.html` — 6 version strings updated to v1.5.1
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.5.0 — March 2026
 
 ### ✨ Email Triage Improvements
