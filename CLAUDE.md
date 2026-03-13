@@ -42,7 +42,7 @@ These are auto-created during onboarding and saved to `/context/output_config.md
 - /prime — Run at task start. Reads all context files and confirms understanding.
 - /call_companion — **Live call resource assistant.** Two-phase flow: (1) During call — monitors Granola, researches docs/resources in parallel, stores in memory. (2) After call — writes ONE consolidated Notion follow-up page. Calendar-aware, skips internal meetings.
 - /daily_prep — **Generate daily call prep HTML page.** Pull Google Calendar, classify events, enrich customer calls with Gmail, Granola, Gong transcripts (BigQuery), and Salesforce account data (BigQuery). Output a styled HTML timeline. Format: dark theme, timeline with color-coded dots (blue=customer, gray=internal, yellow=hold/conflict, red=escalation, purple=work block). Per-meeting cards include: email intel, last Gong call summary, account snapshot (ACV, renewal date, open opps), and action items.
-- /email_triage — **Inbox triage & response drafting.** Scans Gmail, categorizes by action needed, archives noise, drafts responses using Brightcove docs. Interactive review loop — never auto-sends.
+- /email_triage — **Inbox triage & response drafting.** Default scan: two-pass — last 24 hours first, then previous 2 days — merged and deduplicated before categorization. Categorizes by action needed, archives noise (with smart support email filtering), drafts responses using Brightcove docs. Interactive review loop — never auto-sends.
 - /call_prep [customer] — Generate pre-call briefing with account context, recent email/meeting intel, and agenda prep
 - /call_debrief [customer] — Capture post-call outcomes, action items, update account context
 - /account_summary [customer] — Full account overview with history, health, and recommendations
@@ -74,7 +74,7 @@ Rules:
 10. **Email drafts: read full threads first** — Before drafting ANY email reply, read the full thread. Never draft from snippets alone.
 11. **Email tone rules** — No scolding language. Use helpful callbacks. Don't offer calls prematurely. Keep follow-ups short.
 12. **Support email archive filter** — Before archiving any support case email, check 3 criteria: (1) Does it mention you by name in the body? (2) Does it show customer frustration? (3) Is the thread stalled/circular? If ANY are true, leave in inbox and flag.
-13. **Reply-to-all on existing threads (MANDATORY)** — When responding to an existing email thread, ALWAYS reply-to-all: pass `threadId` + `inReplyTo` (latest message ID) to `send_email`/`draft_email`, and include ALL original recipients in `to:` and `cc:` (excluding yourself). NEVER start a new email for an existing thread — this breaks the conversation chain. Only create a new email for genuine first-touch outreach with no prior thread.
+13. **Reply-to-all on existing threads (MANDATORY)** — When responding to an existing email thread, ALWAYS reply-to-all: pass `threadId` + `inReplyTo` (latest message ID) to `send_email`/`draft_email`, and include ALL original recipients in `to:` and `cc:` (excluding yourself). NEVER start a new email for an existing thread — this breaks the conversation chain. Only create a new email for genuine first-touch outreach with no prior thread. **CRITICAL: `inReplyTo` must be the `messageId` of the LAST message in the thread (from the `Message-ID` header, looks like `<CAxxxxxxx@mail.gmail.com>`), NOT the `threadId`. Without `inReplyTo`, Gmail silently creates a new conversation even when `threadId` is correct. Always extract both values from `gmail_read_thread` before calling send/draft. BLOCK the send if either value is missing.**
 13b. **Auto-archive after send** — Immediately after any draft is sent during email triage, archive the source thread by calling `batch_modify_emails` with `removeLabelIds: ["INBOX", "UNREAD"]` on all message IDs in that thread. Default behavior after every send — no user confirmation needed.
 13c. **Verify links before send approval** — Before presenting any email draft for approval, test all links in the body. If any link is broken or 404s, fix or flag before asking the user to approve. Never ask to send an email with unverified links.
 13d. **Check entitlements before drafting product features** — Before drafting any email that offers help with or assumes a customer has a Brightcove feature (Universal Translator, AI Suite, Live Next-Gen, Gallery, etc.), first check `v_done_deal_contract_lines` in BigQuery to confirm the feature is under contract. If it's not contracted, adjust the draft accordingly — do not imply availability.
@@ -85,6 +85,18 @@ Rules:
 16. **Internal call classification** — A meeting is INTERNAL if ALL attendees are Brightcove employees OR Bending Spoons employees (or both combined). Bending Spoons is Brightcove's parent company; their employees (@bendingspoons.com or similar) count as internal. Only classify a meeting as a customer call if at least one external non-Brightcove/non-BendingSpoons attendee is present. Internal meetings get a gray dot + `internal` tag and minimal card content (no enrichment needed). Do NOT deploy research agents for internal-only meetings.
 17. **Source badges on every intel item** — Every bullet in the context banner, meeting cards, and inbox sections must carry a source badge so the reader knows where the intel came from. Badge classes: `src gmail`, `src calendar`, `src granola`, `src docs`, `src workspace`. If an item cannot be sourced to a verified tool call from the current session, mark it `src unverified` or omit it entirely. No badge = item should not be included.
 22. **Multi-draft review doc** — When 2 or more email drafts are ready for approval in the same triage session, create a `draft-review-YYYY-MM-DD.md` file in `/outputs/` with all drafts side by side. Each draft entry: context summary (2–3 sentences), subject, recipient, and full draft body. Review from the file. Do not present multiple drafts inline in chat.
+23. **Brightcove Gateway MCP disconnection detection** — The Brightcove Gateway (BigQuery MCP) disconnects intermittently. Whenever a BigQuery tool call fails, returns a connection error, or is unavailable, immediately stop and notify the user with this exact message:
+
+> ⚠️ **Brightcove Gateway MCP is disconnected.**
+> Please reconnect it before I can continue:
+> 1. Open **Claude Desktop** → **Settings** → **Customized Connectors**
+> 2. Find **Brightcove Gateway** (or the BigQuery connector)
+> 3. Click **Reconnect** or toggle it off and back on
+> 4. Once reconnected, re-run the same command/question
+>
+> I'll wait for you to confirm it's back before proceeding.
+
+Do NOT silently skip BigQuery steps, substitute with cached data, or proceed without the data.
 
 ## File Retention Policy
 The Cowork VM has limited disk (~1-2GB). Accumulated outputs will fill it and deadlock the session. These rules prevent that.
@@ -96,6 +108,8 @@ At the start of every /prime, before doing any other work, check disk health and
 3. **Draft review files** (`outputs/draft-review-*.md`, `outputs/drafts-*.html`) — Keep only the **last 3 days**. Delete older ones.
 4. **Duplicate format files** — Never store the same content in two formats (.txt + .md, .md + .html). Pick one and delete the other.
 5. **.DS_Store files** — Delete all `.DS_Store` files found anywhere in the workspace.
+6. **Large zip backups** — Never keep full workspace zip backups in the workspace directory. These balloon to 50MB+ and are redundant if the workspace is already cloud-synced or in git.
+7. **Abandoned worktrees** — Delete any abandoned git worktrees (`.claude/worktrees/`). These contain full repo copies with duplicate assets.
 
 ### Output Size Guidelines
 - **Gong transcript dumps** — Never save raw transcript dumps to workspace. Summarize first, save the summary.

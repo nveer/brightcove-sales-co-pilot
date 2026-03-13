@@ -2,6 +2,10 @@
 
 ## v1.5.1 — March 2026
 
+### 🔧 Email Threading Fix (Critical)
+
+- **Pre-send threading checklist (BLOCK SEND)** — Email replies were silently creating new threads because `inReplyTo` was missing or confused with `threadId`. Added a mandatory 4-field checklist (`threadId`, `inReplyTo`, `to`, `cc`) that must ALL be populated before any send/draft call. Send is blocked if any field is missing. The `inReplyTo` field must be the `messageId` of the last message in the thread (from the `Message-ID` header), not the `threadId`. This was the root cause of broken email chains reported by users.
+
 ### 📧 Email Triage Safety Rails
 
 - **Verify links before send approval** — All links in email drafts are now tested before presenting for approval. Broken or 404'd links are fixed or flagged before the user can approve.
@@ -16,8 +20,8 @@
 - **Output size guidelines** — No raw transcript dumps, 500KB cap per file, one-time deliverables moved to `/outputs/deliverables/` after delivery.
 
 ### 📋 Updated Files
-- `CLAUDE.md` — Rules 13c (verify links), 13d (check entitlements), 13e (check account owner), 13f (name consistency), Rule 22 (multi-draft review doc), File Retention Policy section
-- `commands/email_triage.md` — Multi-draft review doc workflow added to Step 6
+- `CLAUDE.md` — Rule 13a hardened with `inReplyTo` extraction requirement and send-blocking enforcement. Rules 13c (verify links), 13d (check entitlements), 13e (check account owner), 13f (name consistency), Rule 22 (multi-draft review doc), File Retention Policy section
+- `commands/email_triage.md` — Step 5.5 expanded with pre-send threading checklist that blocks send if `threadId`, `inReplyTo`, `to`, or `cc` are missing. Multi-draft review doc workflow added to Step 6
 - `.claude-plugin/plugin.json` — version bumped to 1.5.1
 - `docs/index.html` — 6 version strings updated to v1.5.1
 - `CHANGELOG.md` — this entry

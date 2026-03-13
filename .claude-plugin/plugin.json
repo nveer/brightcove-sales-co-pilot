@@ -1,6 +1,6 @@
 {
   "name": "goose",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "GOOSE — Your AI Sales Co-Pilot for Brightcove. Never fly solo. Automates call prep, inbox triage, account intelligence, and post-call follow-ups — all from Claude Desktop. 📁 Setup tip: when prompted to choose a folder, go to Documents and create a new folder called GOOSE.",
   "author": {
     "name": "Brightcove SE Team"

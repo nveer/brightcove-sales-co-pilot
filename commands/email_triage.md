@@ -9,13 +9,19 @@ Scan Gmail inbox, categorize emails by action needed, archive noise, draft respo
 - Anytime user says "triage my email", "clean up my inbox", "help with email"
 
 ## Input
-- Optional: time window (default: `newer_than:7d`)
+- Optional: time window override (default: two-pass scan below)
 - Optional: specific focus ("just this week", "last 24 hours", "unread only")
 
 ## Workflow
 
-### Step 1: Scan Inbox
-1. Search `is:unread in:inbox newer_than:7d` (or specified window)
+### Step 1: Scan Inbox (Two-Pass Default)
+**Default scan is two-pass** — runs both passes every triage session:
+- **Pass 1:** `is:unread in:inbox newer_than:1d` (last 24 hours)
+- **Pass 2:** `is:unread in:inbox older_than:1d newer_than:3d` (previous 2 days)
+- Merge results and deduplicate by `threadId` before categorization
+- If user specifies a custom window, use that instead of the two-pass default
+
+1. Search using the two-pass approach above (or specified window)
 2. Page through ALL results — don't stop at page 1
 3. Capture: ID, threadId, from, to, subject, date, snippet, labels
 
@@ -75,6 +81,15 @@ For **Customer Question** emails:
    - Populate `to:` with the original sender + all original `to:` recipients (minus yourself)
    - Populate `cc:` with all original `cc:` recipients (minus yourself)
    - **Only create a new email** if there is NO existing thread (truly first-touch outreach with no prior conversation)
+   - **PRE-SEND THREADING CHECKLIST (BLOCK SEND IF ANY MISSING):**
+     Before calling `send_email` or `draft_email` for a reply, verify ALL four fields are populated. If ANY are missing, STOP and extract them from the thread before proceeding:
+     ```
+     ☐ threadId: [extracted from gmail_read_thread response]
+     ☐ inReplyTo: [message ID of the LATEST message in the thread — NOT the threadId]
+     ☐ to: [original sender + all TO recipients, minus yourself]
+     ☐ cc: [all CC recipients, minus yourself]
+     ```
+     **CRITICAL:** `inReplyTo` must be the `messageId` of the last message in the thread (looks like `<CAxxxxxxx@mail.gmail.com>`), NOT the `threadId`. Without this, Gmail starts a new thread even if `threadId` is correct. Extract it from the `Message-ID` header of the latest message returned by `gmail_read_thread`.
 6. **Show draft before sending** — ALWAYS. Never auto-send. Present each draft with a 1–2 sentence "what they said" context summary (the last thing the customer wrote) so the user knows exactly what they're responding to without having to recall the thread.
    - **After ANY edit is requested** — show the fully updated draft again and wait for explicit send approval ("send it", "yes", "go ahead") before sending. Never auto-send after making edits. Edit request ≠ send approval.
    - **Multi-draft review doc (MANDATORY when 2+ drafts)** — When 2 or more drafts are ready in the same triage session, do NOT present them inline in chat. Create a `draft-review-YYYY-MM-DD.md` file in `/outputs/` with all drafts side by side. Each entry: 2–3 sentence context summary, subject line, recipient/CC list, draft ID, and full body. User approves by saying "send A", "send B", or "send both".
