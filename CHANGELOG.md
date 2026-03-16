@@ -1,5 +1,34 @@
 # Changelog — GOOSE
 
+## v1.5.3 — March 2026
+
+### 🔧 Infrastructure Optimization
+
+- **Gmail MCP Server — Slim Replacement** — Switched Claude Desktop's gmail-write MCP server from `npx @gongrzhe/server-gmail-autoauth-mcp` (179MB fresh install every session) to `node gmail-mcp-server-slim/index.js` (27MB, already installed). The custom slim server uses `@googleapis/gmail` (single-service) instead of the full `googleapis` package. Same 19 tools, same OAuth browser sign-in flow. Saves ~150MB per session — enough to keep Cowork sessions functional on the limited VM disk.
+
+### 📋 Updated Files
+- `.claude-plugin/plugin.json` — version bumped to 1.5.3
+- `docs/index.html` — version strings updated to v1.5.3
+- `CHANGELOG.md` — this entry
+
+---
+
+## v1.5.2 — March 2026
+
+### 🔧 Reliability & Safety
+
+- **Brightcove Gateway MCP disconnection detection** — When BigQuery tool calls fail or return connection errors, GOOSE now immediately stops and notifies the user with reconnection instructions instead of silently skipping BigQuery steps or substituting cached data. Prevents silent data gaps in daily prep, email triage, and account research.
+- **Email triage — two-pass default scan window** — Default email scan now does two passes: last 24 hours first, then previous 2 days, merged and deduplicated before categorization. Catches threads that arrived over the weekend or during gaps between triage sessions.
+- **Expanded file retention policy** — Added rules for zip backup prevention and abandoned git worktree cleanup. Zip backups of the workspace balloon to 50MB+ and are redundant since the workspace is already cloud-synced. Abandoned worktrees contain full repo copies with duplicate assets.
+
+### 📋 Updated Files
+- `CLAUDE.md` — Rule 23 (Gateway disconnection), email triage two-pass window, file retention rules 6-7
+- `commands/email_triage.md` — Two-pass default scan window
+- `.claude-plugin/plugin.json` — version bumped to 1.5.2
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.5.1 — March 2026
 
 ### 🔧 Email Threading Fix (Critical)
