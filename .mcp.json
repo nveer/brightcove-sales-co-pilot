@@ -3,7 +3,7 @@
   "mcpServers": {
     "brightcove-gateway": {
       "type": "sse",
-      "url": "https://brightcove-data-mcps.public.bendingspoons.com/sse"
+      "url": "https://brightcove-data-mcps.public.bendingspoons.com/mcp"
     }
   },
   "_oauth_connectors_required": {

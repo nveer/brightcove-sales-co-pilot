@@ -1,5 +1,27 @@
 # Changelog — GOOSE
 
+## v1.5.4 — March 2026
+
+### 🐛 Bug Fix
+
+- **Brightcove Gateway MCP — wrong endpoint URL** — `.mcp.json` had the Gateway URL set to `/sse` which returns a 404. Corrected to `/mcp`, which is the live endpoint. This was silently preventing the Gateway from auto-connecting on plugin install, breaking all BigQuery-dependent features (Gong transcripts, Salesforce data, daily prep, entitlement checks). The connector appeared installed but was never functional.
+
+### 📧 Gmail — Two-Connector Threading Strategy
+
+- **Documented Gmail threading limitation** — `send_email`/`draft_email` on the primary Gmail connector do not support `threadId`/`inReplyTo`. Replies to existing threads must be sent manually from Gmail to preserve threading until the fix is confirmed.
+- **Two-connector threading fix** — Documented the strategy of connecting the registry Gmail connector alongside the primary connector: registry provides `read_thread` (for Message-ID extraction) and `create_draft` (for threaded drafts); primary handles bulk ops, archiving, and sending.
+- **Tools Required section added to email_triage.md** — Email triage now explicitly lists both Gmail connectors and their roles, plus the threading limitation caveat.
+
+### 📋 Updated Files
+- `.mcp.json` — `brightcove-gateway` URL updated from `.../sse` to `.../mcp`
+- `CLAUDE.md` — Gmail connector section updated with threading limitation and two-connector strategy
+- `commands/email_triage.md` — Added Tools Required section with both Gmail connectors documented
+- `.claude-plugin/plugin.json` — version bumped to 1.5.4
+- `docs/index.html` — version strings updated to v1.5.4
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.5.3 — March 2026
 
 ### 🔧 Infrastructure Optimization
