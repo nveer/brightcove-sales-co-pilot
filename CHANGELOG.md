@@ -1,5 +1,23 @@
 # Changelog — GOOSE
 
+## v1.5.5 — March 2026
+
+### 📧 Gmail Threading Fix (Code-Level)
+
+- **Email threading now works natively in the slim Gmail MCP server** — `send_email` and `draft_email` now accept optional `threadId` and `inReplyTo` parameters. When provided, the MIME message includes `In-Reply-To` and `References` headers and the Gmail API call includes the `threadId`, keeping replies in the same conversation thread. This was the root cause of replies creating new threads instead of staying in existing ones.
+- **New `read_thread` tool** — Fetches all messages in a Gmail thread with their `Message-ID` headers, making it easy to extract the `inReplyTo` value needed for proper threading.
+- **`read_email` now returns threading headers** — Added `messageId` (Message-ID header), `inReplyTo`, and `references` fields to the read_email response, so all threading data is available without needing a separate read_thread call.
+- **Two-connector workaround no longer needed** — The primary Gmail connector now handles threading end-to-end. The registry connector is no longer required for threaded replies.
+
+### 📋 Updated Files
+- `gmail-mcp-server-slim/index.js` — `send_email` and `draft_email` accept `threadId` + `inReplyTo`; new `read_thread` tool; `read_email` returns `messageId`, `inReplyTo`, `references`
+- `gmail-mcp-server-slim/gmail-client.js` — `buildMimeMessage()` accepts `inReplyTo` and `references` params, adds RFC 2822 headers
+- `.claude-plugin/plugin.json` — version bumped to 1.5.5
+- `docs/index.html` — version strings updated to v1.5.5
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.5.4 — March 2026
 
 ### 🐛 Bug Fix
