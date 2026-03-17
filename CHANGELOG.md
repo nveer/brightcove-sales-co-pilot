@@ -1,5 +1,33 @@
 # Changelog — GOOSE
 
+## v2.6 — March 2026
+
+### 🗄️ Active Customers DB — Primary Database Switch
+
+- **Active Customers DB is now the sole target for all workflows** — Call companion follow-ups, call prep, and account tracking all write to the shared Active Customers DB (`collection://6850738f-64b9-424c-a0a3-ed2b5bff1866`). One row per customer; content is prepended (never replaced). Multi-SE safe — multiple reps contribute to the same record.
+- **Call Follow-Ups DB deprecated** — No new pages are created in the old Call Follow-Ups DB. Legacy data remains read-only.
+- **Onboarding updated** — No longer creates a new Call Follow-Ups DB. Instead connects to the shared Active Customers DB and verifies access.
+
+### 🔗 Salesforce Link Domain — Enforce `brightcove2`
+
+- **All Salesforce links must use `brightcove2.lightning.force.com`** — The old `brightcove.lightning.force.com` domain either redirects or fails silently. Any workflow that generates, validates, or displays a Salesforce URL now enforces the correct `brightcove2` domain. Added as Rule 24 in CLAUDE.md.
+
+### 🔄 New Command: `/migrate-history`
+
+- **One-time private DB migration** — Migrates a rep's existing Call Follow-Ups entries into the shared Active Customers DB. 5-step workflow: locate private DB → fetch entries → match & append to Active Customers → tag originals → summary report. Safe to re-run (duplicate detection). Processes in batches of 20 for large databases. Onboarding now mentions this command when a legacy Call Follow-Ups DB is detected.
+
+### 📋 Updated Files
+- `.claude-plugin/plugin.json` — version bumped to 2.6
+- `CLAUDE.md` — Notion DB section updated (Active Customers primary, Call Follow-Ups deprecated), /call_companion description updated, /migrate-history added, Rule 24 (SF domain) added
+- `commands/onboarding.md` — Rewrote Step 4 to connect to shared Active Customers DB instead of creating Call Follow-Ups DB; mentions /migrate-history for legacy data
+- `commands/migrate_history.md` — New command file (full spec)
+- `context/output_config.md` — Updated to reflect Active Customers DB as primary, Call Follow-Ups as deprecated
+- `docs/index.html` — All version strings to v2.6; call companion descriptions updated; Notion platform card updated; onboarding references updated; /migrate-history added to command grid
+- `docs/sales-co-pilot-overview.html` — Call companion and rollout descriptions updated
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v1.5.5 — March 2026
 
 ### 📧 Gmail Threading Fix (Code-Level)

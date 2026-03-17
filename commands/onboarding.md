@@ -3,15 +3,14 @@ description: First-time setup wizard for GOOSE — Your AI Sales Co-Pilot. Walks
 allowed-tools: Write, Read, mcp__brightcove-gateway, mcp__notion
 ---
 
-IMPORTANT — CONTEXT AUTO-CREATION:
-**NEVER ask the user if they have existing Notion databases or for database IDs. Always check first, then create only what's missing.** Assume no rep has anything pre-configured — but always verify before creating to avoid duplicates.
+IMPORTANT — NOTION SETUP:
+**NEVER create new Notion databases.** The shared Active Customers DB already exists (`collection://6850738f-64b9-424c-a0a3-ed2b5bff1866`, DB ID: `e8c8b91612054d939d986f161a1868a6`). Onboarding connects to it — it does NOT create it.
 
 When executing Step 4, do NOT ask the user anything about Notion. Instead, automatically:
-1. Search Notion for existing "Call Follow-Ups" and "Customer Call Prep" databases
-2. If both exist → reuse them (capture their collection:// IDs and write to output_config.md)
-3. If missing → create them silently
-4. Save the database collection:// URLs and parent page ID to context/output_config.md automatically
-5. Tell the user: "I've set up your Notion workspace for you — all your follow-up pages and call prep will go there automatically."
+1. Verify access to the shared Active Customers DB by fetching it
+2. Search Notion for existing "Customer Call Prep" database — reuse if found, create only if missing
+3. Save the Active Customers DB collection:// URL, Customer Call Prep DB collection:// URL, and parent page ID to context/output_config.md
+4. Tell the user: "I've connected your Notion workspace — all your follow-up content will go to the shared Active Customers database automatically."
 
 They should never have to create, configure, or find Notion database IDs.
 
@@ -95,31 +94,26 @@ Once all fields are collected:
 
 ---
 
-## STEP 4 — Set up your Notion workspace
+## STEP 4 — Connect your Notion workspace
 
-**Do NOT ask the user any questions in this step. Check for existing databases first, then create only what's missing.**
+**Do NOT ask the user any questions in this step. Connect to existing shared databases — NEVER create new ones.**
 
-Tell the user: "Last step — I'm going to set up your Notion workspace now. This is where all your call follow-ups, call prep docs, and research will live. I'll create everything automatically — you don't need to do anything."
+Tell the user: "Last step — I'm connecting your Notion workspace now. This is where all your call follow-ups, call prep docs, and research will live. I'll set everything up automatically — you don't need to do anything."
 
-Then silently run an **idempotency check** before creating anything:
+Then silently:
 
-**Existence check (always run first):**
-1. Use `notion-search` with query `"Call Follow-Ups"` — look for any result with type = database
-2. Use `notion-search` with query `"Customer Call Prep"` — look for any result with type = database
-3. For each result found, verify it belongs to a "Sales Co-Pilot" parent page (check ancestor path)
+1. **Verify access to the shared Active Customers DB** — Fetch `collection://6850738f-64b9-424c-a0a3-ed2b5bff1866` (DB ID: `e8c8b91612054d939d986f161a1868a6`). If accessible, proceed. If not, tell the user: "I can't access the shared Active Customers database — please check your Notion permissions and try again."
 
-**Decision logic:**
-- **Both databases found** → Skip creation entirely. Read their `data-source-url` (`collection://` IDs) from the fetch result, write them to `context/output_config.md`. Tell the user: "Your Notion workspace is already set up — I've linked everything automatically."
-- **One database missing** → Create only the missing one under the existing "Sales Co-Pilot" parent page
-- **Neither found** → Proceed with full creation (steps 1–4 below)
+2. **Check for Customer Call Prep DB** — Use `notion-search` with query `"Customer Call Prep"` — look for any result with type = database. If found, reuse it. If not found, create it under a "Sales Co-Pilot — [Their Name]" page with properties: Name (title), Account (select), Date (date), Priority (select: High/Medium/Low), Notes (rich text).
 
-**Full creation (only if needed):**
-1. Create a Notion page titled "Sales Co-Pilot — [Their Name]" as the parent hub
-2. Under that page, create a "Call Follow-Ups" database with properties: Name (title), Customer (select), Date (date), Status (select: Draft/Sent/In Progress), Attendees (rich text)
-3. Under that page, create a "Customer Call Prep" database with properties: Name (title), Account (select), Date (date), Priority (select: High/Medium/Low), Notes (rich text)
-4. Write the page ID and database collection:// URLs to context/output_config.md
+3. **Check for legacy Call Follow-Ups DB** — Use `notion-search` with query `"Call Follow-Ups"` — if found, note its ID but do NOT use it for new content. It is deprecated. If the rep has entries there, mention `/migrate-history` as an option after onboarding.
 
-Tell the user: "Your Notion workspace is ready. All follow-ups and call prep will go there automatically."
+4. **Write config** — Save the Active Customers DB collection:// URL, Customer Call Prep DB collection:// URL, and parent page ID to `context/output_config.md`.
+
+Tell the user: "Your Notion workspace is connected. All follow-ups will go to the shared Active Customers database — one row per customer, with your content prepended to the existing record."
+
+If a legacy Call Follow-Ups DB was found: "I also found your old Call Follow-Ups database with existing entries. After setup is complete, you can run `/migrate-history` to move those into the shared database."
+
 Mark step 4 complete.
 
 ---

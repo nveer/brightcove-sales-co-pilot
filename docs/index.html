@@ -389,8 +389,8 @@
 
 <!-- ── STICKY TOP BAR ───────────────────────────────────────── -->
 <div class="topbar">
-  <span>🪿 GOOSE — Your AI Sales Co-Pilot · v1.5.5</span>
-  <a href="https://github.com/nveer/goose/releases/latest/download/goose-v1.5.5.zip"
+  <span>🪿 GOOSE — Your AI Sales Co-Pilot · v2.6</span>
+  <a href="https://github.com/nveer/goose/releases/latest/download/goose-v2.6.zip"
      class="topbar-btn" download>⬇ Download Plugin</a>
 </div>
 
@@ -448,14 +448,14 @@
     </div>
   </div>
   <div class="hero-cta">
-    <a href="https://github.com/nveer/goose/releases/latest/download/goose-v1.5.5.zip"
+    <a href="https://github.com/nveer/goose/releases/latest/download/goose-v2.6.zip"
        class="btn-download"
        style="background: linear-gradient(135deg, #c9a84c, #a87d20); box-shadow: 0 4px 24px rgba(201,168,76,0.4);"
        download>
       ⬇ Download GOOSE
     </a>
     <p style="color:var(--muted); font-size:13px; margin-top:10px;">
-      v1.5.5 · Requires Claude Desktop · <a href="https://github.com/nveer/goose/releases" style="color:var(--gold);">View all releases</a>
+      v2.6 · Requires Claude Desktop · <a href="https://github.com/nveer/goose/releases" style="color:var(--gold);">View all releases</a>
     </p>
   </div>
   <div class="hero-video">
@@ -493,7 +493,7 @@
       <div class="cap-card">
         <span class="cap-icon">📞</span>
         <div class="cap-name">Live Call Companion</div>
-        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: one Notion page + one copy-paste follow-up email, already written.</div>
+        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: follow-up content is prepended to the customer's Active Customers row in Notion + one copy-paste follow-up email, already written.</div>
         <span class="cap-tag">Real-Time</span>
       </div>
       <div class="cap-card">
@@ -518,7 +518,7 @@
       <div class="cap-card-mini">
         <span class="cap-icon">🗂️</span>
         <div class="cap-name">Notion Integration</div>
-        <div class="cap-desc">Auto-writes a structured Notion follow-up page after every call — action items, resources, and one copy-paste email. No manual notes.</div>
+        <div class="cap-desc">Prepends structured follow-up content to each customer's Active Customers row in Notion — action items, resources, and one copy-paste email. No manual notes.</div>
       </div>
       <div class="cap-card-mini">
         <span class="cap-icon">🧠</span>
@@ -654,19 +654,19 @@
           <div class="platform-dot" style="background:rgba(233,233,233,0.08);">📓</div>
           <div class="platform-info">
             <div class="platform-name" style="color:#e9e9e9;">Notion</div>
-            <div class="platform-meta">Call follow-up pages · Account tracking · Knowledge base</div>
+            <div class="platform-meta">Active Customers DB · Call follow-ups · Account tracking · Knowledge base</div>
           </div>
           <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>After each call, the plugin writes a structured follow-up page to Notion — action items, resources, and a copy-paste follow-up email. <strong>No manual database setup needed</strong> — onboarding creates your Call Follow-Ups and Customer Call Prep databases automatically.</p>
+          <p>After each call, the plugin prepends structured follow-up content to the customer's row in the shared <strong>Active Customers</strong> database in Notion — action items, resources, and a copy-paste follow-up email. One row per customer, all SEs contributing to the same record.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop, click <strong>Customize</strong> in the left sidebar, then click <strong>Connectors</strong>, then click <strong>Connect your tools</strong>. In the pop-up, search for <strong>"Notion"</strong> and sign in with your Brightcove Notion account.</div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-text">That's it. During onboarding, Claude automatically creates your <strong>Call Follow-Ups</strong> and <strong>Customer Call Prep</strong> databases in Notion — no IDs to copy, no manual config.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">That's it. During onboarding, Claude connects to the shared <strong>Active Customers</strong> database and your <strong>Customer Call Prep</strong> database in Notion — no manual config needed.</div></div>
           </div>
           <div class="alert alert-success">
             <span class="alert-icon">✅</span>
-            <span><strong>Zero manual setup!</strong> Notion databases are created automatically during first-run onboarding. You never need to touch database IDs, CLAUDE.md, or any config files.</span>
+            <span><strong>Minimal manual setup!</strong> Onboarding connects to existing shared Notion databases. You never need to touch database IDs, CLAUDE.md, or any config files.</span>
           </div>
         </div>
       </div>
@@ -748,7 +748,7 @@
           <span style="font-size:18px; flex-shrink:0;">📓</span>
           <div>
             <div style="font-weight:600; font-size:14px; color:var(--text);">Notion Account <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">You need a Notion account (free plan is fine). <strong style="color:var(--green);">You don't need to set anything up</strong> — the plugin creates your databases automatically. Just make sure you can log in to Notion.</div>
+            <div style="color:var(--muted); font-size:13px; margin-top:3px;">You need a Notion account (free plan is fine). <strong style="color:var(--green);">You don't need to create any databases</strong> — the plugin connects to the shared Active Customers database automatically. Just make sure you can log in to Notion.</div>
           </div>
         </div>
 
@@ -801,7 +801,7 @@
             <li>Click <strong>Customize</strong> in the left sidebar</li>
             <li>In the left column, you'll see a section called <strong>Personal plugins</strong> with a <strong>+</strong> button — click that <strong>+</strong></li>
             <li>A dialog will appear — click <strong>Browse files</strong> (or drag the .zip into the upload area)</li>
-            <li>Select <code style="color:var(--accent)">goose-v1.5.5.zip</code> from your Downloads folder</li>
+            <li>Select <code style="color:var(--accent)">goose-v2.6.zip</code> from your Downloads folder</li>
             <li>Click <strong>Upload</strong></li>
           </ol>
         </div>
@@ -855,7 +855,7 @@
             <li>How many customer calls you do per week</li>
             <li>Your Brightcove email address</li>
           </ul>
-          Then it automatically creates your Notion workspace (Call Follow-Ups and Customer Call Prep databases) and saves everything. <strong>Total time: ~5 minutes.</strong>
+          Then it connects to the shared Active Customers database in Notion and saves your profile. <strong>Total time: ~5 minutes.</strong>
           <div class="alert alert-info" style="margin-top:10px;">
             <span class="alert-icon">💡</span>
             <span><strong>When Claude asks to take an action</strong> — click <strong>Always Allow</strong>. This lets workflows run without requiring your approval for every individual step.</span>
@@ -883,10 +883,11 @@
       <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
       <div class="cmd-card"><div class="cmd-name">/morning_schedule</div><div class="cmd-desc">Daily 7am briefing. Loads Google Calendar, classifies customer vs internal meetings, prints today's schedule.</div></div>
       <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gmail, Granola, Gong transcripts, and Salesforce account data via Brightcove Gateway.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then writes a Notion follow-up page after the call.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then prepends follow-up content to the customer's Active Customers row in Notion.</div></div>
       <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
       <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Brightcove Gateway data, recent emails, Granola notes, and Notion history.</div></div>
       <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Brightcove Gateway pull, email threads, and health score.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/migrate-history</div><div class="cmd-desc">One-time migration. Moves your private Call Follow-Ups DB entries into the shared Active Customers database. Safe to re-run — duplicates are detected and skipped.</div></div>
     </div>
   </section>
 
@@ -947,7 +948,7 @@
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Gmail connected (read + write)</strong><span>Customize → Connectors → Connect your tools → search "Gmail" — connect it twice, sign in with your Brightcove Google account</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Calendar connected</strong><span>Customize → Connectors → Connect your tools → search "Google Calendar" — sign in with your Brightcove Google account</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Google Drive connected</strong><span>Customize → Connectors → Connect your tools → search "Google Drive" — sign in with your Brightcove Google account</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Customize → Connectors → Connect your tools → search "Notion" — databases are auto-created during onboarding, no manual setup needed</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Customize → Connectors → Connect your tools → search "Notion" — connects to shared Active Customers database during onboarding</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion — install from granola.ai</span></div></div>
@@ -958,7 +959,7 @@
 
 <!-- ── FOOTER ──────────────────────────────────────────────────── -->
 <div class="footer">
-  <strong>GOOSE</strong> · Your AI Sales Co-Pilot · v1.5.5<br>
+  <strong>GOOSE</strong> · Your AI Sales Co-Pilot · v2.6<br>
   <span style="color:var(--gold); font-style:italic;">Talk to Me, Goose. · Never Fly Solo.</span><br>
   Source of truth for all Brightcove product questions: <a href="https://support.brightcove.com" target="_blank" style="color:var(--accent)">support.brightcove.com</a>
 </div>
