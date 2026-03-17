@@ -107,7 +107,7 @@ The key field is `transcript_c`, which contains the full transcript text.
 | `subject` | STRING | Call name, e.g. "[Gong] Google Meet: ..." |
 | `date` | DATE | **Actual meeting date — use this for date filtering** |
 | `owner_id` | STRING | Salesforce user ID of task owner |
-| `gong_gong_participants_emails_c` | STRING | Comma-separated participant emails — **use for SE filtering** |
+| `gong_gong_participants_emails_c` | STRING | Comma-separated participant emails — **use for team filtering** |
 | `call_duration_in_seconds` | INT64 | Call length |
 | `gong_gong_activity_id_c` | STRING | Native Gong call ID |
 | `account_id` | STRING | Associated Salesforce account |
@@ -141,17 +141,17 @@ where tk.date >= date_sub(current_date(), interval 30 day)
 > - Real owner is `tk.owner_id` — NOT `task_owner_id` (field does not exist)
 > - `activity_date` exists but is STRING type — always use `date` (DATE) for filtering
 
-### SE Team Filtering
+### Sales Team Filtering
 
-The Gong user IDs in `/context/se_team.md` are **native Gong IDs**, not Salesforce `owner_id` values. Do NOT filter by `owner_id` for SE team calls.
+The Gong user IDs in `/context/se_team.md` are **native Gong IDs**, not Salesforce `owner_id` values. Do NOT filter by `owner_id` for team calls.
 
-**Correct SE filter** — use participant emails via `gong_gong_participants_emails_c`:
+**Correct team filter** — use participant emails via `gong_gong_participants_emails_c`:
 
 ```sql
 -- Nathan's calls only
 and tk.gong_gong_participants_emails_c like '%nveer@brightcove.com%'
 
--- Any SE team member (current SEs)
+-- Any sales team member
 and (
     tk.gong_gong_participants_emails_c like '%nveer@brightcove.com%'
     or tk.gong_gong_participants_emails_c like '%crutman@brightcove.com%'

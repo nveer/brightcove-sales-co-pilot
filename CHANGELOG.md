@@ -4,7 +4,7 @@
 
 ### 🗄️ Active Customers DB — Primary Database Switch
 
-- **Active Customers DB is now the sole target for all workflows** — Call companion follow-ups, call prep, and account tracking all write to the shared Active Customers DB (`collection://6850738f-64b9-424c-a0a3-ed2b5bff1866`). One row per customer; content is prepended (never replaced). Multi-SE safe — multiple reps contribute to the same record.
+- **Active Customers DB is now the sole target for all workflows** — Call companion follow-ups, call prep, and account tracking all write to the shared Active Customers DB (`collection://6850738f-64b9-424c-a0a3-ed2b5bff1866`). One row per customer; content is prepended (never replaced). Multi-rep safe — multiple reps contribute to the same record.
 - **Call Follow-Ups DB deprecated** — No new pages are created in the old Call Follow-Ups DB. Legacy data remains read-only.
 - **Onboarding updated** — No longer creates a new Call Follow-Ups DB. Instead connects to the shared Active Customers DB and verifies access.
 

@@ -6,7 +6,7 @@ Generate a 360° account overview with health score and recommendations.
 ## Workflow
 
 ### Step 1: Gong History (6 months)
-- Search Gong for all SE-attended calls with this customer (6-month window)
+- Search Gong for all team-attended calls with this customer (6-month window)
 - Summarize: key themes across calls, recurring pain points, relationship trend
 
 ### Step 2: Salesforce Full Pull

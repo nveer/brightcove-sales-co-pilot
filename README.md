@@ -51,7 +51,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 
 ## Architecture
 
-- **Active Customers DB** (Notion) — Shared database, one row per customer. All follow-ups are prepended to the existing row. Multi-SE safe.
+- **Active Customers DB** (Notion) — Shared database, one row per customer. All follow-ups are prepended to the existing row. Multi-rep safe.
 - **Brightcove Gateway** (BigQuery) — All Gong transcripts, Salesforce data, contract/financial data, and usage metrics accessed via SQL. No direct API keys needed.
 - **Salesforce links** — Always use `brightcove2.lightning.force.com` (not `brightcove.lightning.force.com`)
 

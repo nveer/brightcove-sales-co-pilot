@@ -16,6 +16,6 @@ Update quarterly or after major product announcements.
 Source of truth: https://support.brightcove.com/
 
 ### se_team.md
-Your SE team members and their Gong user IDs.
-**Important:** All Gong searches are filtered to these user IDs to return only SE-attended calls.
+Your sales team members and their Gong user IDs.
+**Important:** All Gong searches are filtered to these user IDs to return only your team's calls.
 Ask your Gong admin to provide user IDs, or pull them from the Gong API once your credentials are set up.

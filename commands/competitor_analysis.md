@@ -14,7 +14,7 @@ Launch parallel agents to research:
 - Known strengths and weaknesses
 
 ### Step 2: Gong Call History
-- Search Gong for any calls where this competitor was mentioned (SE team filter, last 90 days)
+- Search Gong for any calls where this competitor was mentioned (sales team filter, last 90 days)
 - Extract: how customers describe the competitor, objections raised, deal context
 
 ### Step 3: Feature Comparison

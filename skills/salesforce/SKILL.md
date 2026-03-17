@@ -4,7 +4,7 @@
 > Use `brightcove-lumenx-42.external_shared_views` tables: `v_salesforce_account`, `v_salesforce_opportunity`, `v_done_deal_contracts`, `v_raw_salesforce_*`, etc.
 > This file is retained only in case Salesforce write-back is ever needed in the future.
 
-# Salesforce Skill — SE Command Center [DEPRECATED]
+# Salesforce Skill — GOOSE [DEPRECATED]
 
 ## Overview
 ~~Queries your Brightcove Salesforce instance for account intelligence. Used in call prep, account summaries, and account context enrichment.~~
