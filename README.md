@@ -4,56 +4,56 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 
 ## What It Does
 
-- **Daily Call Prep** — Dark-theme HTML timeline with per-meeting cards enriched from Gong + Gmail
-- **Live Call Companion** — Real-time resource research during calls + one Notion follow-up page after
+- **Daily Call Prep** — Dark-theme HTML timeline with per-meeting cards enriched from Gong transcripts, Gmail, and Salesforce account data
+- **Live Call Companion** — Real-time resource research during calls via Granola, then prepends follow-up content to the customer's Active Customers row in Notion
 - **Email Triage** — Categorizes inbox, drafts responses using Brightcove docs, archives noise (never auto-sends)
 - **On-Demand Call Prep** — Account briefings from Gong + Salesforce + Gmail for any customer
-- **Call Debrief** — Post-call capture with action items and Notion follow-up page
+- **Call Debrief** — Post-call capture with action items and Notion follow-up
 - **Account Summaries** — 360° view with health score, 6 months Gong history, full Salesforce pull
 - **Competitor Analysis** — Competitive intel from web + your Gong call history
+- **DB Migration** — One-time migration of legacy Call Follow-Ups entries into the shared Active Customers database
 
 ## Integrations
 
 | Platform | Type | Setup |
 |----------|------|-------|
-| Gong | API key | Requires IT ticket |
-| Salesforce | Connected App | Requires IT ticket |
-| Gmail | MCP connector | Self-serve |
+| Brightcove Gateway (BigQuery) | MCP connector | Auto-configured on install — authenticate with Brightcove credentials when prompted |
+| Gmail | MCP connector | Self-serve — connect twice (read + write) |
 | Google Calendar | MCP connector | Self-serve (read-only) |
 | Google Drive | MCP connector | Self-serve |
-| Notion | MCP connector | Self-serve |
-| Granola | MCP connector | Self-serve (optional) |
+| Notion | MCP connector | Self-serve — connects to shared Active Customers DB |
+| Granola | MCP connector | Self-serve (optional, recommended for live call companion) |
 
 ## Setup
 
-1. Open `se-plugin-onboarding.html` for full setup instructions
-2. Copy `scripts/.env.example` to `scripts/.env` and fill in credentials
-3. Connect MCP integrations in Claude Desktop (Gmail, Calendar, Drive, Notion)
-4. Fill in your `context/` files (about_me.md, se_team.md, current_accounts.md, brightcove_overview.md)
-5. Run `/prime` to verify everything is working
+1. **Download the plugin** — Get the latest `.zip` from [Releases](https://github.com/nveer/goose/releases)
+2. **Upload to Claude Desktop** — Open Claude Desktop → Cowork tab → Customize → Personal plugins → **+** → Browse files → select `goose-v2.6.zip` → Upload
+3. **Connect integrations** — In Claude Desktop, click Customize → Connectors → Connect your tools. Search for and connect: **Gmail** (twice — read + write), **Google Calendar**, **Google Drive**, and **Notion**. Sign in with your Brightcove accounts. The Brightcove Gateway auto-connects on install.
+4. **Start a new task** — Open a Cowork task pointed at the GOOSE folder and type **"start"**. Claude will walk you through a 5-minute onboarding: your name, role, and team. Notion workspace is connected automatically — no database IDs or config files to edit.
+5. **You're ready** — Say "prep me for my calls today" to get your first daily briefing.
+
+> **Full setup guide with screenshots:** Open `docs/index.html` or visit the [landing page](https://nveer.github.io/goose/)
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/prime` | Session startup — reads all context, first-run detection |
-| `/daily_prep` | Generate today's call prep HTML page |
-| `/call_companion` | Live call assistant + Notion follow-up |
-| `/email_triage` | Inbox triage and response drafting |
-| `/call_prep [customer]` | Pre-call briefing |
-| `/call_debrief [customer]` | Post-call capture |
-| `/account_summary [customer]` | Full account overview |
-| `/competitor_analysis [name]` | Competitive research |
+| `/prime` | Session startup — reads all context, confirms Claude is up to speed |
+| `/morning_schedule` | Daily 7am briefing — loads calendar, classifies customer vs internal meetings |
+| `/daily_prep` | Generate a dark-theme HTML call prep page for today with enriched meeting cards |
+| `/call_companion` | Live call assistant — monitors Granola, researches docs in real time, prepends follow-up to Active Customers row |
+| `/email_triage` | Inbox triage — categorizes, drafts responses, archives noise (never auto-sends) |
+| `/call_prep [customer]` | On-demand pre-call briefing with Gong, Gmail, Salesforce, and Notion intel |
+| `/call_debrief [customer]` | Post-call capture with action items and account context updates |
+| `/account_summary [customer]` | 360° account view — 6 months of history, health score, Salesforce pull |
+| `/competitor_analysis [name]` | Research and analyze a competing video platform |
+| `/migrate-history` | One-time migration of legacy Call Follow-Ups DB into shared Active Customers DB |
 
-## Sharing & Hosting
+## Architecture
 
-See the "GitHub Hosting" section in `se-plugin-onboarding.html` for instructions on hosting the onboarding page and plugin on GitHub Pages + GitHub Releases.
-
-Quick summary:
-1. Create a private GitHub repo
-2. Enable GitHub Pages (serve from `/docs`)
-3. Create a Release and upload `se-command-center.plugin`
-4. Share one URL with your team
+- **Active Customers DB** (Notion) — Shared database, one row per customer. All follow-ups are prepended to the existing row. Multi-SE safe.
+- **Brightcove Gateway** (BigQuery) — All Gong transcripts, Salesforce data, contract/financial data, and usage metrics accessed via SQL. No direct API keys needed.
+- **Salesforce links** — Always use `brightcove2.lightning.force.com` (not `brightcove.lightning.force.com`)
 
 ## Source of Truth
 
