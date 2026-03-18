@@ -13,8 +13,7 @@ Scan Gmail inbox, categorize emails by action needed, archive noise, draft respo
 - Optional: specific focus ("just this week", "last 24 hours", "unread only")
 
 ## Tools Required
-- **Gmail Write connector** — send, archive, batch modify, labels, read, search. ⚠️ Known limitation: `send_email`/`draft_email` do not support `threadId`/`inReplyTo`. Replies to existing threads must be sent manually from Gmail to preserve threading until the threading fix is confirmed.
-- **Gmail Registry connector** *(pending connection test)* — `read_thread` (gets Message-ID header for `inReplyTo`), `create_draft` (may support `threadId` for threaded drafts). Connect alongside the primary Gmail connector to enable reply threading. When connected, workflow: (1) `read_thread` → extract Message-ID, (2) `create_draft` with threadId → send from Gmail.
+- **Gmail:** `mcp__gmail-write` — send, archive, batch modify, labels, read, search. Threading fully supported as of v1.5.5. Reply workflow: (1) call `read_email` on the latest message in the thread to get its `messageId` header, (2) pass as `inReplyTo` + `threadId` to `send_email`/`draft_email`, (3) populate `to`/`cc` with all original recipients minus Nathan.
 - **WebFetch / WebSearch** — for Brightcove doc research
 - **Brightcove support docs** — https://support.brightcove.com/ (source of truth)
 

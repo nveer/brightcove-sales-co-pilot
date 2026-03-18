@@ -1,5 +1,21 @@
 # Changelog — GOOSE
 
+## v2.6.1 — March 2026
+
+### 🐛 Bug Fix — Email Threading Finally Works
+
+- **Root cause found and fixed:** The plugin's `email_triage.md` (line 16) contained a stale warning from v1.5.4: "⚠️ Known limitation: `send_email`/`draft_email` do not support `threadId`/`inReplyTo`." This was fixed in the underlying Gmail MCP server in v1.5.5, and the workspace copy of `email_triage.md` was updated — but the **plugin-build copy was never synced**. When GOOSE ran `/email_triage`, it read the plugin's version first and skipped threading parameters entirely, causing every reply to create a new email instead of staying in the existing thread.
+- **Also removed the two-connector workaround** (line 17) — the "Gmail Registry connector" strategy documented in v1.5.4 is no longer needed since the primary `mcp__gmail-write` connector handles threading end-to-end.
+- **Plugin `email_triage.md` now matches the workspace version** — Tools Required section states threading is fully supported and documents the correct 3-step reply workflow: (1) `read_email` to get `messageId`, (2) pass as `inReplyTo` + `threadId` to `send_email`/`draft_email`, (3) populate `to`/`cc` with all original recipients.
+
+### 📋 Updated Files
+- `commands/email_triage.md` — Lines 16-17 replaced: removed stale "Known limitation" warning and two-connector workaround; replaced with correct threading instructions matching workspace version
+- `.claude-plugin/plugin.json` — version bumped to 2.6.1
+- `docs/index.html` — all version strings updated to v2.6.1
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v2.6 — March 2026
 
 ### 🗄️ Active Customers DB — Primary Database Switch
