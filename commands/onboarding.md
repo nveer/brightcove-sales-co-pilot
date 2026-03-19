@@ -26,7 +26,7 @@ This workflow guides a new GOOSE user through initial setup (5-7 minutes). It co
 Display warm welcome message:
 "Talk to Me, Goose. 🪿 Welcome to GOOSE — your AI Sales Co-Pilot! I'm going to walk you through a quick setup — it takes about 5 minutes. I'll ask you a few questions, and when we're done you'll be ready to prep for calls, triage your inbox, and get post-call follow-ups automatically.
 
-**⚡ One quick thing before we start:** For the best experience, switch to **Claude Sonnet** — it's 3x faster than Opus for these workflows with no quality loss. Click the model name at the top of this window (or in Settings → Model) and select **Claude Sonnet 4.5**. Then come back and type **'start'** to continue."
+**⚡ One quick thing before we start:** For the best experience, switch to **Claude Sonnet** — it's 3x faster than Opus for these workflows with virtually no quality loss. Click the model name at the bottom of the chat window and select **Claude Sonnet**. Then come back and type **'start'** to continue."
 
 Wait for the user to confirm they've switched or say they're ready to continue.
 
