@@ -11,7 +11,7 @@ Customer Call Prep DB: [auto-filled during onboarding]
 Call Follow-Ups DB (DEPRECATED): Do not create new pages here. Legacy data only.
 
 ## How It Works
-- **Active Customers DB** is the single target for all call follow-ups. One row per customer — content is PREPENDED to the existing row (never creates standalone pages).
+- **Active Customers DB** is the single target for all call follow-ups. One row per customer acts as a hub. Each call creates a **child page** under the customer's row (not prepended to the page body). This keeps individual calls discrete and searchable.
 - **Customer Call Prep DB** stores pre-call research and prep docs.
 - **Call Follow-Ups DB** is deprecated. Run `/migrate-history` to move legacy entries into the shared Active Customers DB.
 

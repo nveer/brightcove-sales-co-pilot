@@ -35,7 +35,7 @@ Two paths depending on Granola availability.
 
 ## Phase 2: After Call
 
-Generate ONE consolidated Notion follow-up page. Two paths depending on Granola.
+Generate ONE consolidated Notion follow-up **child page** under the customer's Active Customers DB row. Two paths depending on Granola.
 
 ### Path 2A: With Granola (Immediate)
 
@@ -68,8 +68,11 @@ Generate ONE consolidated Notion follow-up page. Two paths depending on Granola.
 3. Follow-up Email (one consolidated email covering everything)
 
 ### Notion Write
-- Target: Call Follow-Ups database (see CLAUDE.md for DB ID)
-- Known bug: `parent` parameter may fail — if it does, create at workspace level and note for user to drag into correct DB
+- Target: Active Customers DB (see CLAUDE.md for DB ID / collection URL)
+- **Subpage model:** Each call creates a CHILD PAGE under the customer's existing row in Active Customers DB
+- Flow: (1) Search Active Customers DB for customer by name. (2) If not found, create a new row with Name, Status, Account Owner. (3) Create a child page under the customer page using `notion-create-pages` with `parent: { page_id: "[customer_page_id]" }`. (4) Update parent customer properties (Last Call date, Status). (5) Notify account owner via @mention comment on the child page.
+- Title format: `[Customer] — [Date]` (e.g., "Wonder Project — 2026-03-18")
+- Every child page includes attribution: `**Written by:** [SE Name] | **Source:** Call Companion`
 
 ---
 

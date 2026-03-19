@@ -5,7 +5,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 ## What It Does
 
 - **Daily Call Prep** — Dark-theme HTML timeline with per-meeting cards enriched from Gong transcripts, Gmail, and Salesforce account data
-- **Live Call Companion** — Real-time resource research during calls via Granola, then prepends follow-up content to the customer's Active Customers row in Notion
+- **Live Call Companion** — Real-time resource research during calls via Granola, then creates a follow-up subpage under the customer's Active Customers row in Notion
 - **Email Triage** — Categorizes inbox, drafts responses using Brightcove docs, archives noise (never auto-sends)
 - **On-Demand Call Prep** — Account briefings from Gong + Salesforce + Gmail for any customer
 - **Call Debrief** — Post-call capture with action items and Notion follow-up
@@ -41,7 +41,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 | `/prime` | Session startup — reads all context, confirms Claude is up to speed |
 | `/morning_schedule` | Daily 7am briefing — loads calendar, classifies customer vs internal meetings |
 | `/daily_prep` | Generate a dark-theme HTML call prep page for today with enriched meeting cards |
-| `/call_companion` | Live call assistant — monitors Granola, researches docs in real time, prepends follow-up to Active Customers row |
+| `/call_companion` | Live call assistant — monitors Granola, researches docs in real time, creates follow-up subpage under Active Customers row |
 | `/email_triage` | Inbox triage — categorizes, drafts responses, archives noise (never auto-sends) |
 | `/call_prep [customer]` | On-demand pre-call briefing with Gong, Gmail, Salesforce, and Notion intel |
 | `/call_debrief [customer]` | Post-call capture with action items and account context updates |
@@ -51,7 +51,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 
 ## Architecture
 
-- **Active Customers DB** (Notion) — Shared database, one row per customer. All follow-ups are prepended to the existing row. Multi-rep safe.
+- **Active Customers DB** (Notion) — Shared database, one row per customer (hub). Each call creates a child page under the customer row. Multi-rep safe.
 - **Brightcove Gateway** (BigQuery) — All Gong transcripts, Salesforce data, contract/financial data, and usage metrics accessed via SQL. No direct API keys needed.
 - **Salesforce links** — Always use `brightcove2.lightning.force.com` (not `brightcove.lightning.force.com`)
 

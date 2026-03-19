@@ -110,7 +110,7 @@ Then silently:
 
 4. **Write config** — Save the Active Customers DB collection:// URL, Customer Call Prep DB collection:// URL, and parent page ID to `context/output_config.md`.
 
-Tell the user: "Your Notion workspace is connected. All follow-ups will go to the shared Active Customers database — one row per customer, with your content prepended to the existing record."
+Tell the user: "Your Notion workspace is connected. All follow-ups will go to the shared Active Customers database — one row per customer, with each call creating a subpage under the customer's entry."
 
 If a legacy Call Follow-Ups DB was found: "I also found your old Call Follow-Ups database with existing entries. After setup is complete, you can run `/migrate-history` to move those into the shared database."
 

@@ -493,7 +493,7 @@
       <div class="cap-card">
         <span class="cap-icon">📞</span>
         <div class="cap-name">Live Call Companion</div>
-        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: follow-up content is prepended to the customer's Active Customers row in Notion + one copy-paste follow-up email, already written.</div>
+        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: a follow-up subpage is created under the customer's Active Customers row in Notion + one copy-paste follow-up email, already written.</div>
         <span class="cap-tag">Real-Time</span>
       </div>
       <div class="cap-card">
@@ -659,7 +659,7 @@
           <span class="platform-pill pill-mcp">Auto-Configured ✅</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>After each call, the plugin prepends structured follow-up content to the customer's row in the shared <strong>Active Customers</strong> database in Notion — action items, resources, and a copy-paste follow-up email. One row per customer, all reps contributing to the same record.</p>
+          <p>After each call, the plugin creates a follow-up subpage under the customer's row in the shared <strong>Active Customers</strong> database in Notion — action items, resources, and a copy-paste follow-up email. One row per customer, all reps contributing to the same record.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop, click <strong>Customize</strong> in the left sidebar, then click <strong>Connectors</strong>, then click <strong>Connect your tools</strong>. In the pop-up, search for <strong>"Notion"</strong> and sign in with your Brightcove Notion account.</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">That's it. During onboarding, Claude connects to the shared <strong>Active Customers</strong> database and your <strong>Customer Call Prep</strong> database in Notion — no manual config needed.</div></div>
@@ -883,7 +883,7 @@
       <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
       <div class="cmd-card"><div class="cmd-name">/morning_schedule</div><div class="cmd-desc">Daily 7am briefing. Loads Google Calendar, classifies customer vs internal meetings, prints today's schedule.</div></div>
       <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gmail, Granola, Gong transcripts, and Salesforce account data via Brightcove Gateway.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then prepends follow-up content to the customer's Active Customers row in Notion.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then creates a follow-up subpage under the customer's Active Customers row in Notion.</div></div>
       <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
       <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Brightcove Gateway data, recent emails, Granola notes, and Notion history.</div></div>
       <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Brightcove Gateway pull, email threads, and health score.</div></div>

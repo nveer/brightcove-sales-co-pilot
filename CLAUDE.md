@@ -21,7 +21,7 @@ Claude operates as your sales assistant with access to:
 - **Brightcove Gateway** (pre-configured MCP) — Account data, opportunities, usage metrics, contract details via Brightcove's BigQuery data warehouse. No setup needed — auto-connects on install.
 - **Gmail** (MCP connector) — Read, search, send, draft, archive, and batch-modify emails. Used by /email_triage for inbox management and response drafting. Threading is fully supported: `send_email`/`draft_email` accept `threadId` + `inReplyTo` to keep replies in the same thread. Use `read_thread` or `read_email` to get the `Message-ID` header needed for `inReplyTo`.
 - **Google Calendar** (MCP connector, read-only) — List events, find free time. Cannot create/modify events.
-- **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-ups (prepended to Active Customers DB rows) and account tracking. Shared Active Customers DB connected during onboarding — one row per customer, multi-rep safe.
+- **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-ups (each call creates a **child page** under the customer's Active Customers DB row) and account tracking. Shared Active Customers DB connected during onboarding — one row per customer, multi-rep safe.
 - **Granola** (MCP connector) — Meeting transcripts and notes. Used by /call_companion.
 - **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
 - **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
@@ -34,14 +34,14 @@ Claude operates as your sales assistant with access to:
 
 ## Notion Databases
 Database IDs are saved to `/context/output_config.md` during onboarding. Never ask the user for database IDs — read them from output_config.md.
-- **Active Customers DB (PRIMARY):** `collection://6850738f-64b9-424c-a0a3-ed2b5bff1866` (DB ID: `e8c8b91612054d939d986f161a1868a6`) — One row per customer. All call follow-ups, prep notes, and action items are PREPENDED to the customer's existing row (never create standalone pages). Multi-rep safe — multiple reps append to the same record.
+- **Active Customers DB (PRIMARY):** `collection://6850738f-64b9-424c-a0a3-ed2b5bff1866` (DB ID: `e8c8b91612054d939d986f161a1868a6`) — One row per customer (hub/overview). Each call creates a **child page** under the customer row (titled `[Customer] — [Date]`). Multi-rep safe — each rep creates their own child pages independently.
 - **Customer Call Prep DB:** See output_config.md
 - **Call Follow-Ups DB (DEPRECATED):** Do not create new pages here. Legacy data remains read-only.
 - **Parent page:** See output_config.md
 
 ## Commands Available
 - /prime — Run at task start. Reads all context files and confirms understanding.
-- /call_companion — **Live call resource assistant.** Two-phase flow: (1) During call — monitors Granola, researches docs/resources in parallel, stores in memory. (2) After call — prepends ONE consolidated follow-up to the customer's Active Customers row in Notion. Calendar-aware, skips internal meetings.
+- /call_companion — **Live call resource assistant.** Two-phase flow: (1) During call — monitors Granola, researches docs/resources in parallel, stores in memory. (2) After call — creates a child page under the customer's Active Customers row in Notion with the consolidated follow-up. Calendar-aware, skips internal meetings.
 - /daily_prep — **Generate daily call prep HTML page.** Pull Google Calendar, classify events, enrich customer calls with Gmail, Granola, Gong transcripts (BigQuery), and Salesforce account data (BigQuery). Output a styled HTML timeline. Format: dark theme, timeline with color-coded dots (blue=customer, gray=internal, yellow=hold/conflict, red=escalation, purple=work block). Per-meeting cards include: email intel, last Gong call summary, account snapshot (ACV, renewal date, open opps), and action items.
 - /email_triage — **Inbox triage & response drafting.** Default scan: two-pass — last 24 hours first, then previous 2 days — merged and deduplicated before categorization. Categorizes by action needed, archives noise (with smart support email filtering), drafts responses using Brightcove docs. Interactive review loop — never auto-sends.
 - /call_prep [customer] — Generate pre-call briefing with account context, recent email/meeting intel, and agenda prep
