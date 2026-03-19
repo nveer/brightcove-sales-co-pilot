@@ -703,56 +703,6 @@
       <p class="section-desc">GOOSE is already installed on your Claude Desktop. Just connect your tools, type "start", and you're ready to go.</p>
     </div>
 
-    <!-- Before You Start -->
-    <div style="background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:28px 32px; margin-bottom:32px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
-        <span style="font-size:20px;">🧾</span>
-        <h3 style="font-size:16px; font-weight:700; color:var(--text); margin:0;">Before You Start — Checklist</h3>
-      </div>
-      <p style="color:var(--muted); font-size:14px; margin-bottom:20px;">Have these ready before you begin. Setup takes ~5 minutes but will stall if something is missing.</p>
-
-      <div style="display:flex; flex-direction:column; gap:12px;">
-
-        <!-- Model Selection -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid rgba(245,166,35,0.3); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">⚡</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Switch to Claude Sonnet <span style="background:rgba(245,166,35,0.15); color:var(--yellow); border:1px solid rgba(245,166,35,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Recommended</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">In Claude Desktop, click the model name at the top of the window and select <strong style="color:var(--text);">Claude Sonnet 4.6</strong>. It's 3× faster than Opus for these workflows with no quality loss — onboarding, call prep, and email triage all run noticeably quicker.</div>
-          </div>
-        </div>
-
-        <!-- Google Account -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">📧</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Google Account (Gmail + Calendar + Drive) <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Have your Brightcove Google login ready — you'll connect Gmail, Google Calendar, and Google Drive during install. No admin setup needed.</div>
-          </div>
-        </div>
-
-        <!-- Notion Account -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">📓</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Notion Account <span style="background:rgba(247,111,111,0.15); color:var(--red); border:1px solid rgba(247,111,111,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Required</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">You need a Notion account (free plan is fine). <strong style="color:var(--green);">You don't need to create any databases</strong> — the plugin connects to the shared Active Customers database automatically. Just make sure you can log in to Notion.</div>
-          </div>
-        </div>
-
-        <!-- Granola (recommended) -->
-        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
-          <span style="font-size:18px; flex-shrink:0;">🎙️</span>
-          <div>
-            <div style="font-weight:600; font-size:14px; color:var(--text);">Granola <span style="background:rgba(245,166,35,0.15); color:var(--yellow); border:1px solid rgba(245,166,35,0.3); font-size:10px; font-weight:700; padding:2px 7px; border-radius:99px; text-transform:uppercase; letter-spacing:.05em; margin-left:6px;">Recommended</span></div>
-            <div style="color:var(--muted); font-size:13px; margin-top:3px;">Provides real-time live transcription during customer calls. Without Granola, Call Companion runs in manual mode — you flag topics and Claude researches them on demand. After the call, Gong transcripts (synced hourly via Brightcove Gateway) are used for the follow-up page. <a href="https://granola.ai" target="_blank" style="color:var(--accent);">Download Granola →</a></div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-
     <div class="install-steps">
 
       <!-- STEP 1 -->
@@ -771,6 +721,10 @@
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">⚠️</span>
             <span>If you skip this, Claude will still run — but email triage and daily call prep won't work until connectors are live.</span>
+          </div>
+          <div class="alert alert-info" style="margin-top:10px;">
+            <span class="alert-icon">⚡</span>
+            <span><strong>Pro tip:</strong> Switch to <strong>Claude Sonnet</strong> — click the model name at the top of your Claude Desktop window and select <strong>Claude Sonnet 4.6</strong>. It's 3× faster for these workflows with no quality loss.</span>
           </div>
         </div>
       </div>
