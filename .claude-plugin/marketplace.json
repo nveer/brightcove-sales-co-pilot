@@ -1,7 +1,5 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "brightcove-sales",
-  "description": "GOOSE — AI Sales Co-Pilot for Brightcove. Automates call prep, inbox triage, account intelligence, and post-call follow-ups.",
   "owner": {
     "name": "Brightcove SE Team",
     "email": "nveer@brightcove.com"
@@ -9,8 +7,8 @@
   "plugins": [
     {
       "name": "goose",
-      "description": "GOOSE — AI Sales Co-Pilot for Brightcove",
-      "category": "productivity"
+      "source": "./",
+      "description": "GOOSE — AI Sales Co-Pilot for Brightcove"
     }
   ]
 }
