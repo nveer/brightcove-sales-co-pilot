@@ -1,3 +1,7 @@
+---
+description: "Gong conversation intelligence — search calls, pull transcripts, and generate call prep summaries."
+---
+
 # Gong API Skill
 
 ## Overview

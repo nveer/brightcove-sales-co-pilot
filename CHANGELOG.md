@@ -1,5 +1,22 @@
 # Changelog — GOOSE
 
+## v2.6.2 — March 2026
+
+### 🚀 Admin Console Distribution — Zero-Touch Install
+
+- **Plugin is now pushed via Claude admin console** — No more downloading .zip files or manual upload. Admins upload once, set to "Installed by default" or "Required", and every org member gets GOOSE automatically on their next session.
+- **Landing page simplified to 3 steps** — Removed download/upload instructions. New flow: (1) Connect your tools, (2) Type "start" in a new Cowork task, (3) Done. The setup wizard handles the rest.
+- **Added marketplace.json** — `.claude-plugin/marketplace.json` added for future GitHub-based admin console sync (currently unsupported for third-party repos, but ready when Anthropic ships it).
+- **plugin.json description updated** — Removed folder setup tip (no longer relevant with admin push), replaced with "Pre-installed via your Claude Desktop admin" messaging.
+
+### 📋 Updated Files
+- `docs/index.html` — Hero, announcement banner, setup section, and checklist rewritten for admin-push flow; all version strings to v2.6.2
+- `.claude-plugin/plugin.json` — version bumped to 2.6.2; description updated
+- `.claude-plugin/marketplace.json` — New file (added in this release)
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v2.6.1 — March 2026
 
 ### 🐛 Bug Fix — Email Threading Finally Works

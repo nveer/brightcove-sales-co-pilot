@@ -1,3 +1,7 @@
+---
+description: "DEPRECATED — Salesforce direct API skill. All Salesforce data is now accessed via Brightcove Gateway (BigQuery)."
+---
+
 # ⚠️ DEPRECATED — Salesforce Skill
 
 > **This skill is no longer used.** All Salesforce data is now accessed via the Brightcove Gateway (BigQuery MCP).
