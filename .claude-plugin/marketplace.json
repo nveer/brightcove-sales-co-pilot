@@ -1,0 +1,15 @@
+{
+  "name": "brightcove-sales",
+  "owner": {
+    "name": "Brightcove SE Team",
+    "email": "nveer@brightcove.com"
+  },
+  "plugins": [
+    {
+      "name": "goose",
+      "source": ".",
+      "description": "GOOSE — AI Sales Co-Pilot for Brightcove",
+      "version": "2.6.1"
+    }
+  ]
+}
