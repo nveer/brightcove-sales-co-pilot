@@ -1,6 +1,6 @@
 {
   "name": "goose",
-  "version": "2.6.2",
+  "version": "2.8.0",
   "description": "GOOSE — Your AI Sales Co-Pilot for Brightcove. Never fly solo. Automates call prep, inbox triage, account intelligence, and post-call follow-ups. Pre-installed via your Claude Desktop admin — just type 'start' in a new Cowork task to begin setup.",
   "author": {
     "name": "Brightcove Sales Team"

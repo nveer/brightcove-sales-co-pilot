@@ -1,5 +1,55 @@
 # Changelog — GOOSE
 
+## v2.8.0 — 2026-03-27
+
+### Added
+- **Usage Logging:** Every GOOSE command now silently logs an invocation record to the GOOSE Usage Tracker Notion database (fbd7ab1cb16c447688591ebef4311724). Fields: Command, User, Account, Status, Goose Version, Session Notes, Logged At.
+- **Session Start Logging:** Each new session now logs a /session_start entry via the SessionStart hook.
+- **Roadmap intel pulled from Slack:** `/call_prep` Step 4b now extracts roadmap highlights from `#external-brightcove-product-roadmap-updates-and-communications` alongside product updates — same channel scan, two sets of bullets. Roadmap content populates the "Roadmap Highlights to Share" section inline rather than pointing users to an external URL. Fallback to brightcove-briefing.lovable.app/initiatives for questions not covered by the digest.
+
+### Changed
+- Updated CLAUDE.md Notion Databases section to reference GOOSE Usage Tracker.
+- All command files bumped to version 2.8.0 in usage logging.
+
+---
+
+## v2.7.0 — March 2026
+
+### 📢 Product Comms Hub Integration in Call Prep
+
+- **Call prep now pulls latest product updates from Slack** — New Step 4b reads the last 14 days of `#external-brightcove-product-roadmap-updates-and-communications` for the most recent Product Comms Bot digest. Extracts up to 5 relevant bullets (GA releases, status changes, features relevant to the customer's products). Section is omitted entirely if nothing new — no clutter.
+- **New output section: "📢 New Product Updates"** — Appears in the call prep briefing only when recent updates exist. Positioned after Roadmap Highlights, before Watch Out For. Max 5 concise bullets.
+
+### 🗺️ Brightcove Roadmap Source Added
+
+- **Roadmap & Product Briefing declared as primary source** — `https://brightcove-briefing.lovable.app/initiatives` is now the first stop for any roadmap or product timeline questions. Added to CLAUDE.md "What This Workspace Does" and referenced in `call_prep.md` Step 4. Requires Brightcove email login.
+
+### 📋 Updated Files
+- `commands/call_prep.md` — Step 4b added (Slack product updates + roadmap URL reference); output template updated with "📢 New Product Updates" section
+- `CLAUDE.md` — Brightcove Roadmap & Product Briefing added as a declared source
+- `.claude-plugin/plugin.json` — version bumped to 2.7.0
+- `CHANGELOG.md` — this entry
+
+---
+
+## v2.6.4 — March 2026
+
+### 🔗 Competitive Intelligence Platform Integration
+
+- **New internal resource:** Brightcove's Competitive Intelligence Platform (https://bcov-competitive-intel-hub.lovable.app/#) is now the primary source for competitive research. Live Salesforce data covering Jan 2022–present, ~33K closed opportunities, 892 Gong meetings with competitor mentions. Requires Brightcove email login (all employees have access).
+- **Platform sections:** Battle Cards (win/loss stats by competitor with ACV), Feature Matrix, Alerts, Data Sources. Tracks 14 competitors: AWS/DIY, YouTube, Vimeo, JW Player, Kaltura, MS Teams/Stream, Wistia, Vidyard, Bitmovin, Panopto, Cloudflare, Mux, Dacast, Deltatre.
+- **`/competitor_analysis` updated** — New Step 0 directs users to the platform first for live win/loss data before supplementing with Gong transcripts and web research.
+- **CLAUDE.md updated** — Platform added to "What This Workspace Does" as a first-stop competitive resource.
+- **Shareable with all reps** — Any Brightcove employee can access the platform with their work email. Share the link directly.
+
+### 📋 Updated Files
+- `CLAUDE.md` — Competitive Intelligence Platform added to workspace capabilities
+- `commands/competitor_analysis.md` — Step 0 (platform reference) added; platform URL and competitor list documented
+- `.claude-plugin/plugin.json` — version bumped to 2.6.4
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v2.6.2 — March 2026
 
 ### 🚀 Admin Console Distribution — Zero-Touch Install

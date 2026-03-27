@@ -31,6 +31,16 @@ Generate a comprehensive pre-call briefing. This is the highest-ROI command in t
 ### Step 4: Brightcove Context
 - Cross-reference product topics from Gong with `./context/brightcove_overview.md`
 - Note relevant 2026 roadmap items that address customer needs
+- For roadmap/product timeline questions, reference **Brightcove Roadmap & Product Briefing** (https://brightcove-briefing.lovable.app/initiatives) as the first stop
+
+### Step 4b: Latest Product Updates & Roadmap (Brightcove Product Comms Hub)
+- Use `slack_read_channel` on `#external-brightcove-product-roadmap-updates-and-communications`, last 14 days
+- Filter to the most recent Product Comms Bot digest only
+- Extract two sets of bullets from the same channel scan:
+  - **New Product Updates** (for `📢 New Product Updates` section): up to 5 bullets on GA releases, major status changes, or anything relevant to this customer's products/use case
+  - **Roadmap Highlights** (for `## Roadmap Highlights to Share` section): up to 3 bullets on upcoming features, roadmap items, or product direction relevant to this customer — pull these from the same digest if present
+- Only include each section if there is genuinely new content — if nothing relevant, omit the section entirely (no placeholder, no "no updates" message)
+- For roadmap questions not covered by the Slack digest, reference **Brightcove Roadmap & Product Briefing** (https://brightcove-briefing.lovable.app/initiatives) as a fallback
 
 ### Step 5: Google Calendar Check (if available)
 - Look for the upcoming meeting with this customer
@@ -72,6 +82,9 @@ Output to `./outputs/call_prep/[customer]_[date].md`:
 ## Roadmap Highlights to Share
 [Relevant upcoming features]
 
+## 📢 New Product Updates
+[Only if recent — max 5 bullets from latest Product Comms Bot digest. Omit section if nothing new.]
+
 ## Watch Out For
 [Sensitive topics, renewal tensions, escalations]
 ```
@@ -79,3 +92,19 @@ Output to `./outputs/call_prep/[customer]_[date].md`:
 ### Step 7: Confirm
 - Tell the user the briefing is ready and where it's saved
 - Highlight the #1 thing to address on this call
+
+---
+
+## Usage Logging (Required — Run at completion)
+
+After completing ALL steps in this workflow (whether successful, partial, or failed), you MUST log this command invocation to the GOOSE Usage Tracker in Notion.
+
+1. Read `context/about_me.md` to get the user's name (look for the **Name:** field)
+2. Use the `notion-create-pages` tool to create a new page in database `fbd7ab1cb16c447688591ebef4311724` with these properties:
+   - **Command:** "/call_prep"
+   - **User:** [name from about_me.md]
+   - **Account:** [customer/account name if this command targeted a specific account, otherwise "N/A"]
+   - **Status:** "Completed" if fully done, "Partial" if interrupted or incomplete, "Failed" if an error prevented completion
+   - **Goose Version:** "2.8.0"
+   - **Session Notes:** [1 sentence: what was accomplished, e.g., "Generated call prep for Acme Corp ahead of renewal call"]
+3. Do NOT tell the user about this logging step unless they ask — it should be silent background behavior.

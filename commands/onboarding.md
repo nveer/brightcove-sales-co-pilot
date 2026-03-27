@@ -43,13 +43,33 @@ Create and display a TodoWrite checklist:
 ## STEP 1 — Google Connections
 
 Tell the user:
-"Before installing, the setup guide asked you to connect Gmail, Google Calendar, and Google Drive. Can you confirm all three are showing as connected? If any are missing, here's how: click **Customize** in the left sidebar, then click **Connectors**, then click **Connect your tools**. Search for **Google** and connect Gmail (twice — once for reading, once for sending), Google Calendar, and Google Drive. Each takes about 30 seconds."
+"Before installing, the setup guide asked you to connect Gmail, Google Calendar, and Google Drive. Can you confirm all three are showing as connected? If any are missing, here's how: click **Customize** in the left sidebar, then click **Connectors**, then click **Connect your tools**. Search for **Google** and connect Gmail, Google Calendar, and Google Drive. Each takes about 30 seconds."
 
 Wait for the user to confirm all three are connected.
 
 Once confirmed:
 - Mark step 1 as complete in the TodoWrite checklist
-- Display: "Great! All three Google integrations are confirmed."
+- Display: "Great! Google integrations confirmed."
+
+### Gmail Write Setup (Automatic)
+After confirming Google connections, silently set up Gmail write access:
+
+1. Check if `~/.gmail-mcp/credentials.json` exists.
+2. If it does NOT exist (first time):
+   a. Create `~/.gmail-mcp/` directory if missing: `mkdir -p ~/.gmail-mcp`
+   b. Copy the OAuth keys from the plugin: `cp ${CLAUDE_PLUGIN_ROOT}/gmail-write/gcp-oauth.keys.json ~/.gmail-mcp/gcp-oauth.keys.json`
+   c. **Download gmail-write binaries if missing:** Check if `${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-server` exists. If NOT, download both binaries from GitHub:
+      ```
+      curl -fSL -o ${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-server "https://github.com/nveer/goose/releases/download/v2.6.3/gmail-write-server"
+      curl -fSL -o ${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-auth "https://github.com/nveer/goose/releases/download/v2.6.3/gmail-write-auth"
+      chmod +x ${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-server ${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-auth
+      ```
+      If the download fails, tell the user: "I couldn't download the Gmail write component (check your internet connection). GOOSE can read your Gmail but won't be able to send or draft emails automatically just yet. Check your internet connection or ask your SE team lead for the binary — it's a one-time fix." Then continue onboarding — everything else works fine without it.
+   d. Tell the user: "**One more step for full email access.** I need you to sign into your Google account one more time — this enables GOOSE to send emails and archive on your behalf. A browser window will open automatically. Sign in with your Brightcove Google account and click Allow."
+   e. Run the auth binary: `${CLAUDE_PLUGIN_ROOT}/gmail-write/gmail-write-auth`
+   f. Wait for the auth to complete (credentials.json will be created)
+   g. Tell the user: "Gmail write access is set up! You can now send, draft, and archive emails directly from GOOSE."
+3. If credentials.json already exists → skip silently, Gmail write is already configured.
 
 ---
 

@@ -25,6 +25,8 @@ Claude operates as your sales assistant with access to:
 - **Granola** (MCP connector) — Meeting transcripts and notes. Used by /call_companion.
 - **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
 - **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
+- **Competitive Intelligence Platform** (https://bcov-competitive-intel-hub.lovable.app/#) — Live competitive win/loss data from Salesforce. Battle cards, feature matrix, alerts, and data sources covering 14 tracked competitors. Requires Brightcove email login. Use this as the **first stop** for any competitive research before supplementing with Gong transcripts or web research.
+- **Brightcove Roadmap & Product Briefing** (https://brightcove-briefing.lovable.app/initiatives) — Real-time product roadmap and initiative tracking. Use for roadmap questions, upcoming feature availability, and product direction. Requires Brightcove email login. **First stop for any roadmap/product timeline questions.**
 - **Gong transcripts** — Available via Brightcove Gateway (BigQuery). Past call transcripts load automatically in /call_companion for pre-call context. Post-call transcripts sync within ~1 hour after a call ends. Tables: `v_raw_salesforce_transcript` joined to `v_raw_salesforce_task`. Granola provides a real-time alternative — use it if available, fall back to Gong via BigQuery if not.
 
 ## Workspace Structure
@@ -37,6 +39,7 @@ Database IDs are saved to `/context/output_config.md` during onboarding. Never a
 - **Active Customers DB (PRIMARY):** `collection://6850738f-64b9-424c-a0a3-ed2b5bff1866` (DB ID: `e8c8b91612054d939d986f161a1868a6`) — One row per customer (hub/overview). Each call creates a **child page** under the customer row (titled `[Customer] — [Date]`). Multi-rep safe — each rep creates their own child pages independently.
 - **Customer Call Prep DB:** See output_config.md
 - **Call Follow-Ups DB (DEPRECATED):** Do not create new pages here. Legacy data remains read-only.
+- **GOOSE Usage Tracker:** `collection://e658e59b-5b0d-40e5-b27d-152dfab55b7d` (DB ID: `fbd7ab1cb16c447688591ebef4311724`) — Usage logging. One row per command invocation. Silent background logging — do not surface to user unless asked.
 - **Parent page:** See output_config.md
 
 ## Commands Available
