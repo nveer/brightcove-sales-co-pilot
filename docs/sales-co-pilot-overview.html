@@ -566,17 +566,18 @@
     </div>
     <div class="roadmap-grid">
 
-      <div class="roadmap-card v32">
-        <div class="roadmap-version">Future · Version 3.2</div>
+      <div class="roadmap-card v32" style="border-color: rgba(16,185,129,0.2);">
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), #34d399); border-radius: 16px 16px 0 0;"></div>
+        <div class="roadmap-version" style="color: var(--green);">Shipped · v2.8.1 — Optional</div>
         <div class="roadmap-title">Slack Integration</div>
-        <div class="roadmap-timing">Blocked on: Slack MCP connector approved in Claude Enterprise</div>
-        <div class="roadmap-impact" style="margin-bottom: 16px;">
-          🔒 <strong>What's needed:</strong> Slack MCP connector whitelisted in Claude Enterprise Admin, plus Slack workspace admin approval for the OAuth integration.
+        <div class="roadmap-timing">Self-serve — Customize → Connectors → Connect your tools</div>
+        <div class="roadmap-impact" style="margin-bottom: 16px; border-left-color: var(--green);">
+          ✅ <strong>Live today:</strong> The Slack connector is now available as an optional, self-serve connection — no admin approval blocking it. Ask Claude to search a channel or thread for customer context whenever you need it; nothing runs automatically in the background.
         </div>
         <ul class="roadmap-features">
-          <li>Pull customer signals from Slack threads during call prep</li>
-          <li>Post call summaries to designated channels automatically</li>
-          <li>Alert reps when a customer surfaces in a thread they missed</li>
+          <li>Pull customer signals from a Slack thread or channel on request</li>
+          <li style="color: var(--muted);">Future: post call summaries to designated channels automatically</li>
+          <li style="color: var(--muted);">Future: alert reps when a customer surfaces in a thread they missed</li>
         </ul>
       </div>
 

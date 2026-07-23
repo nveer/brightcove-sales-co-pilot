@@ -682,6 +682,30 @@
         </div>
       </div>
 
+      <!-- SLACK -->
+      <div class="platform-card">
+        <div class="platform-header" onclick="toggle(this)">
+          <div class="platform-dot" style="background:rgba(74,21,75,0.15);">💬</div>
+          <div class="platform-info">
+            <div class="platform-name" style="color:#ECB22E;">Slack</div>
+            <div class="platform-meta">Channel &amp; thread search · Customer signals · Optional</div>
+          </div>
+          <span class="platform-pill" style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3);">Sign in with Slack</span>
+        </div>
+        <div class="platform-body" style="display:none;">
+          <p>Optional. Once connected, you can ask Claude to search a Slack channel or thread for customer context on demand — nothing runs automatically in the background.</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text">In Claude Desktop, click <strong>Customize</strong> in the left sidebar, then click <strong>Connectors</strong>, then click <strong>Connect your tools</strong>. Search for <strong>"Slack"</strong> and click Connect.</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text">Sign in and authorize access to your Brightcove Slack workspace.</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text">Restart Claude Desktop. Ask Claude to search a specific channel or thread by name whenever you need it.</div></div>
+          </div>
+          <div class="alert alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <span><strong>Optional — safe to skip.</strong> Everything else in GOOSE works fully without Slack connected.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -707,6 +731,7 @@
             <li>🗂️ <strong>Google Drive</strong> — read-only access for reference docs</li>
             <li>📓 <strong>Notion</strong> — sign in with your Brightcove Notion account</li>
             <li>🎙️ <strong>Granola</strong> (recommended) — if you use Granola for meeting notes</li>
+            <li>💬 <strong>Slack</strong> (optional) — connect if you want Claude to search Slack channels/threads for customer context on request</li>
           </ul>
           <div class="alert alert-warn" style="margin-top:10px;">
             <span class="alert-icon">⚠️</span>
@@ -842,6 +867,7 @@
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for call wrap-up companion — install from granola.ai</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Slack connected (optional)</strong><span>Customize → Connectors → Connect your tools → search "Slack" — only needed if you want Claude to search Slack for customer context</span></div></div>
     </div>
   </section>
 
