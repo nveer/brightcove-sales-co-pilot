@@ -23,7 +23,7 @@ Claude operates as your sales assistant with access to:
 - **Google Calendar** (MCP connector, read-only) — List events, find free time. Cannot create/modify events.
 - **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-ups (each call creates a **child page** under the customer's Active Customers DB row) and account tracking. Shared Active Customers DB connected during onboarding — one row per customer, multi-rep safe.
 - **Granola** (MCP connector) — Meeting transcripts and notes, available once a meeting ends and Granola finishes processing. Granola encrypted its local database in March 2026, which removed the real-time/in-call access this used to have — no live transcript pull is available. Used by /call_companion.
-- **Slack** (MCP connector, optional) — Search channels and threads for customer signals on request. Not used automatically by any command — connect it if you want Claude to pull Slack context when you ask.
+- **Slack** (MCP connector, optional) — Cross-references internal conversations for customer context. If `context/slack_channels.md` maps an account to a channel, `/call_prep`, `/account_summary`, and `/call_companion` automatically read that channel (last 30 days, read-only) — no other command touches Slack. No mapping for an account means no automatic search; see **Slack Usage Rules** below for the full guardrails.
 - **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
 - **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
 - **Competitive Intelligence Platform** (https://bcov-competitive-intel-hub.lovable.app/#) — Live competitive win/loss data from Salesforce. Battle cards, feature matrix, alerts, and data sources covering 14 tracked competitors. Requires Brightcove email login. Use this as the **first stop** for any competitive research before supplementing with Gong transcripts or web research.
@@ -105,6 +105,20 @@ Rules:
 Do NOT silently skip BigQuery steps, substitute with cached data, or proceed without the data.
 
 24. **Salesforce link domain — enforce `brightcove2`** — All Salesforce links must use `brightcove2.lightning.force.com` — NOT `brightcove.lightning.force.com`. Any workflow that generates, validates, or displays a Salesforce URL must use the `brightcove2` domain. The old `brightcove` domain either redirects or fails silently.
+
+25. **Slack is scoped, not scanned** — See "Slack Usage Rules" below for the full guardrails. Never search Slack broadly; always check `context/slack_channels.md` for a mapped channel first, and never search private channels/DMs without explicit per-use consent.
+
+## Slack Usage Rules
+Slack is optional and only touched when connected. These rules exist to prevent broad, unscoped scans of the workspace — Slack cross-reference should always feel like a targeted lookup, never a background trawl.
+
+1. **Channel-mapped first** — Before searching Slack for an account, check `context/slack_channels.md`. If a channel is mapped, use `slack_read_channel` on that channel only, last 30 days. A direct channel read is always preferred over a search when a mapping exists.
+2. **No mapping = no automatic search** — If an account has no mapped channel, do NOT search Slack on your own initiative. Ask: "No Slack channel mapped for [Account] — want me to run a scoped public-channel search instead?" Only proceed after the user says yes.
+3. **Public channels by default** — Use `slack_search_public`, never `slack_search_public_and_private`, unless the user explicitly asks to include private channels or DMs for that specific search. Never escalate to private/DM search silently.
+4. **Always scope every search** — Every Slack search must include a channel filter (`in:#channel`) and/or a date filter (`after:YYYY-MM-DD`) — never an unscoped bare-keyword search across the whole workspace. Default time window: last 30 days.
+5. **Cap results** — Max 10 results per search. If a search returns zero results, report that — do not automatically broaden the query or expand to more channels without asking.
+6. **Show your work** — Every Slack pull must state, in the output, which channel(s) were searched, the date range, and how many results were used. Never fold Slack content into a follow-up page or prep doc without disclosing the source and scope.
+7. **Read-only, always** — Never use `slack_send_message`, `slack_schedule_message`, or any write/canvas-modifying Slack tool as part of any workflow. Slack access in this workspace is for cross-referencing only.
+8. **Where it's used** — `/call_prep`, `/account_summary`, and `/call_companion` are the only commands that cross-reference Slack, and only when a customer/account is named. `/daily_prep` and `/email_triage` never touch Slack — too frequent and too broad for scoped lookups to make sense.
 
 ## File Retention Policy
 The Cowork VM has limited disk (~1-2GB). Accumulated outputs will fill it and deadlock the session. These rules prevent that.

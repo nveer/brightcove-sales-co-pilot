@@ -12,12 +12,18 @@
 - **Slack added as an optional platform integration** — New self-serve connector on the landing page's "Platforms It Connects To" section, the "How to Get Started" install steps, and the setup checklist. Not used automatically by any command — connect it if you want Claude to search Slack channels/threads for customer context on request.
 - **Onboarding notes updated** to mention Slack as an optional, non-blocking connector (consistent with how Granola is already handled) — no changes to the required onboarding steps themselves.
 - **Reconciled the "Future Capabilities" Slack roadmap card** in `docs/sales-co-pilot-overview.html` — the Slack connector is no longer blocked/future, so the card now reflects it as shipped and optional. Deeper automation (auto-posting call summaries, missed-thread alerts) remains on the roadmap.
+- **Scoped Slack cross-reference in `/call_prep`, `/account_summary`, and `/call_companion`** — New `context/slack_channels.md` maps an account to its internal Slack channel(s). If a channel is mapped, Claude reads that one channel only (last 30 days, read-only) for the account named in the command — no mapping means no automatic Slack search. This is intentionally narrow: no workspace-wide scans, no automatic escalation to private channels/DMs (requires explicit per-use consent), results capped at 10, and every pull discloses which channel(s) and date range were checked in the output. Each command adds an "Internal Notes (Slack)" section, omitted entirely when nothing relevant is found. `/daily_prep` and `/email_triage` intentionally do NOT touch Slack — too frequent/broad for scoped lookups to make sense.
+- **New "Slack Usage Rules" section in `CLAUDE.md`** (plus Key Rule 25) — codifies the guardrails above: channel-mapped-first, no automatic search without a mapping, public-only by default, always-scoped queries, capped results, mandatory disclosure of scope, and read-only access (no `slack_send_message` in any workflow).
 
 ### 📋 Updated Files
-- `commands/call_companion.md` — Restructured: single post-call workflow + optional manual flagging during the call, Granola/Gong transcript sourcing clarified
-- `CLAUDE.md` — Granola bullet, Gong transcripts bullet, and `/call_companion` description updated to remove real-time claims; Slack added as an optional connector
+- `commands/call_companion.md` — Restructured: single post-call workflow + optional manual flagging during the call, Granola/Gong transcript sourcing clarified; added optional scoped Slack cross-reference step + "Internal Notes (Slack)" page section
+- `commands/call_prep.md` — Added Step 4c: scoped Slack cross-reference (channel-mapped or opt-in public search) + "Internal Notes (Slack)" briefing section
+- `commands/account_summary.md` — Added Step 3b: scoped Slack cross-reference + "Internal Notes (Slack)" summary section
+- `CLAUDE.md` — Granola bullet, Gong transcripts bullet, and `/call_companion` description updated to remove real-time claims; Slack added as an optional connector; new "Slack Usage Rules" section and Key Rule 25
+- `context/slack_channels.md` — New file: optional account → Slack channel mapping, grows organically
+- `context/README.md` — Documented the new `slack_channels.md` file
 - `README.md` — Feature list, integrations table, and commands table updated (Live Call Companion → Call Wrap-Up Companion); Slack row added to integrations table
-- `docs/index.html` — Landing page: "Live Call Companion" → "Call Wrap-Up Companion", all "live"/"real-time" copy removed; Slack platform card, install-step bullet, and checklist item added
+- `docs/index.html` — Landing page: "Live Call Companion" → "Call Wrap-Up Companion", all "live"/"real-time" copy removed; Slack platform card, install-step bullet, and checklist item added; Slack card updated to describe the scoped cross-reference feature and `context/slack_channels.md`
 - `docs/sales-co-pilot-overview.html` — Call Companion card retitled and description updated to remove real-time claims; Slack roadmap card updated from "blocked/future" to "shipped/optional"
 - `commands/onboarding.md` — Notes for Claude Implementation updated to mention Slack as optional
 - `CHANGELOG.md` — this entry
