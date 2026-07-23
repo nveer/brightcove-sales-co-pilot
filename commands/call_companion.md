@@ -1,48 +1,36 @@
-# /call_companion — Live Call Resource Assistant
+# /call_companion — Post-Call Wrap-Up Assistant
 
 ## Purpose
-Two-phase workflow: (1) During call — researches resources in real time. (2) After call — writes ONE consolidated Notion follow-up page. Starts immediately with no pre-loading delay.
+After a call ends, gathers the transcript (Granola or Gong via BigQuery), researches resources, and writes ONE consolidated Notion follow-up page. Nathan can optionally flag topics manually while the call is happening (see below), but there is no automatic real-time transcript monitoring — Granola encrypted its local database in March 2026, which removed the real-time access this workflow used to rely on.
 
 ## Transcript Sources
 
 | Source | When Available | Requires |
 |--------|---------------|----------|
+| Granola | Post-call, once the meeting ends and Granola finishes processing | Granola app installed and recording |
 | Brightcove Gateway (Gong via BigQuery) | Post-call: ~1 hour after call ends | Nothing — pre-configured |
-| Granola | Real-time during call | Granola app installed and recording |
 
 ---
 
-## Phase 1: During Call
+## While the Call Is Happening (Optional, Manual Only)
 
-Two paths depending on Granola availability.
+There is no automatic Granola monitoring during the call — neither Granola's MCP server nor its public API expose a transcript until the meeting ends and processing completes. If Nathan wants something researched in the moment, he drives it manually:
 
-### Path 1A: With Granola (Real-Time Monitoring)
-
-1. **Monitor Granola live** — Watch for resource requests, questions, or topics that need follow-up docs.
-2. **Research in parallel** — When a topic arises, search Brightcove docs in the background:
-   - SDK docs: sdks.support.brightcove.com
-   - API docs: apis.support.brightcove.com
-   - Studio/Product docs: studio.support.brightcove.com
-3. **Store in memory** — Accumulate all action items, questions, and resources. Do NOT interrupt the call with updates.
-
-### Path 1B: Without Granola (Manual Topic Flagging)
-
-1. **Stand by for manual requests** — No pre-loaded context. Nathan drives what gets researched.
-2. **Manual flagging** — During the call, Nathan can type: `look up [topic]` and Claude will immediately research and return relevant Brightcove docs.
-3. **Store in memory** — Accumulate all action items, questions, and resources flagged during the call.
+1. **Manual flagging** — Nathan types `look up [topic]` and Claude immediately researches and returns relevant Brightcove docs.
+2. **Store in memory** — Accumulate all action items, questions, and resources flagged this way for the after-call follow-up.
 
 ---
 
-## Phase 2: After Call
+## After the Call: Generate the Follow-Up
 
 Generate ONE consolidated Notion follow-up **child page** under the customer's Active Customers DB row. Two paths depending on Granola.
 
-### Path 2A: With Granola (Immediate)
+### Path A: With Granola
 
-1. **Use Granola transcript** — The recorded call is available immediately in Granola.
-2. **Generate follow-up page** — Write the Notion page using Granola transcript + accumulated notes from Phase 1.
+1. **Pull the Granola transcript** — Available once the meeting ends and Granola finishes processing.
+2. **Generate follow-up page** — Write the Notion page using the Granola transcript + any notes accumulated from manual flagging above.
 
-### Path 2B: Without Granola (Wait for BigQuery Sync)
+### Path B: Without Granola (Wait for BigQuery Sync)
 
 1. **Query today's transcript** — Check BigQuery for the call transcript synced from Gong:
    - Table: `v_raw_salesforce_transcript` (joined to `v_raw_salesforce_task`)
@@ -50,7 +38,7 @@ Generate ONE consolidated Notion follow-up **child page** under the customer's A
    - Always validate with `bigquery_validate_query` first
 
 2. **If transcript is ready (usually ~1 hour after call ends):**
-   - Generate follow-up page using BigQuery transcript + accumulated notes from Phase 1
+   - Generate follow-up page using BigQuery transcript + accumulated notes
 
 3. **If transcript is not yet synced:**
    - Tell Nathan: "Your Gong transcript is still syncing — it should be ready within the hour. Type 'run call follow-up for [customer]' when you're ready and I'll generate the page automatically."
