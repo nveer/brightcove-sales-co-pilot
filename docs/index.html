@@ -479,9 +479,9 @@
       </div>
       <div class="cap-card">
         <span class="cap-icon">📞</span>
-        <div class="cap-name">Live Call Companion</div>
-        <div class="cap-desc">Monitors your Granola transcript in real time during a call. When it detects a trigger phrase, it deploys parallel agents to research answers from Brightcove docs and your account history — all while you keep talking. After the call: a follow-up subpage is created under the customer's Active Customers row in Notion + one copy-paste follow-up email, already written.</div>
-        <span class="cap-tag">Real-Time</span>
+        <div class="cap-name">Call Wrap-Up Companion</div>
+        <div class="cap-desc">After a call ends, pulls your Granola transcript and deploys parallel agents to research answers from Brightcove docs and your account history. Creates a follow-up subpage under the customer's Active Customers row in Notion + one copy-paste follow-up email, already written.</div>
+        <span class="cap-tag">Post-Call</span>
       </div>
       <div class="cap-card">
         <span class="cap-icon">📬</span>
@@ -664,12 +664,12 @@
           <div class="platform-dot" style="background:rgba(139,92,246,0.15);">🎙️</div>
           <div class="platform-info">
             <div class="platform-name" style="color:#8b5cf6;">Granola</div>
-            <div class="platform-meta">Meeting transcripts · Live call notes · AI summaries</div>
+            <div class="platform-meta">Meeting transcripts · Post-call notes · AI summaries</div>
           </div>
           <span class="platform-pill" style="background:rgba(62,207,142,0.15); color:var(--green); border:1px solid rgba(62,207,142,0.3);">Sign in with Granola</span>
         </div>
         <div class="platform-body" style="display:none;">
-          <p>Used by Live Call Companion to monitor meeting notes in real time and pull transcripts post-call. Sign in with your corporate account — same as your other tools.</p>
+          <p>Used by Call Wrap-Up Companion to pull meeting transcripts and notes after a call ends. Sign in with your corporate account — same as your other tools.</p>
           <div class="steps">
             <div class="step"><div class="step-num">1</div><div class="step-text">Install <a href="https://granola.ai" target="_blank">Granola</a> on your Mac and sign in with your Brightcove account</div></div>
             <div class="step"><div class="step-num">2</div><div class="step-text">In Claude Desktop, click <strong>Customize</strong> in the left sidebar, then click <strong>Connectors</strong>, then click <strong>Connect your tools</strong>. Search for <strong>"Granola"</strong> and click Connect</div></div>
@@ -677,7 +677,7 @@
           </div>
           <div class="alert alert-success">
             <span class="alert-icon">✅</span>
-            <span><strong>No IT ticket needed.</strong> Fully self-serve. Once connected, Granola automatically transcribes your meetings and Claude can reference them during and after calls.</span>
+            <span><strong>No IT ticket needed.</strong> Fully self-serve. Once connected, Granola automatically transcribes your meetings and Claude can reference the transcript once it's ready after the call.</span>
           </div>
         </div>
       </div>
@@ -749,7 +749,7 @@
           <ul style="margin-top:10px; padding-left:22px; line-height:2.2; color:var(--text);">
             <li><strong>"Prep me for my calls today"</strong> → daily briefing</li>
             <li><strong>"Triage my inbox"</strong> → email triage</li>
-            <li><strong>"Run call companion"</strong> → live call assistant</li>
+            <li><strong>"Run call companion"</strong> → post-call wrap-up assistant</li>
           </ul>
           No slash commands to memorize — just talk to GOOSE like you'd talk to a colleague.
         </div>
@@ -775,7 +775,7 @@
       <div class="cmd-card"><div class="cmd-name">/prime</div><div class="cmd-desc">Run at the start of every session. Reads all context files and confirms Claude is up to speed.</div></div>
       <div class="cmd-card"><div class="cmd-name">/morning_schedule</div><div class="cmd-desc">Daily 7am briefing. Loads Google Calendar, classifies customer vs internal meetings, prints today's schedule.</div></div>
       <div class="cmd-card"><div class="cmd-name">/daily_prep</div><div class="cmd-desc">Generates a dark-theme HTML call prep page for today. Pulls calendar, enriches customer meetings with Gmail, Granola, Gong transcripts, and Salesforce account data via Brightcove Gateway.</div></div>
-      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Live call assistant. Monitors Granola notes, researches docs in real time, then creates a follow-up subpage under the customer's Active Customers row in Notion.</div></div>
+      <div class="cmd-card"><div class="cmd-name">/call_companion</div><div class="cmd-desc">Post-call wrap-up assistant. Pulls Granola notes after the call, researches docs, then creates a follow-up subpage under the customer's Active Customers row in Notion.</div></div>
       <div class="cmd-card"><div class="cmd-name">/email_triage</div><div class="cmd-desc">Scans inbox, categorizes by action, drafts responses, and archives noise. Always reviews with you before sending anything.</div></div>
       <div class="cmd-card"><div class="cmd-name">/call_prep [customer]</div><div class="cmd-desc">On-demand pre-call briefing for any account. Pulls Brightcove Gateway data, recent emails, Granola notes, and Notion history.</div></div>
       <div class="cmd-card"><div class="cmd-name">/account_summary [customer]</div><div class="cmd-desc">360° account view: 6 months of call history, full Brightcove Gateway pull, email threads, and health score.</div></div>
@@ -841,7 +841,7 @@
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Notion connected</strong><span>Customize → Connectors → Connect your tools → search "Notion" — connects to shared Active Customers database during onboarding</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Brightcove Gateway connected</strong><span>Auto-configured on install — authenticate with your Brightcove credentials when prompted</span></div></div>
       <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Onboarding complete</strong><span>Claude walked you through setup, your profile is saved, and your Notion workspace is ready</span></div></div>
-      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for live call companion — install from granola.ai</span></div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Granola installed (optional)</strong><span>Recommended for call wrap-up companion — install from granola.ai</span></div></div>
     </div>
   </section>
 
