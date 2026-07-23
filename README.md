@@ -5,7 +5,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 ## What It Does
 
 - **Daily Call Prep** — Dark-theme HTML timeline with per-meeting cards enriched from Gong transcripts, Gmail, and Salesforce account data
-- **Live Call Companion** — Real-time resource research during calls via Granola, then creates a follow-up subpage under the customer's Active Customers row in Notion
+- **Call Wrap-Up Companion** — Post-call resource research via Granola or Gong, then creates a follow-up subpage under the customer's Active Customers row in Notion
 - **Email Triage** — Categorizes inbox, drafts responses using Brightcove docs, archives noise (never auto-sends)
 - **On-Demand Call Prep** — Account briefings from Gong + Salesforce + Gmail for any customer
 - **Call Debrief** — Post-call capture with action items and Notion follow-up
@@ -22,7 +22,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 | Google Calendar | MCP connector | Self-serve (read-only) |
 | Google Drive | MCP connector | Self-serve |
 | Notion | MCP connector | Self-serve — connects to shared Active Customers DB |
-| Granola | MCP connector | Self-serve (optional, recommended for live call companion) |
+| Granola | MCP connector | Self-serve (optional, recommended for call wrap-up companion) |
 
 ## Setup
 
@@ -41,7 +41,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 | `/prime` | Session startup — reads all context, confirms Claude is up to speed |
 | `/morning_schedule` | Daily 7am briefing — loads calendar, classifies customer vs internal meetings |
 | `/daily_prep` | Generate a dark-theme HTML call prep page for today with enriched meeting cards |
-| `/call_companion` | Live call assistant — monitors Granola, researches docs in real time, creates follow-up subpage under Active Customers row |
+| `/call_companion` | Post-call wrap-up assistant — pulls the Granola/Gong transcript after the call, researches docs, creates follow-up subpage under Active Customers row |
 | `/email_triage` | Inbox triage — categorizes, drafts responses, archives noise (never auto-sends) |
 | `/call_prep [customer]` | On-demand pre-call briefing with Gong, Gmail, Salesforce, and Notion intel |
 | `/call_debrief [customer]` | Post-call capture with action items and account context updates |
