@@ -23,6 +23,7 @@ AI-powered sales assistant for Brightcove. Automates the most time-consuming par
 | Google Drive | MCP connector | Self-serve |
 | Notion | MCP connector | Self-serve — connects to shared Active Customers DB |
 | Granola | MCP connector | Self-serve (optional, recommended for call wrap-up companion) |
+| Slack | MCP connector | Self-serve (optional) — search channels/threads for customer context on request |
 
 ## Setup
 

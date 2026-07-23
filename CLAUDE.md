@@ -14,7 +14,7 @@ This workspace is the operational hub for ~~Your Name~~'s sales role at Brightco
 - **Role:** ~~Your Role~~, Brightcove (populated during onboarding)
 - **Focus:** ~~Your sales focus~~ (populated during onboarding)
 - **Weekly cadence:** ~~X~~ customer calls/week (populated during onboarding)
-- **Key tools:** Gmail, Google Calendar, Notion, Granola
+- **Key tools:** Gmail, Google Calendar, Notion, Granola, Slack (optional)
 
 ## What This Workspace Does
 Claude operates as your sales assistant with access to:
@@ -23,6 +23,7 @@ Claude operates as your sales assistant with access to:
 - **Google Calendar** (MCP connector, read-only) — List events, find free time. Cannot create/modify events.
 - **Notion** (MCP connector) — Create pages, search, fetch, update. Used for call follow-ups (each call creates a **child page** under the customer's Active Customers DB row) and account tracking. Shared Active Customers DB connected during onboarding — one row per customer, multi-rep safe.
 - **Granola** (MCP connector) — Meeting transcripts and notes, available once a meeting ends and Granola finishes processing. Granola encrypted its local database in March 2026, which removed the real-time/in-call access this used to have — no live transcript pull is available. Used by /call_companion.
+- **Slack** (MCP connector, optional) — Search channels and threads for customer signals on request. Not used automatically by any command — connect it if you want Claude to pull Slack context when you ask.
 - **Account context** (/context/current_accounts.md) — Active accounts, tiers, competitors, status (grows as you work)
 - **Brightcove product knowledge** (/context/brightcove_overview.md) — Pre-bundled platform overview. Source of truth: https://support.brightcove.com/
 - **Competitive Intelligence Platform** (https://bcov-competitive-intel-hub.lovable.app/#) — Live competitive win/loss data from Salesforce. Battle cards, feature matrix, alerts, and data sources covering 14 tracked competitors. Requires Brightcove email login. Use this as the **first stop** for any competitive research before supplementing with Gong transcripts or web research.

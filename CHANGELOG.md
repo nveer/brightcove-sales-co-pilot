@@ -8,12 +8,18 @@
 - **Renamed "Live Call Companion" → "Call Wrap-Up Companion"** across all plugin docs and the landing page, and dropped "live"/"real-time" language describing it.
 - **Reviewed the onboarding wizard (`commands/onboarding.md`)** for the same language — it was already clean (no "live"/real-time transcript claims), so no changes were needed there.
 
+### Added
+- **Slack added as an optional platform integration** — New self-serve connector on the landing page's "Platforms It Connects To" section, the "How to Get Started" install steps, and the setup checklist. Not used automatically by any command — connect it if you want Claude to search Slack channels/threads for customer context on request.
+- **Onboarding notes updated** to mention Slack as an optional, non-blocking connector (consistent with how Granola is already handled) — no changes to the required onboarding steps themselves.
+- **Reconciled the "Future Capabilities" Slack roadmap card** in `docs/sales-co-pilot-overview.html` — the Slack connector is no longer blocked/future, so the card now reflects it as shipped and optional. Deeper automation (auto-posting call summaries, missed-thread alerts) remains on the roadmap.
+
 ### 📋 Updated Files
 - `commands/call_companion.md` — Restructured: single post-call workflow + optional manual flagging during the call, Granola/Gong transcript sourcing clarified
-- `CLAUDE.md` — Granola bullet, Gong transcripts bullet, and `/call_companion` description updated to remove real-time claims
-- `README.md` — Feature list, integrations table, and commands table updated (Live Call Companion → Call Wrap-Up Companion)
-- `docs/index.html` — Landing page: "Live Call Companion" → "Call Wrap-Up Companion", all "live"/"real-time" copy removed
-- `docs/sales-co-pilot-overview.html` — Call Companion card retitled and description updated to remove real-time claims
+- `CLAUDE.md` — Granola bullet, Gong transcripts bullet, and `/call_companion` description updated to remove real-time claims; Slack added as an optional connector
+- `README.md` — Feature list, integrations table, and commands table updated (Live Call Companion → Call Wrap-Up Companion); Slack row added to integrations table
+- `docs/index.html` — Landing page: "Live Call Companion" → "Call Wrap-Up Companion", all "live"/"real-time" copy removed; Slack platform card, install-step bullet, and checklist item added
+- `docs/sales-co-pilot-overview.html` — Call Companion card retitled and description updated to remove real-time claims; Slack roadmap card updated from "blocked/future" to "shipped/optional"
+- `commands/onboarding.md` — Notes for Claude Implementation updated to mention Slack as optional
 - `CHANGELOG.md` — this entry
 
 ---
