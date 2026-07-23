@@ -159,7 +159,8 @@ Display final message:
 
 ## Notes for Claude Implementation
 
-- **Gong transcripts are available via Brightcove Gateway** — Do NOT ask for Gong credentials, API keys, or user IDs during onboarding. Access is entirely through the pre-configured Brightcove Gateway (BigQuery). The only integrations to connect are: Gmail (×2), Google Calendar, Google Drive, Notion, and optionally Granola.
+- **Gong transcripts are available via Brightcove Gateway** — Do NOT ask for Gong credentials, API keys, or user IDs during onboarding. Access is entirely through the pre-configured Brightcove Gateway (BigQuery). The only integrations to connect are: Gmail (×2), Google Calendar, Google Drive, Notion, and optionally Granola and Slack.
+- **Slack is optional and self-serve** — Do NOT prompt for it during the required onboarding steps. If the user mentions Slack, tell them it's optional (Customize → Connectors → Connect your tools → search "Slack") and is only used when they explicitly ask Claude to search a channel or thread — no command connects to it automatically.
 
 - Use TodoWrite to track progress through all 5 steps
 - All file writes happen silently (no confirmation messages to the user for writes)
