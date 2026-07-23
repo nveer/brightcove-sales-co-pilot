@@ -44,6 +44,15 @@ Generate ONE consolidated Notion follow-up **child page** under the customer's A
    - Tell Nathan: "Your Gong transcript is still syncing — it should be ready within the hour. Type 'run call follow-up for [customer]' when you're ready and I'll generate the page automatically."
    - Nathan can re-run this command later and the transcript will be available
 
+### Optional: Slack Cross-Reference (Internal)
+Only run this if the Slack MCP connector is connected. Follow the guardrails in CLAUDE.md's "Slack Usage Rules" — this is a targeted lookup, never a broad search.
+
+1. Check `./context/slack_channels.md` for a row matching this customer.
+2. **If a channel is mapped:** Use `slack_read_channel` on that channel only, last 30 days. Pull anything relevant to this call (internal flags, prior context, related discussion).
+3. **If no channel is mapped:** Do NOT search Slack automatically. Ask Nathan: "No Slack channel mapped for [Customer] — want me to run a scoped public-channel search instead?" Only search if he says yes, and only with `slack_search_public` (never private/DMs), scoped with `after:` (last 30 days), capped at 10 results.
+4. If nothing relevant is found, skip the "Internal Notes (Slack)" section entirely — no placeholder text.
+5. If something is used, note which channel(s) were checked and the date range on the follow-up page.
+
 ### Page Format Rules
 - **Title:** `[Customer] — [Date]` (no "Call Follow-Up:" prefix)
 - **One context sentence per section** + doc links. No lengthy explanations.
@@ -53,7 +62,8 @@ Generate ONE consolidated Notion follow-up **child page** under the customer's A
 ### Page Sections
 1. Action Items (with owners and deadlines)
 2. Resources Shared (doc links only)
-3. Follow-up Email (one consolidated email covering everything)
+3. Internal Notes (Slack) — only if Slack is connected and something relevant was found; state which channel(s) were checked and the date range; omit entirely otherwise
+4. Follow-up Email (one consolidated email covering everything)
 
 ### Notion Write
 - Target: Active Customers DB (see CLAUDE.md for DB ID / collection URL)

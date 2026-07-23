@@ -42,6 +42,15 @@ Generate a comprehensive pre-call briefing. This is the highest-ROI command in t
 - Only include each section if there is genuinely new content — if nothing relevant, omit the section entirely (no placeholder, no "no updates" message)
 - For roadmap questions not covered by the Slack digest, reference **Brightcove Roadmap & Product Briefing** (https://brightcove-briefing.lovable.app/initiatives) as a fallback
 
+### Step 4c: Slack Cross-Reference (Internal, Optional)
+Only run this step if the Slack MCP connector is connected. Follow the guardrails in CLAUDE.md's "Slack Usage Rules" — this is a targeted lookup, never a broad search.
+
+1. Check `./context/slack_channels.md` for a row matching this customer.
+2. **If a channel is mapped:** Use `slack_read_channel` on that channel only, last 30 days. Pull anything relevant to this call (open concerns, internal flags, recent discussion).
+3. **If no channel is mapped:** Do NOT search Slack automatically. Ask the user: "No Slack channel mapped for [Customer] — want me to run a scoped public-channel search instead?" Only search if they say yes, and only with `slack_search_public` (never private/DMs), scoped with `after:` (last 30 days), capped at 10 results.
+4. If nothing relevant is found either way, omit the "Internal Notes (Slack)" section from the briefing entirely — no placeholder text.
+5. If something is used, note in the briefing which channel(s) were checked and the date range — never present Slack content without disclosing its source.
+
 ### Step 5: Google Calendar Check (if available)
 - Look for the upcoming meeting with this customer
 - Note: date, time, attendees, any agenda in the invite
@@ -84,6 +93,9 @@ Output to `./outputs/call_prep/[customer]_[date].md`:
 
 ## 📢 New Product Updates
 [Only if recent — max 5 bullets from latest Product Comms Bot digest. Omit section if nothing new.]
+
+## Internal Notes (Slack)
+[Only if Slack is connected and something relevant was found. State which channel(s) were checked and the date range. Omit section entirely if not applicable or nothing found.]
 
 ## Watch Out For
 [Sensitive topics, renewal tensions, escalations]

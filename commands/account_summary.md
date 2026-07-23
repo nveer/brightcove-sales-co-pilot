@@ -17,6 +17,15 @@ Generate a 360° account overview with health score and recommendations.
 - Search Gmail for emails from/to this customer
 - Note: any unresolved threads, commitments made, escalations
 
+### Step 3b: Slack Cross-Reference (Internal, Optional)
+Only run this step if the Slack MCP connector is connected. Follow the guardrails in CLAUDE.md's "Slack Usage Rules" — this is a targeted lookup, never a broad search.
+
+1. Check `./context/slack_channels.md` for a row matching this customer.
+2. **If a channel is mapped:** Use `slack_read_channel` on that channel only, last 30 days. Pull anything relevant to account health (escalations, sentiment, recurring concerns).
+3. **If no channel is mapped:** Do NOT search Slack automatically. Ask the user: "No Slack channel mapped for [Customer] — want me to run a scoped public-channel search instead?" Only search if they say yes, and only with `slack_search_public` (never private/DMs), scoped with `after:` (last 30 days), capped at 10 results.
+4. If nothing relevant is found either way, omit the "Internal Notes (Slack)" section entirely — no placeholder text.
+5. If something is used, note which channel(s) were checked and the date range in the summary.
+
 ### Step 4: Health Score
 Assign Green / Yellow / Red with reasoning:
 - **Green** — Active engagement, healthy usage, no open issues
@@ -44,6 +53,9 @@ Save to `./outputs/account_summaries/[customer]_[date].md`:
 
 ## Open Opportunities
 [Active opps and their status]
+
+## Internal Notes (Slack)
+[Only if Slack is connected and something relevant was found. State which channel(s) were checked and the date range. Omit section entirely if not applicable or nothing found.]
 
 ## Platform Usage
 - Active users: [X] | Last login: [date]
