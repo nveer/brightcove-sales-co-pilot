@@ -1,5 +1,23 @@
 # Changelog — GOOSE
 
+## v2.8.1 — 2026-07-23 (prepared, pending next version push)
+
+### Fixed
+- **Removed "live"/real-time transcript claims for Call Companion:** Granola encrypted its local database in March 2026, which cut off the real-time file-system access this workflow used to rely on. Neither Granola's MCP server nor its public API expose a transcript until a meeting ends and processing completes — there is no live/in-call transcript pull available from Granola today, and there is no workaround.
+- **`/call_companion` rewritten as a post-call workflow** — Removed the automatic "monitor Granola live during the call" path. The only in-call option now is manual topic flagging (Nathan types `look up [topic]`), which doesn't depend on Granola. After the call, the transcript is pulled from Granola (once processed) or Gong via BigQuery, same as before.
+- **Renamed "Live Call Companion" → "Call Wrap-Up Companion"** across all plugin docs and the landing page, and dropped "live"/"real-time" language describing it.
+- **Reviewed the onboarding wizard (`commands/onboarding.md`)** for the same language — it was already clean (no "live"/real-time transcript claims), so no changes were needed there.
+
+### 📋 Updated Files
+- `commands/call_companion.md` — Restructured: single post-call workflow + optional manual flagging during the call, Granola/Gong transcript sourcing clarified
+- `CLAUDE.md` — Granola bullet, Gong transcripts bullet, and `/call_companion` description updated to remove real-time claims
+- `README.md` — Feature list, integrations table, and commands table updated (Live Call Companion → Call Wrap-Up Companion)
+- `docs/index.html` — Landing page: "Live Call Companion" → "Call Wrap-Up Companion", all "live"/"real-time" copy removed
+- `docs/sales-co-pilot-overview.html` — Call Companion card retitled and description updated to remove real-time claims
+- `CHANGELOG.md` — this entry
+
+---
+
 ## v2.8.0 — 2026-03-27
 
 ### Added
